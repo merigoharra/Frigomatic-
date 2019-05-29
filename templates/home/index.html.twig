@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Bienvenue {% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Bienvenue les gars, </h1>
+        <p>ici c'est la page d'acceuil pour se connecter ou s'inscrire ! </p>
+
+    <a href="{{ path('app_home') }}">Je me connecte</a>
+</div>
+{% endblock %}
