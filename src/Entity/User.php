@@ -2,14 +2,17 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Table(name="app_users")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -109,6 +112,9 @@ class User
         $this->userProducts = new ArrayCollection();
         $this->createdRecipes = new ArrayCollection();
         $this->favoriteRecipes = new ArrayCollection();
+        $this->created_at = new DateTime();
+        $this->updated_at = new DateTime();
+        $this->is_active = 1;
     }
 
     public function getId(): ?int
@@ -372,5 +378,45 @@ class User
         $this->role = $role;
 
         return $this;
+    }
+
+    public function getRoles()
+    {
+        //la fonction getRoles doit obligatoirement retourner un tableau sinon ca plante ;)
+        return [$this->getRole()->getCode()]; //je doit retourner des chaine de caractere dans mon tableau
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
     }
 }

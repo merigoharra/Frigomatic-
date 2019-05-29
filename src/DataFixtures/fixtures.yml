@@ -1,0 +1,49 @@
+App\Entity\Tag:
+    tag_{1..10}:
+        name: '<word()>'
+
+App\Entity\Role:
+    role_{1}:
+      role: 'user'
+      code: 'ROLE_USER'
+
+App\Entity\User:
+    user_{1..10}:
+        username: 'user<current()>'
+        password: '<password()>'
+        firstname: '<name()>'
+        lastname: '<lastName()>'
+        email: '<email()>'
+        avatar: '<imageUrl(64, 64, people)>'
+        role: '@role_*'
+
+App\Entity\Category:
+    category_{1..10}:
+        name: '<word()>'
+      
+App\Entity\Product:
+    product_{1..100}:
+        name: '<word()>'
+        measure: '<randomLetter()>'
+        category: '@category_*'
+
+App\Entity\Recipe:
+    recipe_{1..10}:
+        name: '<word()>'
+        people: '<numberBetween(2, 8)>'
+        level: '<numberBetween(1, 5)>'
+        image: '<imageUrl(500, 350, food)>'
+        total_duration: '<numberBetween(10, 120)>'
+        prep_duration: '<numberBetween(5, 60)>'
+        baking_duration: '<numberBetween(5, 60)>'
+        content: '<text(200)>'
+        tag: '<numberBetween(1, 3)>x @tag_*'
+        product: '<numberBetween(5, 10)>x @product_*'
+        userFavorites: '<numberBetween(0, 10)>x @user_*'
+        user: '@user_*'
+
+App\Entity\UserProduct:
+    fridge_{1..25}:
+        quantity: '<numberBetween(1, 8)>'
+        user: '@user_*'
+        product: '@product_*'

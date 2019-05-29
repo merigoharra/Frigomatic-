@@ -1,5 +1,9 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User: # je definit quelle entité sera a encodé (note c'est ici que getPassword est obligatoire)
+            algorithm: bcrypt # attention argon2i remplacera sous peu cette methode
+            
     providers:
         in_memory: { memory: ~ }
     firewalls:

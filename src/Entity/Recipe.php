@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -84,11 +85,18 @@ class Recipe
      */
     private $userFavorites;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $content;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
         $this->tag = new ArrayCollection();
         $this->userFavorites = new ArrayCollection();
+        $this->created_at = new DateTime();
+        $this->updated_at = new DateTime();
     }
 
     public function getId(): ?int
@@ -290,6 +298,18 @@ class Recipe
         if ($this->userFavorites->contains($userFavorite)) {
             $this->userFavorites->removeElement($userFavorite);
         }
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
 
         return $this;
     }
