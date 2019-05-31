@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | recettes {% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <h1>Creer une nouvelle recette</h1>
+
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    <button type="submit" class="btn btn-primary bg-dark">creer une nouvelle recette</button>
+    {{form_end(form)}}
+    
+</div>
+{% endblock %}

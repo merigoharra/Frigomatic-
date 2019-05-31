@@ -1,3 +1,36 @@
 body {
-    background-color: azure;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+ul {
+    margin-right: 8%;
+    margin-left: 5%;
+
+}
+
+.brand {
+    color: #fff;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 35px;
+    margin-left: 5%;
+
+}
+
+.brand:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+ul li a {
+    font-size: 17px;
+    padding-right: 40px;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+ul li a:hover {
+    text-decoration: none;
+    color: rgb(180, 175, 175);
 }

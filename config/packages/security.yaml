@@ -6,12 +6,24 @@ security:
             
     providers:
         in_memory: { memory: ~ }
+        app_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
+            provider: app_provider
+            guard:
+                authenticators:
+                    - App\Security\AppAuthentificatorAuthenticator
+            logout:
+                path: app_logout # ATTENTION : une route dans routes.yml doit être créée 
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -22,5 +34,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^\/application, roles: ROLE_USER }
         # - { path: ^/profile, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_MODERATOR
+        ROLE_MODERATOR: ROLE_USER
