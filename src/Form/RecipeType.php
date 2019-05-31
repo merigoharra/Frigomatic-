@@ -15,24 +15,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
-class RecipeType extends AbstractType
+class RecipeType extends TypeConfigurator
 {
-    private $congigurator;
-
-    public function __construct(TypeConfigurator $configurator){
-        $this->configurator = $configurator;
-    }
-
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, $this->configurator->getConfiguration("Titre de la recette :", "Tapez ici le titre de votre nouvelle recette !"))
-            ->add('people', IntegerType::class, $this->configurator->getConfiguration('Nombre de personnes :', 'Indiquer pour combien de personne(s) est cette recette'))
-            ->add('level', IntegerType::class, $this->configurator->getConfiguration("Difficulté :", "Niveau de difficulté de votre recette ")) 
-            ->add('image', UrlType::class, $this->configurator->getConfiguration("Image :", "Votre image de profil"))
-            ->add('prep_duration', IntegerType::class, $this->configurator->getConfiguration("Temps de préparation :", "Nombre de minute(s)"))
-            ->add('baking_duration', IntegerType::class, $this->configurator->getConfiguration("Temps de cuisson :", "Nombre de minute(s)"))
+            ->add('name', TextType::class, $this->getConfiguration("Titre de la recette :", "Tapez ici le titre de votre nouvelle recette !"))
+            ->add('people', IntegerType::class, $this->getConfiguration('Nombre de personnes :', 'Indiquer pour combien de personne(s) est cette recette'))
+            ->add('level', IntegerType::class, $this->getConfiguration("Difficulté :", "Niveau de difficulté de votre recette ")) 
+            ->add('image', UrlType::class, $this->getConfiguration("Image :", "Votre image de profil"))
+            ->add('prep_duration', IntegerType::class, $this->getConfiguration("Temps de préparation :", "Nombre de minute(s)"))
+            ->add('baking_duration', IntegerType::class, $this->getConfiguration("Temps de cuisson :", "Nombre de minute(s)"))
             ->add('product', EntityType::class, [
                 'label' => 'Ajouter les ingrédients :',
                 'class' => Product::class,
@@ -40,7 +34,7 @@ class RecipeType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-            ->add('content', TextType::class, $this->configurator->getConfiguration("Détail de la recette :", "Listez les instructions de votre recette "))
+            ->add('content', TextType::class, $this->getConfiguration("Détail de la recette :", "Listez les instructions de votre recette "))
             ->add('tag', EntityType::class, [
                 'label' => 'Choisir un tag :',
                 'class' => Tag::class,
