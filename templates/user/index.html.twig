@@ -3,5 +3,28 @@
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
-<p>page de profil</p>
+
+<h1>Votre profil :</h1>
+<article class="row">
+    <section class="col-2">
+        <div class="user-profil">
+            <img src="{{ app.user.avatar }}" alt="image de profil de {{ app.user.username }}" class="user-profil-img">
+        </div>
+    </section>
+    <section class="col-10">
+        <p>Pseudo : {{ app.user.username }}</p>
+        <p>Sexe : {{ app.user.gender }}</p>
+        <p>Prénom : {{ app.user.firstname }}</p>
+        <p>Nom : {{ app.user.lastname }}</p>
+        <p>Email : {{ app.user.email }}</p>
+        <p>Age : {{ app.user.age }}</p>
+        <p>Poids :{{ app.user.weight }}</p>
+        <p>Taille : {{ app.user.height }}</p>
+        <p>Membre depuis : {{ app.user.createdAt | date("d/m/Y") }}</p>
+    </section>
+
+</article>
+
+<a href="{{ path('app_user_edit', {'id': app.user.id}) }}" class="btn btn-success">Modifier mes informations</a>
+
 {% endblock %}
