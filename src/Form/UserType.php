@@ -25,24 +25,24 @@ class UserType extends TypeConfigurator
     {
 
         $builder
-            ->add('username', TextType::class, $this->getConfiguration("Pseudo :* ", "Pseudo"))
+            ->add('username', TextType::class, $this->getConfiguration("Pseudo : ", "Pseudo"))
             ->add('password', RepeatedType::class, [
                 'constraints' => [new NotBlank()],
                 'first_options' => [
-                    'label' => 'Mot de passe :*',
+                    'label' => 'Mot de passe :',
                     'attr' => [
-                        'placeholder' => 'Choissez un mot de passe'
+                        'placeholder' => 'Choissez un mot de passe',
                     ]],
                 'second_options' => [
-                    'label' => 'Mot de passe :*',
+                    'label' => 'Mot de passe :',
                     'attr' => [
                         'placeholder' => 'Confirmer le mot de passe'
                     ]],
                 'type' => PasswordType::class
             ])
-            ->add('firstname', TextType::class, $this->getConfiguration("Prénom :*", "Votre prénom" ) )
-            ->add('lastname', TextType::class, $this->getConfiguration("Nom :*", "Votre nom de famille") )
-            ->add('email', EmailType::class, $this->getConfiguration("Email :*", "Votre adresse mail"))
+            ->add('firstname', TextType::class, $this->getConfiguration("Prénom :", "Votre prénom" ) )
+            ->add('lastname', TextType::class, $this->getConfiguration("Nom :", "Votre nom de famille") )
+            ->add('email', EmailType::class, $this->getConfiguration("Email :", "Votre adresse mail"))
             ->add('age', IntegerType::class, $this->getConfiguration("Age : ","Votre âge "))
             ->add('weight',  IntegerType::class, $this->getConfiguration("Poids : ","Votre poids en Kilo ", false))
             ->add('height', IntegerType::class, $this->getConfiguration("Taille : ","Votre Taille en cm ", false))

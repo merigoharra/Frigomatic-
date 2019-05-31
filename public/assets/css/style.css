@@ -34,3 +34,8 @@ ul li a:hover {
     text-decoration: none;
     color: rgb(180, 175, 175);
 }
+
+.required::after {
+    content: "*";
+    color: red;
+}
