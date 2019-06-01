@@ -21,6 +21,7 @@
                     <label for="inputPassword" class="sr-only">Mot de passe</label>
                     <input type="password" name="password" id="inputPassword" class="form-control my-3"
                         placeholder="Mot de passe" required>
+                    <input type="checkbox" onclick="myFunction()">Voir mon mot de passe
 
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
@@ -36,14 +37,25 @@
                     #}
 
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-dark mr-3">Connexion</button>
-                        <p>
-                            <a href="{{ path('home') }}" class="btn btn-dark mr-3 mt-1">revenir a l'accueil</a>
-                        </p>
+                        <button type="submit" class="btn btn-dark m-4">Connexion</button>
+                        <br>
+                            <a href="{{ path('home') }}" >Revenir a l'accueil</a>
+                        
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("inputPassword");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 {% endblock %}
