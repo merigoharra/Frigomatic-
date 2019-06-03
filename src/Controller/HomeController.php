@@ -16,9 +16,10 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->render('home/index.html.twig', [
-
-        ]);
+        if ($this->getUser() !== null) {
+            return $this->redirectToRoute('app_home');
+        }
+        return $this->render('home/index.html.twig');
     }
     
     /**
@@ -26,6 +27,10 @@ class HomeController extends AbstractController
      */
     public function create(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
+        if ($this->getUser() !== null) {
+            return $this->redirectToRoute('app_home');
+        }
+
         $newUser = new User();
         $form = $this-> createForm(UserType::class, $newUser);
         $form->handleRequest($request);
