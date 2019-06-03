@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
 use App\Repository\UserRepository;
+use App\Repository\RecipeRepository;
+use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Repository\RecipeRepository;
 
 /**
  * @Route("/application/recettes-frigomatc", name="app_recipe_")
@@ -34,7 +35,7 @@ class RecipeController extends AbstractController
     public function create(Request $request, UserRepository $userRepositiry)
     {
         $recipe = new Recipe();
-        $form = $this-> createForm(RecipeType::class, $recipe);
+        $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

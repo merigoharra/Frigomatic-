@@ -1,0 +1,25 @@
+easy_admin:
+    site_name: '<img style="width: 300px;" src="../assets/images/logo.png" />'
+    user:
+        display_name: true
+        name_property_path: 'username'
+        display_avatar: true
+        avatar_property_path: 'avatar'
+    entities:
+       # List the entity class name you want to manage
+        Produits:
+            class: App\Entity\Product
+        Categories:
+            class: App\Entity\Category
+        Utilisateurs:
+            class: App\Entity\User
+        Recettes:
+            class: App\Entity\Recipe
+        Roles:
+            class: App\Entity\Role
+        Tags:
+            class: App\Entity\tag
+        Frigo:
+            class: App\Entity\UserProduct
+
+

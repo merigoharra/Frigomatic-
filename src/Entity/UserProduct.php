@@ -114,4 +114,9 @@ class UserProduct
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->id;
+    }
 }
