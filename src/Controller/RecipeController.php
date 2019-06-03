@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\RecipeRepository;
 
 /**
  * @Route("/application/recettes-frigomatc", name="app_recipe_")
@@ -17,9 +18,12 @@ class RecipeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index()
+    public function index(RecipeRepository $repo)
     {
+        $recipe = $repo->findAll();
+
         return $this->render('recipe/index.html.twig', [
+            'recipes' => $recipe
 
         ]);
     }

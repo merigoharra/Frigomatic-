@@ -1,21 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Bienvenue {% endblock %}
-
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">{% endblock %}
 {% block body %}
 
-    <div class="jumbotron ">
+    <div class="back ">
         <div class="container">
 
             <div class="row ">
-                <div class="col-md-3">&nbsp;</div>
-                <div class="col-md-6 bg-light shadow rounded">
-                    <div class="p-3 m-5">
-                        <h1 class="text-center mb-3 ">Bienvenue :</h1>
+                <div class="col-md-4">&nbsp;</div>
+                <div class="col-md-4 cadre shadow ">
+                    <div class="p-5 ">
+                        <h1 class="text-center mb-4 text-white">Bienvenue </h1>
                     <div class="text-center ">
-                        <a href="{{ path('app_login') }}" class="btn mr-4 bg-dark text-white">Se connecter</a>
-                        <a href="{{ path('new_user') }}" class="btn bg-dark text-white">S'inscrire</a>
+                        <a href="{{ path('app_login') }}" class="btn mr-4 bg-light">Se connecter</a>
+                        <a href="{{ path('new_user') }}" class="btn bg-light">S'inscrire</a>
                     </div>
+
+
 
                         {# <form action="#" method="post">
                             <div class="form-group">
