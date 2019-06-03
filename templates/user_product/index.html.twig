@@ -3,6 +3,7 @@
 {% block title %}{{ parent() }} | Mon Frigo {% endblock %}
 
 {% block body %}
+
 <h1>Bienvenue : {{ app.user.firstname }} </h1>
 <img style="width: 5rem; border-radius:50%;" src="{{app.user.avatar}}" alt="">
 
@@ -22,11 +23,14 @@
 </ul>
 
 <h2>Ajouter des produit à mon frigo :</h2>
-<ul>
-{% for product in allProducts %}
-<a href="{{ path('app_userProduct_add', {'id': product.id}) }}">
-    <li> + {{ product }}</li>
-</a>
-{% endfor %}
-</ul>
+
+<label for="product-choice">Ajouter :</label>
+<input list="all-products" id="product-choice" name="product-choice" />
+
+<datalist id="all-products">
+    {% for product in allProducts %}
+        <a href="{{ path('app_userProduct_add', {'id': product.id}) }}"><option value="{{ product }}"></a>
+    {% endfor %}
+</datalist>
+
 {% endblock %}
