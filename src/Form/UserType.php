@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Role;
 use App\Entity\User;
 use App\Utils\TypeConfigurator;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -23,23 +25,48 @@ class UserType extends TypeConfigurator
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
+        // Listener pour ajouter les champs isActive et Role si l'utilisateur est admin
+        $listener = function(FormEvent $event) {
 
+            $userData = $event->getData();
+            $userForm = $event->getForm();
+
+            if($userData->getId()) {
+                if($userData->getRole()->getRole() == 'admin') {
+                    $userForm->add('is_active')
+                            ->add('role', EntityType::class, [
+                        'label' => 'Choisir un role à l\'utilisateur :',
+                        'class' => Role::class,
+                        'choice_label' => 'role',
+                        'multiple' => false,
+                        'expanded' => true,
+                    ]);
+                } else {
+                    return;
+                }
+            } else {
+                $userForm->add('password', RepeatedType::class, [
+                    'constraints' => [new NotBlank()],
+                    'first_options' => [
+                        'label' => 'Mot de passe :',
+                        'attr' => [
+                            'placeholder' => 'Choissez un mot de passe',
+                        ]],
+                    'second_options' => [
+                        'label' => 'Mot de passe :',
+                        'attr' => [
+                            'placeholder' => 'Confirmer le mot de passe'
+                        ]],
+                    'type' => PasswordType::class
+                ]);
+            }
+
+        };
+
+        
         $builder
             ->add('username', TextType::class, $this->getConfiguration("Pseudo : ", "Pseudo"))
-            ->add('password', RepeatedType::class, [
-                'constraints' => [new NotBlank()],
-                'first_options' => [
-                    'label' => 'Mot de passe :',
-                    'attr' => [
-                        'placeholder' => 'Choissez un mot de passe',
-                    ]],
-                'second_options' => [
-                    'label' => 'Mot de passe :',
-                    'attr' => [
-                        'placeholder' => 'Confirmer le mot de passe'
-                    ]],
-                'type' => PasswordType::class
-            ])
             ->add('firstname', TextType::class, $this->getConfiguration("Prénom :", "Votre prénom" ) )
             ->add('lastname', TextType::class, $this->getConfiguration("Nom :", "Votre nom de famille") )
             ->add('email', EmailType::class, $this->getConfiguration("Email :", "Votre adresse mail"))
@@ -54,15 +81,7 @@ class UserType extends TypeConfigurator
                 'label' =>'Sexe :'
                 ])
             ->add('avatar', UrlType::class, $this->getConfiguration("Photo :", "Votre photo de profil" ))
-            ->add('is_active')
-            ->add('role', EntityType::class, [
-                'label' => 'Choisir un role à l\'utilisateur :',
-                'class' => Role::class,
-                'choice_label' => 'role',
-                'multiple' => false,
-                'expanded' => true,
-            ])
-        ;
+            ->addEventListener(FormEvents::PRE_SET_DATA, $listener);
     }
 
     public function configureOptions(OptionsResolver $resolver)
