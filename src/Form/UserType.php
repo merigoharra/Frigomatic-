@@ -70,17 +70,15 @@ class UserType extends TypeConfigurator
             ->add('firstname', TextType::class, $this->getConfiguration("Prénom :", "Votre prénom" ) )
             ->add('lastname', TextType::class, $this->getConfiguration("Nom :", "Votre nom de famille") )
             ->add('email', EmailType::class, $this->getConfiguration("Email :", "Votre adresse mail"))
-            ->add('age', IntegerType::class, $this->getConfiguration("Age : ","Votre âge "))
+            ->add('age', IntegerType::class, $this->getConfiguration("Age : ","Votre âge ", false))
             ->add('weight',  IntegerType::class, $this->getConfiguration("Poids : ","Votre poids en Kilo ", false))
             ->add('height', IntegerType::class, $this->getConfiguration("Taille : ","Votre Taille en cm ", false))
-            ->add('gender', ChoiceType::class,[
-                'choices' => [
+            ->add('gender', ChoiceType::class, $this->getConfiguration("Sexe : ","", false, ['choices' => [
                     'homme' => 'homme',
                     'femme' => 'femme',
-                ],
-                'label' =>'Sexe :'
-                ])
-            ->add('avatar', UrlType::class, $this->getConfiguration("Photo :", "Votre photo de profil" ))
+                ]
+            ]))
+            ->add('avatar', UrlType::class, $this->getConfiguration("Photo :", "Votre photo de profil", false))
             ->addEventListener(FormEvents::PRE_SET_DATA, $listener);
     }
 
