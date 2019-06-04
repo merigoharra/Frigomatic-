@@ -3,8 +3,14 @@
 {% block title %}{{ parent() }} | Acceuil {% endblock %}
 
 {% block body %}
-<h1>Accueil de l'application</h1>
-<p>Ici nous sommes sur l'accueil une fois que l'utilisateur est connecté</p>
+<h1>Bienvenue {{ app.user.firstname }}</h1>
+<h2>Voici quelques recettes que vous pouvez réaliser avec ce que vous avez dans votre frigo </h2>
+<p>Ici des card de recettes avec un taux de correspondance</p>
+
+<h2>Voici les aliments les plus ancien de votre frigo ! (uniquement : Fruit et légume, Produit laitier, Viande poisson oeuf) Pourquoi ne pas les manger aujourd'hui ?</h2>
+<p>Liste des produit avec le createdAt le plus ancien -> lien vers la page recette avec le tri par produit correspondant</p>
+
+<h2>Ce que vous avez d'autre dans votre Frigo ...</h2>
+<p>affichage des produits du frigo</p>
 <a href="{{ path('app_userProduct_home') }}">Aller dasn mon frigo</a>
-<a href="{{ path('app_user_home') }}">Aller sur mon profil</a>
 {% endblock %}

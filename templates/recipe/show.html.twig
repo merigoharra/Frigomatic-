@@ -10,6 +10,11 @@
     {% for tag in recipe.tag %}
     <span class="badge badge-info">{{ tag.name }}</span>
     {% endfor %}
+
+    {{ dump(isFav)}}
+    <a href="{{ path('app_recipe_add_fav', {'id': recipe.id}) }}" class="btn btn-success">Ajouter à mes recettes favorites</a>
+
+
     <div class="row">
         <section class='col'>
             <p>Recette pour : {{ recipe.people }} personnes</p>

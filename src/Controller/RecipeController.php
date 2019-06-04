@@ -69,14 +69,63 @@ class RecipeController extends AbstractController
                     ]);
     }
 
+    /**
+     * @Route("/{id}/ajouter-aux-favorits", name="add_fav")
+     */
+    public function addFav(Recipe $recipe)
+    {
+        $user = $this->getUser();
+        $user->addFavoriteRecipe($recipe);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $this->addFlash(
+            'success',
+            'Votre recette est bien ajoutée à vos favorits'
+        );
+
+        return $this->redirectToRoute('app_recipe_show', ['slug' => $recipe->getSlug()]);
+    }
+
+    /**
+     * @Route("/{id}/supprimer-des-favorits", name="delete_fav")
+     */
+    public function deleteFav(Recipe $recipe)
+    {
+        $user = $this->getUser();
+        $user->removeFavoriteRecipe($recipe);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $this->addFlash(
+            'success',
+            'Votre recette est bien ajoutée à vos favorits'
+        );
+
+        return $this->redirectToRoute('app_user_recipe');
+    }
+
 
     /**
      * @Route("/{slug}", name="show")
      */
-    public function show(Recipe $recipe)
+    public function show(Recipe $recipe, RecipeRepository $recipeRepo, UserRepository $userRepo)
     {
+        // NON FONCTIONNEL -> j'essaye de passer à la vue le fait que la recette est déjà (ou pas) en favori
+        $isFav = false;
+        // if ($userRepo->findOneBy([
+        //     'id' => $this->getUser()->getId(),
+        //     'favoriteRecipes' => $recipe
+        // ])) {
+        //     $isFav = true;
+        // }
         return $this->render('recipe/show.html.twig', [
-            'recipe' => $recipe
+            'recipe' => $recipe,
+            'isFav' => $isFav
                     ]);
     }
 }
