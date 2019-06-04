@@ -1,5 +1,7 @@
 <?php
 
+// Méthode a utiliser dans les Froms pour faciliter l'ajout de label, placeholder, required et tout autre option grace à la méthode getConfiguration. Celle-ci étend AbstractType pour être utilisé directement en extends dans les formulaires. 
+
 namespace App\Utils;
 
 use Symfony\Component\Form\AbstractType;

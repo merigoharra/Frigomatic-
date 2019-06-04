@@ -1,5 +1,7 @@
 <?php
 
+// Controller de l'accueil de l'application (une fois l'utilisateur connecté)
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

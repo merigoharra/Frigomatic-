@@ -1,5 +1,7 @@
 <?php
 
+// Le UserProduct correspond au "Frigo" de l'utilisateur. Il fait un lien entre l'utilisateur et les produits disponible dans la BDD
+
 namespace App\Controller;
 
 use App\Entity\Product;
@@ -22,27 +24,34 @@ class UserProductController extends AbstractController
      */
     public function index(ProductRepository $productRepo, Request $request, UserProductRepository $userProductRepo)
     {
+        // Methode index permet d'afficher la page d'accueil mais aussi le form d'ajout d'un produit en fonction d'une quantité dans le frigo (nouvelle ligne dans la table userProduct)
 
+        // Création de l'objet et association avec un formulaire
         $newUserProduct = new UserProduct();
         $form = $this-> createForm(UserProductType::class, $newUserProduct);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             
+            // Récupération du produit en court d'ajout
             $currentProduct = $newUserProduct->getProduct();
 
+            // Set de l'utilisateur avec l'utilisateur courant de l'app
             $newUserProduct->setUser($this->getuser());
 
+            // Vérification de l'existance d'une ligne identique dans la BDD pour faire une incrémentation plutot qu'un ajout -> NON FONCTIONNEL 
             if ($this->getuser()->getUserProducts()->findByProduct($currentProduct)) {
-                $NewUserProduct = $this->getuser()->getUserProducts()->findOneByProduct($currentProduct);
+                $newUserProduct = $this->getuser()->getUserProducts()->findOneByProduct($currentProduct);
                 $quantity = $newUserProduct->getQuantity();
                 $quantity++;
                 $newUserProduct->setQuantity($quantity);
             } 
+            // Enregistrement de l'objet en BDD
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newUserProduct);
             $entityManager->flush();
 
+            // message flash de confirmation
             $this->addFlash(
                 'success',
                 'Votre produit est bien ajouté'
@@ -63,6 +72,9 @@ class UserProductController extends AbstractController
      */
     public function add(Product $product, UserProductRepository $userProductRepo)
     {
+        // Route permettant d'ajouter un produit rapidement dasn le frigo 
+        // ATTENTION : non fonctionnelle car la recherche findOneByProduct ne prend pas en compte l'utilisateur courant ! voir la méthode utilisé sur index
+
         if($userProductRepo->findOneByProduct($product)) {
             $userProduct = $userProductRepo->findOneByProduct($product);
             $quantity = $userProduct->getQuantity();
@@ -92,6 +104,8 @@ class UserProductController extends AbstractController
      */
     public function delete(Request $request, UserProduct $userProduct): Response
     {
+        // Méthode permettant de supprimer un produit du Frigo
+
         if ($this->isCsrfTokenValid('delete'.$userProduct->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($userProduct);

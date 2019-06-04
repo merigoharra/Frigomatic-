@@ -1,5 +1,7 @@
 <?php
 
+// Gestion des visiteurs donc méthode non bloqué par sécurity.yaml 
+
 namespace App\Controller;
 
 use App\Entity\User;

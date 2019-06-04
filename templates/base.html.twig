@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta charset="UTF-8">
+    {# Lien Bootstrap CSS #}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {# Lien GoogleFont #}
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto&display=swap" rel="stylesheet">
+    {# Lien vers le fichier css de l'application #}
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <title>{% block title %}Frigomatic {% endblock %}</title>
     {% block stylesheets %}{% endblock %}
@@ -14,7 +17,7 @@
 
 <body>
     <header>
-
+        {# Navigation accéssible seukement si l'utilisateur est connecté #}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             {% if app.user %}
             <a class="brand" href="{{path('app_home')}}">Frigomatic </a>
@@ -36,7 +39,7 @@
                     </li>
                 </ul>
 
-
+                {# DropDown de la partie profil de l'utilisateur #}
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -50,6 +53,7 @@
                     </li>
                 </ul>
                 {% else %}
+                {# Si l'utilisateur n'est pas connecté (visiteur) pas de navigation mais le logo de Frigomatic #}
                 <a class="brand m-auto text-white" stylehref="{{ path('app_home') }}">Frigomatic </a>
                 {% endif %}
 
@@ -57,6 +61,7 @@
             </div>
         </nav>
     </header>
+    {# Affichage des messages flash de l'application en fonction d'un label #}
     {% for label, messages in app.flashes %}
     {% for message in messages %}
     <div class="container text-center m-3 alert alert-{{ label }}">
@@ -64,8 +69,11 @@
     </div>
     {% endfor %}
     {% endfor %}
+
+    {# Bloc Body à remplir dans les templates enfants #}
     {% block body %}{% endblock %}
 
+    {# SCRIPT #}
     {% block javascripts %}{% endblock %}
     {# Script JQuery #}
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -79,6 +87,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+
     {# Script Personnel #}
     <script src="{{ asset('assets/js/app.js') }}"></script>
 

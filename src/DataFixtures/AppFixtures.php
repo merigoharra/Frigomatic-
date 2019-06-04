@@ -34,7 +34,7 @@ class AppFixtures extends Fixture {
         $roleModerator->setCode('ROLE_MODERATOR');
         $roleModerator->setRole('Moderator');
 
-
+        // Fixture pour la création d'utilisateurs en associant a chaque fois un role différent
         $admin = new User();
         //j'encode mon mot de passe avant de le stocker dans ma propriété password
         $encodedPassword = $this->encoder->encodePassword($admin, 'admin');
@@ -66,6 +66,7 @@ class AppFixtures extends Fixture {
             ->setAvatar('http://lorempixel.com/output/food-q-c-64-64-4.jpg')
             ->setRole($roleModerator);
 
+        // Enregistrement en BDD
         $manager->persist($roleAdmin);
         $manager->persist($roleUser);
         $manager->persist($roleModerator);

@@ -1,5 +1,7 @@
 <?php
 
+// Gestion des utilisateurs avec en plus "mes recettes" -> recettes favorite d'un utilisateur
+
 namespace App\Controller;
 
 use App\Form\UserType;
