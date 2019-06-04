@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Recipe;
 use App\Form\RecipeType;
+use Cocur\Slugify\Slugify;
 use App\Repository\UserRepository;
 use App\Repository\RecipeRepository;
 use App\Repository\ProductRepository;
@@ -39,6 +40,12 @@ class RecipeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $slugger = new Slugify();
+
+            $slug = $slugger->slugify($recipe->getName());
+
+            $recipe->setSlug($slug);
 
             $recipe->SetTotalDuration($recipe->getPrepDuration() + $recipe->getBakingDuration());
 
@@ -59,6 +66,17 @@ class RecipeController extends AbstractController
 
         return $this->render('recipe/new.html.twig', [
             'form' => $form->createView()
+                    ]);
+    }
+
+
+    /**
+     * @Route("/{slug}", name="show")
+     */
+    public function show(Recipe $recipe)
+    {
+        return $this->render('recipe/show.html.twig', [
+            'recipe' => $recipe
                     ]);
     }
 }

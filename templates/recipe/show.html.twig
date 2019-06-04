@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | {{ recipe.name }} {% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('assets/css/recipe.css') }}">{% endblock %}
+
+{% block body %}
+<article class="container">
+    <h1>{{ recipe.name }}</h1>
+    {% for tag in recipe.tag %}
+    <span class="badge badge-info">{{ tag.name }}</span>
+    {% endfor %}
+    <div class="row">
+        <section class='col'>
+            <p>Recette pour : {{ recipe.people }} personnes</p>
+            <p>Difficulté : 
+                {% for i in 1..recipe.level %}
+                    <i class="fas fa-utensil-spoon"></i>
+                {% endfor %}
+            </p>
+            <p>temps total : {{ recipe.totalDuration }} minutes</p>
+            <p>temps de préparation : {{ recipe.prepDuration }} minutes</p>
+            <p>temps de cuisson : {{ recipe.bakingDuration }} minutes</p>
+            <p><img src="{{ recipe.image }}" alt="Image de la recette {{ recipe.name }}"></p>
+            <p>dernière modification : {{ recipe.updatedAt|date("d/m/Y") }}</p>
+            <div>
+                <p>Liste des ingrédients :</p>
+                <ul>
+                {% for product in recipe.product %}
+                    <li>{{ product.name }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <p>{{ recipe.content }}</p>
+        </section>
+
+    </div>
+    <a href="#" class="btn btn-success">J'ai réalisé cette recette (enlever les ingrédients correspondant de mon
+        Frigo)</a>
+
+</article>
+{% endblock %}

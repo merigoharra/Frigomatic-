@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Role;
 use App\Entity\User;
 use Nelmio\Alice\Loader\NativeLoader;
+use App\DataFixtures\MyCustomNativeLoader;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -78,7 +79,8 @@ class AppFixtures extends Fixture {
 
         
         // ******************* Fixtures Alice *******************
-        $loader = new NativeLoader();
+        // $loader = new NativeLoader();
+        $loader = new MyCustomNativeLoader();
 
         //importe le fichier de fixtures et récupère les entités générés
         $entities = $loader->loadFile(__DIR__.'/fixtures.yml')->getObjects();

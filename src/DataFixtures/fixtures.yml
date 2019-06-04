@@ -41,6 +41,7 @@ App\Entity\Recipe:
         product: '<numberBetween(5, 10)>x @product_*'
         userFavorites: '<numberBetween(0, 10)>x @user_*'
         user: '@user_*'
+        slug: '<slugify(@self->name)>'
 
 App\Entity\UserProduct:
     fridge_{1..25}:

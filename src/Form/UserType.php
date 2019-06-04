@@ -67,9 +67,11 @@ class UserType extends TypeConfigurator
         
         $builder
             ->add('username', TextType::class, $this->getConfiguration("Pseudo : ", "Pseudo"))
+            ->addEventListener(FormEvents::PRE_SET_DATA, $listener)
             ->add('firstname', TextType::class, $this->getConfiguration("Prénom :", "Votre prénom" ) )
             ->add('lastname', TextType::class, $this->getConfiguration("Nom :", "Votre nom de famille") )
             ->add('email', EmailType::class, $this->getConfiguration("Email :", "Votre adresse mail"))
+            ->add('avatar', UrlType::class, $this->getConfiguration("Photo :", "Votre photo de profil", false))
             ->add('age', IntegerType::class, $this->getConfiguration("Age : ","Votre âge ", false))
             ->add('weight',  IntegerType::class, $this->getConfiguration("Poids : ","Votre poids en Kilo ", false))
             ->add('height', IntegerType::class, $this->getConfiguration("Taille : ","Votre Taille en cm ", false))
@@ -78,8 +80,7 @@ class UserType extends TypeConfigurator
                     'femme' => 'femme',
                 ]
             ]))
-            ->add('avatar', UrlType::class, $this->getConfiguration("Photo :", "Votre photo de profil", false))
-            ->addEventListener(FormEvents::PRE_SET_DATA, $listener);
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

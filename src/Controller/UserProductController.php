@@ -36,12 +36,21 @@ class UserProductController extends AbstractController
             // Récupération du produit en court d'ajout
             $currentProduct = $newUserProduct->getProduct();
 
-            // Set de l'utilisateur avec l'utilisateur courant de l'app
-            $newUserProduct->setUser($this->getuser());
+            // Récupération de l'utilisateur courant 
+            $user = $this->getUser();
 
-            // Vérification de l'existance d'une ligne identique dans la BDD pour faire une incrémentation plutot qu'un ajout -> NON FONCTIONNEL 
-            if ($this->getuser()->getUserProducts()->findByProduct($currentProduct)) {
-                $newUserProduct = $this->getuser()->getUserProducts()->findOneByProduct($currentProduct);
+            // Set de l'utilisateur avec l'utilisateur courant de l'app
+            $newUserProduct->setUser($user);
+
+            // Vérification de l'existance d'une ligne identique dans la BDD pour faire une incrémentation plutot qu'un ajout
+            if ($userProductRepo->findOneBy([
+                'user' => $user,
+                'product' => $currentProduct
+            ])) {
+                $newUserProduct = $userProductRepo->findOneBy([
+                    'user' => $user,
+                    'product' => $currentProduct
+                ]);
                 $quantity = $newUserProduct->getQuantity();
                 $quantity++;
                 $newUserProduct->setQuantity($quantity);
@@ -73,10 +82,16 @@ class UserProductController extends AbstractController
     public function add(Product $product, UserProductRepository $userProductRepo)
     {
         // Route permettant d'ajouter un produit rapidement dasn le frigo 
-        // ATTENTION : non fonctionnelle car la recherche findOneByProduct ne prend pas en compte l'utilisateur courant ! voir la méthode utilisé sur index
+        // Non utilisé pour le moment mais peut servir en AJAX peut être 
 
-        if($userProductRepo->findOneByProduct($product)) {
-            $userProduct = $userProductRepo->findOneByProduct($product);
+        if($userProductRepo->findOneBy([
+            'user' => $this->getUser(),
+            'product' => $product
+        ])) {
+            $userProduct = $userProductRepo->findOneBy([
+                'user' => $this->getUser(),
+                'product' => $product
+            ]);
             $quantity = $userProduct->getQuantity();
             $quantity++;
             $userProduct->setQuantity($quantity);
