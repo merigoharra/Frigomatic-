@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Entity\UserProduct;
+use App\Form\UserProductType;
 use App\Repository\ProductRepository;
+use App\Repository\UserProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Repository\UserProductRepository;
 
 /**
  * @Route("/application/mon-frigo", name="app_userProduct_")
@@ -19,11 +20,41 @@ class UserProductController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(ProductRepository $productRepo)
+    public function index(ProductRepository $productRepo, Request $request, UserProductRepository $userProductRepo)
     {
+
+        $newUserProduct = new UserProduct();
+        $form = $this-> createForm(UserProductType::class, $newUserProduct);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $currentProduct = $newUserProduct->getProduct();
+
+            $newUserProduct->setUser($this->getuser());
+
+            if ($this->getuser()->getUserProducts()->findByProduct($currentProduct)) {
+                $NewUserProduct = $this->getuser()->getUserProducts()->findOneByProduct($currentProduct);
+                $quantity = $newUserProduct->getQuantity();
+                $quantity++;
+                $newUserProduct->setQuantity($quantity);
+            } 
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($newUserProduct);
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Votre produit est bien ajouté'
+            );
+
+            return $this->redirectToRoute('app_userProduct_home');
+        }
+
         $allProducts = $productRepo->findAll();
         return $this->render('user_product/index.html.twig', [
             'allProducts' => $allProducts,
+            'form' => $form->createView(),
         ]);
     }
 

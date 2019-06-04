@@ -24,13 +24,21 @@
 
 <h2>Ajouter des produit à mon frigo :</h2>
 
-<label for="product-choice">Ajouter :</label>
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    <button type="submit" class="btn btn-primary bg-dark">S'inscrir</button>
+    {{form_end(form)}}
+
+
+
+
+{# <label for="product-choice">Ajouter :</label>
 <input list="all-products" id="product-choice" name="product-choice" />
 
 <datalist id="all-products">
     {% for product in allProducts %}
         <a href="{{ path('app_userProduct_add', {'id': product.id}) }}"><option value="{{ product }}"></a>
     {% endfor %}
-</datalist>
+</datalist> #}
 
 {% endblock %}
