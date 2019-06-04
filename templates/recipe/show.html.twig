@@ -11,8 +11,13 @@
     <span class="badge badge-info">{{ tag.name }}</span>
     {% endfor %}
 
+    {# A transformer en étoile du style github -> star ou unstar #}
     {{ dump(isFav)}}
+    {% if isFav %}
+    <a href="{{ path('app_recipe_delete_fav', {'id': recipe.id}) }}" class="btn btn-success mt-2">Supprimer des favorits</a>
+    {% else %}
     <a href="{{ path('app_recipe_add_fav', {'id': recipe.id}) }}" class="btn btn-success">Ajouter à mes recettes favorites</a>
+    {% endif %}
 
 
     <div class="row">

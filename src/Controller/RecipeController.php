@@ -115,14 +115,11 @@ class RecipeController extends AbstractController
      */
     public function show(Recipe $recipe, RecipeRepository $recipeRepo, UserRepository $userRepo)
     {
-        // NON FONCTIONNEL -> j'essaye de passer à la vue le fait que la recette est déjà (ou pas) en favori
+        // Pas très opti car on génére une requête qui appel toutes les recettes favorites de l'utilisateur avant de les trier, l'idéale serait de le faire directement dans la requête. Mais pas dérangeant sur cette méthode en supposant que l'utilisateur n'aura pas 1000 recettes favorites
         $isFav = false;
-        // if ($userRepo->findOneBy([
-        //     'id' => $this->getUser()->getId(),
-        //     'favoriteRecipes' => $recipe
-        // ])) {
-        //     $isFav = true;
-        // }
+        if ($this->getUser()->getFavoriteRecipes()->contains($recipe)) {
+            $isFav = true;
+        }
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
             'isFav' => $isFav

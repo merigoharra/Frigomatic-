@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <h5 class="font-weight-bold">{{recipe.name}}</h5>
                     <p class="card-text"> Niveau de difficulté :{{ recipe.level }} </p>
-                    <a href="{{ path('app_recipe_show', {'slug':recipe.slug}) }}" class="btn btn-success">Go !</a><a href="{{ path('app_recipe_delete_fav', {'id': recipe.id}) }}" class="btn btn-success mt-2">Supprimer des favorits</a>
+                    <a href="{{ path('app_recipe_show', {'slug':recipe.slug}) }}" class="btn btn-success">Go !</a>
                 </div>
             </div>
         </div>
