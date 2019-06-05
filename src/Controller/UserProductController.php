@@ -41,6 +41,8 @@ class UserProductController extends AbstractController
 
             // Set de l'utilisateur avec l'utilisateur courant de l'app
             $newUserProduct->setUser($user);
+            
+            $quantityToAdd = $newUserProduct->getQuantity();
 
             // Vérification de l'existance d'une ligne identique dans la BDD pour faire une incrémentation plutot qu'un ajout
             if ($userProductRepo->findOneBy([
@@ -52,7 +54,7 @@ class UserProductController extends AbstractController
                     'product' => $currentProduct
                 ]);
                 $quantity = $newUserProduct->getQuantity();
-                $quantity++;
+                $quantity = $quantity + $quantityToAdd;
                 $newUserProduct->setQuantity($quantity);
             } 
             // Enregistrement de l'objet en BDD

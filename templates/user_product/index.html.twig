@@ -3,7 +3,7 @@
 {% block title %}{{ parent() }} | Mon Frigo {% endblock %}
 
 {% block body %}
-
+<div class="container">
 <h1>Bienvenue : {{ app.user.firstname }} </h1>
 <img style="width: 5rem; border-radius:50%;" src="{{app.user.avatar}}" alt="">
 
@@ -40,5 +40,5 @@
         <a href="{{ path('app_userProduct_add', {'id': product.id}) }}"><option value="{{ product }}"></a>
     {% endfor %}
 </datalist> #}
-
+</div>
 {% endblock %}

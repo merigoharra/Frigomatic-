@@ -9,7 +9,7 @@
     <h1>{{ recipe.name }}</h1>
     {# Affichage des tags#}
     {% for tag in recipe.tag %}
-    <span class="badge badge-info">{{ tag.name }}</span>
+    <a href="{{path('app_recipe_tag', {'id':tag.id})}}"><span class="badge badge-info">{{ tag.name }}</span></a>
     {% endfor %}
 
     {# A transformer en étoile du style github -> star ou unstar #}

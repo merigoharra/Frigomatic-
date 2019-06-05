@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | recettes {% endblock %}
+
+{% block body %}
+<article class="container">
+
+    {# Affichage des tags#}
+    <h1>{{ tags.name }}</h1>
+
+    <div class="container">
+
+        <div class="row">
+            {% for recipe in tags.recipes %}
+            <div class="col-3 mb-3 ">
+
+                <div class="card">
+                    <a href="{{ path('app_recipe_show', {'slug':recipe.slug}) }}">
+                        <img src="{{recipe.image }}" class="card-img-top" alt="">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="font-weight-bold">{{recipe.name}}</h5>
+                        <p class="card-text"> Difficulté :
+                            {% for i in 1..recipe.level %}
+                            <i class="fas fa-utensil-spoon"></i>
+                            {% endfor %}
+                        </p>
+                        <p class="card-text"> Personnes :
+                            {% for i in 1..recipe.people %}
+                            <i class="fas fa-utensil-spoon"></i>
+                            {% endfor %}
+                        </p>
+                        {# Affichage des tags #}
+                        <p>
+                            {% for tag in recipe.tag %}
+                            <a href="{{path('app_recipe_tag', {'id':tag.id})}}"><span class="badge badge-info">{{ tag.name }}</span></a>
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</article>
+{% endblock %}

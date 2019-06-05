@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
 use Cocur\Slugify\Slugify;
+use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use App\Repository\RecipeRepository;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Tag;
 
 /**
  * @Route("/application/recettes", name="app_recipe_")
@@ -20,12 +22,15 @@ class RecipeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(RecipeRepository $repo)
+    public function index(RecipeRepository $recipeRepo, TagRepository $tagRepo)
     {
-        $recipe = $repo->findAll();
+        $recipes = $recipeRepo->findAll();
+
+        $tags = $tagRepo->findAll();
 
         return $this->render('recipe/index.html.twig', [
-            'recipes' => $recipe
+            'recipes' => $recipes,
+            'tags' => $tags
 
         ]);
     }
@@ -109,6 +114,17 @@ class RecipeController extends AbstractController
         return $this->redirectToRoute('app_user_recipe');
     }
 
+    /**
+     * @Route("/tag/{id}", name="tag")
+     */
+    public function tag(TagRepository $repo, $id)
+    { 
+        $tag = $repo->findOneById($id);
+
+        return $this->render('recipe/tag.html.twig', [
+            'tags' => $tag
+            ]);
+    }
 
     /**
      * @Route("/{slug}", name="show")
