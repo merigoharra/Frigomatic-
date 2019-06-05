@@ -18,9 +18,10 @@ class ApplicationController extends AbstractController
      */
     public function index()
     {
-        // SELECT * FROM `recipe_product` WHERE `product_id` IN( SELECT `product_id` FROM `user_product`)
+        // SELECT  FROM `recipe_product` WHERE `product_id` IN( SELECT `product_id` FROM `user_product`)
 
-        // SELECT * FROM `recipe_product` JOIN `app_users` WHERE `product_id` IN( SELECT `product_id` FROM `user_product`, SELECT `id` WHERE `id` = 1)
+        // SELECT recipe_id FROM `recipe_product` WHERE `product_id` IN (SELECT `product_id` FROM `user_product` WHERE `user_id` = 1) GROUP BY recipe_id HAVING COUNT(product_id) > 4
+
 
         // Stoker dans une variable tous les ID des produits présent dasn la table user_product de l'utilisateur
 
