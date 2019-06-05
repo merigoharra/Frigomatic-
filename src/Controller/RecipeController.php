@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/application/recettes-frigomatc", name="app_recipe_")
+ * @Route("/application/recettes", name="app_recipe_")
  */
 class RecipeController extends AbstractController
 {
@@ -70,7 +70,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/ajouter-aux-favorits", name="add_fav")
+     * @Route("/{id}/ajouter-aux-favoris", name="add_fav")
      */
     public function addFav(Recipe $recipe)
     {
@@ -83,14 +83,14 @@ class RecipeController extends AbstractController
 
         $this->addFlash(
             'success',
-            'Votre recette est bien ajoutée à vos favorits'
+            'Votre recette est bien ajoutée à vos favoris'
         );
 
         return $this->redirectToRoute('app_recipe_show', ['slug' => $recipe->getSlug()]);
     }
 
     /**
-     * @Route("/{id}/supprimer-des-favorits", name="delete_fav")
+     * @Route("/{id}/supprimer-des-favoris", name="delete_fav")
      */
     public function deleteFav(Recipe $recipe)
     {
@@ -103,7 +103,7 @@ class RecipeController extends AbstractController
 
         $this->addFlash(
             'success',
-            'Votre recette est bien ajoutée à vos favorits'
+            'Votre recette est bien ajoutée à vos favoris'
         );
 
         return $this->redirectToRoute('app_user_recipe');
@@ -113,7 +113,7 @@ class RecipeController extends AbstractController
     /**
      * @Route("/{slug}", name="show")
      */
-    public function show(Recipe $recipe, RecipeRepository $recipeRepo, UserRepository $userRepo)
+    public function show(Recipe $recipe)
     {
         // Pas très opti car on génére une requête qui appel toutes les recettes favorites de l'utilisateur avant de les trier, l'idéale serait de le faire directement dans la requête. Mais pas dérangeant sur cette méthode en supposant que l'utilisateur n'aura pas 1000 recettes favorites
         $isFav = false;

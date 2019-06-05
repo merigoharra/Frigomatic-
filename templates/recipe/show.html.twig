@@ -7,12 +7,12 @@
 {% block body %}
 <article class="container">
     <h1>{{ recipe.name }}</h1>
+    {# Affichage des tags#}
     {% for tag in recipe.tag %}
     <span class="badge badge-info">{{ tag.name }}</span>
     {% endfor %}
 
     {# A transformer en étoile du style github -> star ou unstar #}
-    {{ dump(isFav)}}
     {% if isFav %}
     <a href="{{ path('app_recipe_delete_fav', {'id': recipe.id}) }}" class="btn btn-success mt-2">Supprimer des favorits</a>
     {% else %}
@@ -22,8 +22,13 @@
 
     <div class="row">
         <section class='col'>
-            <p>Recette pour : {{ recipe.people }} personnes</p>
+            <p class="card-text"> Personnes :
+                {% for i in 1..recipe.people %}
+                    <i class="fas fa-utensil-spoon"></i>
+                {% endfor %}
+            </p>
             <p>Difficulté : 
+                {# ajout de cuillere dans un 'for' on recuperer la difficulté qui est un chiffre, et chaque fois que l'on rentre dans le for on rajoute une cuillere, exemple si la difficulté est de 5, on boucle 5 fois et chaque fois que l'on boucle on ajoute une cuillere, cad qu'il aurait 5 cuilleres #}
                 {% for i in 1..recipe.level %}
                     <i class="fas fa-utensil-spoon"></i>
                 {% endfor %}

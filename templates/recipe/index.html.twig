@@ -16,7 +16,16 @@
                 <img src="{{recipe.image}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="font-weight-bold">{{recipe.name}}</h5>
-                    <p class="card-text"> Niveau de difficulté :{{ recipe.level }} </p>
+                    <p class="card-text"> Difficulté :
+                        {% for i in 1..recipe.level %}
+                            <i class="fas fa-utensil-spoon"></i>
+                        {% endfor %}
+                    </p>
+                    <p class="card-text"> Personnes :
+                        {% for i in 1..recipe.people %}
+                            <i class="fas fa-utensil-spoon"></i>
+                        {% endfor %}
+                    </p>
                     <a href="{{ path('app_recipe_show', {'slug':recipe.slug}) }}" class="btn btn-success">Go !</a>
                 </div>
             </div>
