@@ -11,7 +11,7 @@
 <ul>
 {% for userProduct in app.user.userproducts %}
 <li>
-    {{ userProduct.product }} - quantité : {{ userProduct.quantity }}
+    {{ userProduct.product }} - quantité : {{ userProduct.quantity }} {{ userProduct.product.measure }}
     <form class="d-inline" method="post" action="{{ path('app_userProduct_delete', {'id': userProduct.id}) }}"
         onsubmit="return confirm('Etes vous sûr de vouloir supprimer cette userProduct ?');">
         <input type="hidden" name="_method" value="DELETE">

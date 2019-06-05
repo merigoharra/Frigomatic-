@@ -117,6 +117,6 @@ class UserProduct
 
     public function __toString()
     {
-        return $this->id;
+        return "id : ".$this->id;
     }
 }

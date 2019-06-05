@@ -10,10 +10,13 @@
     <div class="row">
         {% for recipe in recipes %}
 
-
+        
         <div class="col-3 mb-3 ">
-            <div class="card" style="width: 17rem;">
-                <img src="{{recipe.image}}" class="card-img-top" alt="...">
+            
+            <div class="card" >
+                <a href="{{ path('app_recipe_show', {'slug':recipe.slug}) }}">
+                    <img src="{{recipe.image }}"  class="card-img-top" alt="">
+                </a>
                 <div class="card-body">
                     <h5 class="font-weight-bold">{{recipe.name}}</h5>
                     <p class="card-text"> Difficulté :
@@ -26,9 +29,15 @@
                             <i class="fas fa-utensil-spoon"></i>
                         {% endfor %}
                     </p>
-                    <a href="{{ path('app_recipe_show', {'slug':recipe.slug}) }}" class="btn btn-success">Go !</a>
+                    {# Affichage des tags #}
+                    <p>
+                    {% for tag in recipe.tag %}
+                    <span class="badge badge-info">{{ tag.name }}</span>
+                    {% endfor %}
+                    </p>
                 </div>
             </div>
+            
         </div>
 
         {% endfor %}
