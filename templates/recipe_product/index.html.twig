@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} | {{ recipe.name }} {% endblock %}
-{% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('assets/css/recipe.css') }}">{% endblock %}
+{% block title %}Hello RecipeProductController!{% endblock %}
 
 {% block body %}
+<div class="container">
+<h1>Bienvenue : {{ app.user.firstname }} </h1>
+<img style="width: 5rem; border-radius:50%;" src="{{app.user.avatar}}" alt="">
+
 <article class="container">
     <h1>{{ recipe.name }}</h1>
     {# Affichage des tags#}
@@ -13,11 +15,11 @@
     {% endfor %}
 
     {# A transformer en étoile du style github -> star ou unstar #}
-    {% if isFav %}
+    {# {% if isFav %}
     <a href="{{ path('app_recipe_delete_fav', {'id': recipe.id}) }}" class="btn btn-success mt-2">Supprimer des favorits</a>
     {% else %}
     <a href="{{ path('app_recipe_add_fav', {'id': recipe.id}) }}" class="btn btn-success">Ajouter à mes recettes favorites</a>
-    {% endif %}
+    {% endif %} #}
 
 
     <div class="row">
@@ -38,20 +40,34 @@
             <p>temps de cuisson : {{ recipe.bakingDuration }} minutes</p>
             <p><img src="{{ recipe.image }}" alt="Image de la recette {{ recipe.name }}"></p>
             <p>dernière modification : {{ recipe.updatedAt|date("d/m/Y") }}</p>
-            <div>
-                <p>Liste des ingrédients :</p>
-                <ul>
-                {% for product in recipeProducts %}
-                    <li>{{ product.product }} - {{ product.quantity }} {{ product.product.measure}}(s)</li>
-                {% endfor %}
-                </ul>
-            </div>
             <p>{{ recipe.content }}</p>
         </section>
-
     </div>
-    <a href="#" class="btn btn-success">J'ai réalisé cette recette (enlever les ingrédients correspondant de mon
-        Frigo)</a>
-
 </article>
+<p>Liste des ingrédients : </p>
+<ul>
+    {% for product in recipeProducts %}
+        <li>{{ product.product }} - {{ product.quantity }} {{ product.product.measure}}(s)</li>
+    {% endfor %}
+</ul>
+
+<h2>Ajouter des produit à la recette :</h2>
+
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    <button type="submit" class="btn btn-primary bg-dark">Ajouter ce produit</button>
+    {{form_end(form)}}
+
+
+<a href="{{ path('app_recipe_show', {'slug': recipe.slug}) }}" class="btn btn-primary bg-dark mt-2">Terminer la recette</a>
+
+{# <label for="product-choice">Ajouter :</label>
+<input list="all-products" id="product-choice" name="product-choice" />
+
+<datalist id="all-products">
+    {% for product in allProducts %}
+        <a href="{{ path('app_userProduct_add', {'id': product.id}) }}"><option value="{{ product }}"></a>
+    {% endfor %}
+</datalist> #}
+</div>
 {% endblock %}

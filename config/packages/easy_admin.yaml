@@ -21,5 +21,7 @@ easy_admin:
             class: App\Entity\tag
         Frigo:
             class: App\Entity\UserProduct
+        ProduitDesRecettes:
+            class: App\Entity\RecipeProduct
 
 

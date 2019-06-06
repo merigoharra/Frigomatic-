@@ -38,7 +38,7 @@ class RecipeController extends AbstractController
     /**
      * @Route("/new", name="new")
      */
-    public function create(Request $request, UserRepository $userRepositiry)
+    public function create(Request $request)
     {
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
@@ -54,7 +54,7 @@ class RecipeController extends AbstractController
 
             $recipe->SetTotalDuration($recipe->getPrepDuration() + $recipe->getBakingDuration());
 
-            $recipe->setUser($userRepositiry->findOneById(10));
+            $recipe->setUser($this->getUser());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($recipe);
@@ -65,7 +65,7 @@ class RecipeController extends AbstractController
                 'Votre recette est bien ajoutée'
             );
 
-            return $this->redirectToRoute('app_recipe_home');
+            return $this->redirectToRoute('app_recipe_ingredient_add', ['id' => $recipe->getId()]);
         }
 
 
@@ -136,9 +136,15 @@ class RecipeController extends AbstractController
         if ($this->getUser()->getFavoriteRecipes()->contains($recipe)) {
             $isFav = true;
         }
+
+        $recipeProducts = $recipe->getRecipeProducts();
+
+        // dd($recipeProducts);
+
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
-            'isFav' => $isFav
+            'isFav' => $isFav,
+            'recipeProducts' => $recipeProducts
                     ]);
     }
 }

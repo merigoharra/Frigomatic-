@@ -51,16 +51,16 @@ class Product
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Recipe", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\RecipeProduct", mappedBy="product", orphanRemoval=true)
      */
-    private $recipes;
+    private $recipeProducts;
 
     public function __construct()
     {
         $this->userProducts = new ArrayCollection();
-        $this->recipes = new ArrayCollection();
         $this->created_at = new DateTime();
         $this->updated_at = new DateTime();
+        $this->recipeProducts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,33 +160,36 @@ class Product
     }
 
     /**
-     * @return Collection|Recipe[]
+     * @return Collection|RecipeProduct[]
      */
-    public function getRecipes(): Collection
+    public function getRecipeProducts(): Collection
     {
-        return $this->recipes;
+        return $this->recipeProducts;
     }
 
-    public function addRecipe(Recipe $recipe): self
+    public function addRecipeProduct(RecipeProduct $recipeProduct): self
     {
-        if (!$this->recipes->contains($recipe)) {
-            $this->recipes[] = $recipe;
-            $recipe->addProduct($this);
+        if (!$this->recipeProducts->contains($recipeProduct)) {
+            $this->recipeProducts[] = $recipeProduct;
+            $recipeProduct->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeRecipe(Recipe $recipe): self
+    public function removeRecipeProduct(RecipeProduct $recipeProduct): self
     {
-        if ($this->recipes->contains($recipe)) {
-            $this->recipes->removeElement($recipe);
-            $recipe->removeProduct($this);
+        if ($this->recipeProducts->contains($recipeProduct)) {
+            $this->recipeProducts->removeElement($recipeProduct);
+            // set the owning side to null (unless already changed)
+            if ($recipeProduct->getProduct() === $this) {
+                $recipeProduct->setProduct(null);
+            }
         }
 
         return $this;
     }
-
+    
     public function __toString()
     {
         return $this->name;

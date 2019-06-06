@@ -6,7 +6,9 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\RecipeProductRepository;
+use App\Repository\RecipeRepository;
 
 /**
  * @Route("/application", name="app_")
@@ -16,19 +18,16 @@ class ApplicationController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index()
+    public function index(RecipeProductRepository $recipeProductRepository, RecipeRepository $recipeRepo)
     {
-        // SELECT  FROM `recipe_product` WHERE `product_id` IN( SELECT `product_id` FROM `user_product`)
+        $user = $this->getUser()->getId();
+        $myRecipesId = $recipeProductRepository->findMyPersonalRecipe($user);
 
-        // SELECT recipe_id FROM `recipe_product` WHERE `product_id` IN (SELECT `product_id` FROM `user_product` WHERE `user_id` = 1) GROUP BY recipe_id HAVING COUNT(product_id) > 4
+        $recipes = $recipeRepo->findById($myRecipesId);
 
-
-        // Stoker dans une variable tous les ID des produits présent dasn la table user_product de l'utilisateur
-
-        // Faire une requête sql pour trouver les recettes ayant des productId correspondant à notre variable
 
         return $this->render('application/index.html.twig', [
-
+            'recipes' => $recipes
         ]);
     }
 }

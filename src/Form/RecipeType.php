@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Tag;
 use App\Entity\Recipe;
 use App\Entity\Product;
+use App\Entity\RecipeProduct;
 use App\Utils\TypeConfigurator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,13 +28,13 @@ class RecipeType extends TypeConfigurator
             ->add('image', UrlType::class, $this->getConfiguration("Image :", "Votre image de profil"))
             ->add('prep_duration', IntegerType::class, $this->getConfiguration("Temps de préparation :", "Nombre de minute(s)"))
             ->add('baking_duration', IntegerType::class, $this->getConfiguration("Temps de cuisson :", "Nombre de minute(s)"))
-            ->add('product', EntityType::class, [
-                'label' => 'Ajouter les ingrédients :',
-                'class' => Product::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-            ])
+            // ->add('recipe_products', EntityType::class, [
+            //     'label' => 'Ajouter les ingrédients :',
+            //     'class' => Product::class,
+            //     'choice_label' => 'name',
+            //     'multiple' => true,
+            //     'expanded' => true,
+            // ])
             ->add('content', TextType::class, $this->getConfiguration("Détail de la recette :", "Listez les instructions de votre recette "))
             ->add('tag', EntityType::class, [
                 'label' => 'Choisir un tag :',

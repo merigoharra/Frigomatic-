@@ -71,9 +71,7 @@ class UserProductController extends AbstractController
             return $this->redirectToRoute('app_userProduct_home');
         }
 
-        $allProducts = $productRepo->findAll();
         return $this->render('user_product/index.html.twig', [
-            'allProducts' => $allProducts,
             'form' => $form->createView(),
         ]);
     }

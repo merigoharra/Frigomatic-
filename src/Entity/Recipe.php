@@ -65,11 +65,6 @@ class Recipe
     private $updated_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Product", inversedBy="recipes")
-     */
-    private $product;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="recipes")
      */
     private $tag;
@@ -95,13 +90,18 @@ class Recipe
      */
     private $slug;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\RecipeProduct", mappedBy="recipe")
+     */
+    private $recipeProducts;
+
     public function __construct()
     {
-        $this->product = new ArrayCollection();
         $this->tag = new ArrayCollection();
         $this->userFavorites = new ArrayCollection();
         $this->created_at = new DateTime();
         $this->updated_at = new DateTime();
+        $this->recipeProducts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -218,32 +218,6 @@ class Recipe
     }
 
     /**
-     * @return Collection|Product[]
-     */
-    public function getProduct(): Collection
-    {
-        return $this->product;
-    }
-
-    public function addProduct(Product $product): self
-    {
-        if (!$this->product->contains($product)) {
-            $this->product[] = $product;
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(Product $product): self
-    {
-        if ($this->product->contains($product)) {
-            $this->product->removeElement($product);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Tag[]
      */
     public function getTag(): Collection
@@ -332,6 +306,37 @@ class Recipe
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RecipeProduct[]
+     */
+    public function getRecipeProducts(): Collection
+    {
+        return $this->recipeProducts;
+    }
+
+    public function addRecipeProduct(RecipeProduct $recipeProduct): self
+    {
+        if (!$this->recipeProducts->contains($recipeProduct)) {
+            $this->recipeProducts[] = $recipeProduct;
+            $recipeProduct->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecipeProduct(RecipeProduct $recipeProduct): self
+    {
+        if ($this->recipeProducts->contains($recipeProduct)) {
+            $this->recipeProducts->removeElement($recipeProduct);
+            // set the owning side to null (unless already changed)
+            if ($recipeProduct->getRecipe() === $this) {
+                $recipeProduct->setRecipe(null);
+            }
+        }
 
         return $this;
     }
