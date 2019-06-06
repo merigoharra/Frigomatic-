@@ -1,5 +1,7 @@
 # Frigomatic
 
+Bienvenue chez Frigomatic :wave: Une application de pour obtenir des recettes en fonction de ce que vous avez chez vous.
+
 Mise en place du projet :
 
 - Composer Install,
