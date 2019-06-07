@@ -9,6 +9,7 @@
         "easycorp/easyadmin-bundle": "^2.1",
         "pugx/autocompleter-bundle": "^1.4",
         "sensio/framework-extra-bundle": "^5.1",
+        "sideclick/bootstrap-modal-bundle": "^1.0",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "4.2.*",
         "symfony/console": "4.2.*",
