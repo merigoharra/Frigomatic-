@@ -36,7 +36,7 @@
             <p>temps total : {{ recipe.totalDuration }} minutes</p>
             <p>temps de préparation : {{ recipe.prepDuration }} minutes</p>
             <p>temps de cuisson : {{ recipe.bakingDuration }} minutes</p>
-            <p><img src="{{ recipe.image }}" alt="Image de la recette {{ recipe.name }}"></p>
+            <p><img src="{{asset('assets/images/imagesRecipe/' ~ recipe.image)}}" alt="Image de la recette {{ recipe.name }}"></p>
             <p>dernière modification : {{ recipe.updatedAt|date("d/m/Y") }}</p>
             <div>
                 <p>Liste des ingrédients :</p>

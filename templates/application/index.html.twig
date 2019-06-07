@@ -13,7 +13,7 @@
 
             <div class="card">
                 <a href="{{ path('app_recipe_show', {'slug':recipe.slug}) }}">
-                    <img src="{{recipe.image }}" class="card-img-top" alt="">
+                    <img src="{{asset('assets/images/imagesRecipe/' ~ recipe.image)}}" class="card-img-top" alt="">
                 </a>
                 <div class="card-body">
                     <h5 class="font-weight-bold">{{recipe.name}}</h5>

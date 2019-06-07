@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Tag;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
 use Cocur\Slugify\Slugify;
@@ -12,7 +13,7 @@ use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Tag;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /**
  * @Route("/application/recettes", name="app_recipe_")
@@ -34,7 +35,7 @@ class RecipeController extends AbstractController
 
         ]);
     }
-
+ 
     /**
      * @Route("/new", name="new")
      */
@@ -55,6 +56,12 @@ class RecipeController extends AbstractController
             $recipe->SetTotalDuration($recipe->getPrepDuration() + $recipe->getBakingDuration());
 
             $recipe->setUser($this->getUser());
+
+            $image = $recipe->getImage();
+            $imageName = 'image-of-recipe-'.$recipe->getSlug().'.'.$image->guessExtension();
+            $image->move($this->getParameter('upload_directory'), $imageName);
+
+            $recipe->setImage($imageName);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($recipe);

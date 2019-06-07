@@ -9,7 +9,7 @@
     <div class="row">
     <aside class="col-2">
         {% for tag in tags %}
-            <a href="{{path('app_recipe_tag', {'id':tag.id})}}"><span class="badge badge-info">{{ tag.name }}</span></a> </br>
+            <a href="{{path('app_recipe_tag', {'id': tag.id})}}"><span class="badge badge-info">{{ tag.name }}</span></a> </br>
         {% endfor %}
     </aside>
     <section class="col-10">
@@ -20,12 +20,12 @@
             
             <div class="card" >
                 <a href="{{ path('app_recipe_show', {'slug':recipe.slug}) }}">
-                    <img src="{{recipe.image }}"  class="card-img-top" alt="">
+                    <img src="{{asset('assets/images/imagesRecipe/' ~ recipe.image)}}"  class="card-img-top" alt="">
                 </a>
                 <div class="card-body">
                     <h5 class="font-weight-bold">{{recipe.name}}</h5>
                     <p class="card-text"> Difficulté :
-                        {% for i in 1..recipe.level %}
+                        {% for i in 1..recipe.level %} 
                             <i class="fas fa-utensil-spoon"></i>
                         {% endfor %}
                     </p>
