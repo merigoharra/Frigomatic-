@@ -215,6 +215,9 @@
             "config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "sideclick/bootstrap-modal-bundle": {
+        "version": "1.0"
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.1"
     },

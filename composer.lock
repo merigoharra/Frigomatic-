@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c909aafb501c00fa14c1af012913ebf3",
+    "content-hash": "878252c0e01601196f2d1bd9e2800290",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2298,6 +2298,43 @@
                 "controllers"
             ],
             "time": "2019-04-10T06:00:20+00:00"
+        },
+        {
+            "name": "sideclick/bootstrap-modal-bundle",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sideclick/BootstrapModalBundle.git",
+                "reference": "ab40c82301ad06c65c4c4167837e1f1a11a6039a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sideclick/BootstrapModalBundle/zipball/ab40c82301ad06c65c4c4167837e1f1a11a6039a",
+                "reference": "ab40c82301ad06c65c4c4167837e1f1a11a6039a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "symfony/framework-bundle": "^3.4|^4.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Sideclick\\BootstrapModalBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rowan Reid",
+                    "email": "rowan@sideclick.co.za"
+                }
+            ],
+            "description": "Bundle for Symfony 3.4+ that makes it easy to load pages into a Bootstrap modal window.",
+            "time": "2019-01-18T12:06:25+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
