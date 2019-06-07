@@ -9,7 +9,7 @@
         {% for recipe in app.user.favoriteRecipes %}
         <div class="col-3 mb-3 ">
             <div class="card" style="width: 17rem;">
-                <img src="{{recipe.image}}" class="card-img-top" alt="...">
+                <img src="{{asset('assets/images/imagesRecipe/' ~ recipe.image)}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="font-weight-bold">{{recipe.name}}</h5>
                     <p class="card-text"> Niveau de difficulté :{{ recipe.level }} </p>

@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">{% endblock %}
 {% block body %}
 
-<div class="back ">
-    <div class="container">
-
+{# Affichage de la page et des bouton d'inscription et connexion avec lien vers modals #}
+<section class="back ">
+    <article class="container">
         <div class="row ">
             <div class="col-md-4">&nbsp;</div>
             <div class="col-md-4 cadre shadow ">
@@ -24,17 +24,17 @@
                 </div>
             </div>
         </div>
+    </article>
+</section>
 
-    </div>
-</div>
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+{# MODAL - Affichage du formulaire de connexion #}
+<section class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
-            <div class="container">
+            {# Formulaire #}
+            <article class="container">
                 <form action="{{ path('app_login') }}" method="post">
                     {% if error is defined and error%}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}
@@ -43,7 +43,7 @@
 
                     <h1 class="h3 text-center mb-3 font-weight-normal">Connexion</h1>
                     <label for="inputUsername" class="sr-only">Username</label>
-                    <input type="text" value="" name="username" id="inputUsername" class="form-control"
+                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control"
                         placeholder="Votre Username" required autofocus>
                     <label for="inputPassword" class="sr-only">Mot de passe</label>
                     <input type="password" name="password" id="inputPassword" class="form-control my-3"
@@ -61,37 +61,47 @@
                                 <input type="checkbox" name="_remember_me"> Remember me
                             </label>
                         </div> #}
-                   
 
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-dark m-4">Connexion</button>
-                        <br>
-                        <a href="{{ path('home') }}">Revenir a l'accueil</a>
                     </div>
                 </form>
-            </div>
+            </artcile>
         </div>
     </div>
-</div>
+</section>
 
-<div class="modal fade" id="inscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+{# MODAL - Affichage du formulaire d'inscription #}
+<section class="modal fade" id="inscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="container">
+            <article class="container">
                 <h1>Inscription</h1>
-
                 {{form_start(form)}}
                 {{form_widget(form)}}
-                <button type="submit" class="btn btn-primary bg-dark">S'inscrire</button>
+                <button type="submit" class="btn btn-primary bg-dark mb-5">S'inscrire</button>
                 {{form_end(form)}}
-                
-            </div>
+            </article>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}
 
+{# Balise JavaScript pour l'affichage des modals #}
 {% block javascripts %}
-<script src="{{ asset('bundles/sideclickbootstrapmodal/js/sideclick-bootstrap-modal.js') }}"></script>
+    {# Affichage des fenêtre modal #}
+    <script src="{{ asset('bundles/sideclickbootstrapmodal/js/sideclick-bootstrap-modal.js') }}"></script>
+
+    {# Script d'affichage du mot de passe #}
+    <script>
+    function myFunction() {
+    var x = document.getElementById("inputPassword");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+    }
+    </script>
 {% endblock %}
