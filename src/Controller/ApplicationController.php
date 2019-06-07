@@ -6,7 +6,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\RecipeProductRepository;
 use App\Repository\RecipeRepository;
 
@@ -20,12 +19,15 @@ class ApplicationController extends AbstractController
      */
     public function index(RecipeProductRepository $recipeProductRepository, RecipeRepository $recipeRepo)
     {
+        /* on récupere la requete custom de RecipeProductRepository.php que l'on mets dans une variable $myRecipesId, la valeur de cette variable est un tableau d'id de recettes qui match avec les ingrédients de l'user récuperer dans $user*/ 
+        /* ensuite, dans un for each pour chaque résultats que l'on récupere dans la requete, on revoi la ligne récuprer à l'id de recette , chaque ligne est enregistrer dans un  tableau $recipes, ex: [ 1=> [ id=>5, name=> tarte au pomme],...] */
         $user = $this->getUser()->getId();
-        $myRecipesId = $recipeProductRepository->findMyPersonalRecipe($user);
-
-        $recipes = $recipeRepo->findById($myRecipesId);
-
-
+        $myRecipesId = $recipeProductRepository->findMyPersonalRecipe($user);;
+        $recipes = [];
+        foreach ($myRecipesId as $id) {
+            $recipe = $recipeRepo->findOneBy(['id' => $id]);
+            $recipes[] = $recipe;
+        }
         return $this->render('application/index.html.twig', [
             'recipes' => $recipes
         ]);

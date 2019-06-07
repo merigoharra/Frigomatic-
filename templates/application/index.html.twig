@@ -3,48 +3,58 @@
 {% block title %}{{ parent() }} | Acceuil {% endblock %}
 
 {% block body %}
+<section class="container">
 <h1>Bienvenue {{ app.user.firstname }}</h1>
-
 <h2>Voici quelques recettes que vous pouvez réaliser avec ce que vous avez dans votre frigo </h2>
-{{ dump(recipes) }}
+    <article class="row">
         {% for recipe in recipes %}
 
         <div class="col-3 mb-3 ">
-            
-            <div class="card" >
+
+            <div class="card">
                 <a href="{{ path('app_recipe_show', {'slug':recipe.slug}) }}">
-                    <img src="{{recipe.image }}"  class="card-img-top" alt="">
+                    <img src="{{recipe.image }}" class="card-img-top" alt="">
                 </a>
                 <div class="card-body">
                     <h5 class="font-weight-bold">{{recipe.name}}</h5>
                     <p class="card-text"> Difficulté :
                         {% for i in 1..recipe.level %}
-                            <i class="fas fa-utensil-spoon"></i>
+                        <i class="fas fa-utensil-spoon"></i>
                         {% endfor %}
                     </p>
                     <p class="card-text"> Personnes :
                         {% for i in 1..recipe.people %}
-                            <i class="fas fa-utensil-spoon"></i>
+                        <i class="fas fa-utensil-spoon"></i>
                         {% endfor %}
                     </p>
                     {# Affichage des tags #}
                     <p>
-                    {% for tag in recipe.tag %}
-                    <a href="{{path('app_recipe_tag', {'id':tag.id})}}"><span class="badge badge-info">{{ tag.name }}</span></a>
-                    {% endfor %}
+                        {% for tag in recipe.tag %}
+                        <a href="{{path('app_recipe_tag', {'id':tag.id})}}"><span
+                                class="badge badge-info">{{ tag.name }}</span></a>
+                        {% endfor %}
                     </p>
                 </div>
             </div>
-            
+
         </div>
-        
-
         {% endfor %}
-
-<h2>Voici les aliments les plus ancien de votre frigo ! (uniquement : Fruit et légume, Produit laitier, Viande poisson oeuf) Pourquoi ne pas les manger aujourd'hui ?</h2>
-<p>Liste des produit avec le createdAt le plus ancien -> lien vers la page recette avec le tri par produit correspondant</p>
-
-<h2>Ce que vous avez d'autre dans votre Frigo ...</h2>
-<p>affichage des produits du frigo</p>
-<a href="{{ path('app_userProduct_home') }}">Aller dasn mon frigo</a>
+    </article>
+    <article class="row">
+        <h2>Voici les aliments les plus ancien de votre frigo ! (uniquement : Fruit et légume, Produit laitier, Viande
+            poisson
+            oeuf) Pourquoi ne pas les manger aujourd'hui ?</h2>
+        <div>
+            <p>Liste des produit avec le createdAt le plus ancien -> lien vers la page recette avec le tri par produit
+            correspondant</p>
+        </div>
+    </article>
+    <article class="row">
+        <h2>Ce que vous avez d'autre dans votre Frigo ...</h2>
+        </div>
+            <p>affichage des produits du frigo</p>
+        </div>
+    </article>
+    <a href="{{ path('app_userProduct_home') }}">Aller dasn mon frigo</a>
+</section>
 {% endblock %}

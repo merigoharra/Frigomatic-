@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/application/recette-ingrédients", name="app_recipe_ingredient_")
+ * @Route("/application/recette-ingredients", name="app_recipe_ingredient_")
  */
 class RecipeProductController extends AbstractController
 {

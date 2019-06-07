@@ -45,7 +45,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Mon Profil</a>
+                            aria-haspopup="true" aria-expanded="false">{{ app.user.firstname }}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ path('app_user_home') }}">Mon profil</a>
                             <a class="dropdown-item" href="{{ path('app_user_recipe') }}">Mes recettes</a>

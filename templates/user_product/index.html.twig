@@ -4,30 +4,42 @@
 
 {% block body %}
 <div class="container">
-<h1>Bienvenue : {{ app.user.firstname }} </h1>
-<img style="width: 5rem; border-radius:50%;" src="{{app.user.avatar}}" alt="">
-
-<h2>Voici tous les produits que tu possèdes dans ton frigo :</h2>
-<ul>
-{% for userProduct in app.user.userproducts %}
-<li>
-    {{ userProduct.product }} - quantité : {{ userProduct.quantity }} {{ userProduct.product.measure }}
-    <form class="d-inline" method="post" action="{{ path('app_userProduct_delete', {'id': userProduct.id}) }}"
-        onsubmit="return confirm('Etes vous sûr de vouloir supprimer cette userProduct ?');">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userProduct.id) }}">
-        <button class="btn" style="color:red"><i class="fas fa-times-circle"></i> Supprimer</button>
-    </form>
-</li>
-{% endfor %}
-</ul>
-
-<h2>Ajouter des produit à mon frigo :</h2>
+<h1>Ajouter des produit à mon frigo :</h1>
 
     {{form_start(form)}}
     {{form_widget(form)}}
     <button type="submit" class="btn btn-primary bg-dark">Ajouter</button>
     {{form_end(form)}}
+
+<h2>Voici tous les produits que tu possèdes dans ton frigo :</h2>
+
+<article class="row">
+    {% for category in categories %}
+    <div class="col-4 card m-1">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h3>{{ category.name }} : </h3>
+            <ul class="list-group">
+                {% for userProduct in app.user.userproducts %}
+                {% if userProduct.product.category.id == category.id %}
+                <li class="list-group-item">
+                    {{ userProduct.product }} - {{ userProduct.quantity }} {{ userProduct.product.measure }}
+                    <form class="d-inline" method="post" action="{{ path('app_userProduct_delete', {'id': userProduct.id}) }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userProduct.id) }}">
+                        <button class="btn" style="color:red"><i class="fas fa-times-circle"></i></button>
+                    </form>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</article>
+
+
+
 
 
 

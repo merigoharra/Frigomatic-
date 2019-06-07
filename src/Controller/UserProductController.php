@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoryRepository;
 
 /**
  * @Route("/application/mon-frigo", name="app_userProduct_")
@@ -22,7 +23,7 @@ class UserProductController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(ProductRepository $productRepo, Request $request, UserProductRepository $userProductRepo)
+    public function index(Request $request, UserProductRepository $userProductRepo, CategoryRepository $categoryRepo)
     {
         // Methode index permet d'afficher la page d'accueil mais aussi le form d'ajout d'un produit en fonction d'une quantité dans le frigo (nouvelle ligne dans la table userProduct)
 
@@ -30,6 +31,9 @@ class UserProductController extends AbstractController
         $newUserProduct = new UserProduct();
         $form = $this-> createForm(UserProductType::class, $newUserProduct);
         $form->handleRequest($request);
+
+        // Je récupére toutes les catégories pour les envoyer à la vue 
+        $categories = $categoryRepo->findAll();
 
         if ($form->isSubmitted() && $form->isValid()) {
             
@@ -73,6 +77,7 @@ class UserProductController extends AbstractController
 
         return $this->render('user_product/index.html.twig', [
             'form' => $form->createView(),
+            'categories' => $categories
         ]);
     }
 
