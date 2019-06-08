@@ -48,5 +48,16 @@ ul li a:hover {
 
 .user-profil-img {
     width: 100%;
-    
+}
+
+footer {
+    background-color: #212529;
+}
+
+footer p {
+    color: #fff;
+}
+
+footer h5 {
+    color: #fff;
 }

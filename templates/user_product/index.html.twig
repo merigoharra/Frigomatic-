@@ -22,7 +22,7 @@
                 {% for userProduct in app.user.userproducts %}
                     {% if userProduct.product.category.id == category.id %}
                     <li class="list-group-item">
-                        {{ userProduct.product }} - {{ userProduct.quantity }} {{ userProduct.product.measure }}
+                        {{ userProduct.product }} - {{ userProduct.quantity }}
                         <form class="d-inline" method="post" action="{{ path('app_userProduct_delete', {'id': userProduct.id}) }}">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userProduct.id) }}">
@@ -34,6 +34,6 @@
             </ul>
     </div>
     {% endfor %}
-</article>}
+</article>
 </div>
 {% endblock %}
