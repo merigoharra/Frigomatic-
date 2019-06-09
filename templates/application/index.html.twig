@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Acceuil {% endblock %}
+{% block stylesheets %}  <link rel="stylesheet" href="{{asset('assets/css-frigo/app-home.css')}}"> {% endblock %}
 
 {% block body %}
-<section class="container">
-<h1>Bienvenue {{ app.user.firstname }}</h1>
-<h2>Voici quelques recettes que vous pouvez réaliser avec ce que vous avez dans votre frigo </h2>
+
+
+<section class="container ">
+<h1 class="text-center my-4">Bonjour {{ app.user.firstname }}</h1>
+<h5 class=" mb-3">Voici quelques recettes que vous pouvez réaliser avec ce que vous avez dans votre frigo : </h5>
     <article class="row">
         {% for recipe in recipes %}
 
@@ -40,21 +43,28 @@
         </div>
         {% endfor %}
     </article>
-    <article class="row">
-        <h2>Voici les aliments les plus ancien de votre frigo ! (uniquement : Fruit et légume, Produit laitier, Viande
-            poisson
-            oeuf) Pourquoi ne pas les manger aujourd'hui ?</h2>
-        <div>
+    <article>
+        <h5 class=" mb-3">Voici les aliments les plus ancien de votre frigo ! (uniquement : Fruit et légume, Produit laitier, Viande
+            poisson oeuf) Pourquoi ne pas les manger aujourd'hui ?</h5>
+      
             <p>Liste des produit avec le createdAt le plus ancien -> lien vers la page recette avec le tri par produit
             correspondant</p>
-        </div>
     </article>
-    <article class="row">
-        <h2>Ce que vous avez d'autre dans votre Frigo ...</h2>
-        </div>
-            <p>affichage des produits du frigo</p>
-        </div>
+                
+    <article>
+        
+        <h5 class=" my-3">Ce que vous avez d'autre dans votre Frigo ...</h5> 
+        <p>affichage des produits du frigo</p> 
+    
+       
+  
     </article>
-    <a href="{{ path('app_userProduct_home') }}">Aller dasn mon frigo</a>
+<div class="text-center">
+          <a class="btn btn-success mb-5" href="{{ path('app_userProduct_home') }}">Aller dans mon frigo</a>         
+                    </div>
+
+    
+
+
 </section>
 {% endblock %}

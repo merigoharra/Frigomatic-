@@ -1,32 +1,68 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Bienvenue {% endblock %}
-{% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">{% endblock %}
+{% block stylesheets %}{% endblock %}
 {% block body %}
 
-{# Affichage de la page et des bouton d'inscription et connexion avec lien vers modals #}
-<section class="back ">
-    <article class="container">
-        <div class="row ">
-            <div class="col-md-4">&nbsp;</div>
-            <div class="col-md-4 cadre shadow ">
-                <div class="p-5 ">
-                    <h1 class="text-center mb-4 text-white">Bienvenue </h1>
-                    <div class="text-center ">
 
-                        <a href="{{ path('app_login') }}" class="btn mr-4 bg-light" data-toggle="modal"
-                            data-target="#exampleModal" data-whatever="@mdo">Se connecter</a>
 
-                        <a href="{{ path('new_user') }}" class="btn bg-light" data-toggle="modal"
-                            data-target="#inscription" data-whatever="@mdo">S'inscrire</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </article>
-</section>
+<div>
 
+    <img src="{{asset('assets/images/aliment.jpg')}}" class="d-block w-100" alt="...">
+
+</div>
+
+<!-- Welcome -->
+	<section class="section-welcome p-t-120 p-b-105">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 p-t-45 p-b-30">
+					<div class="wrap-text-welcome t-center">
+						<span class="tit2 t-center">
+							Frigomatique
+						</span>
+
+						<h3 class="tit3 t-center m-b-35 m-t-5">
+							Bievenue
+						</h3>
+
+						<p class="t-center m-b-22 size3 m-l-r-auto">
+							Frigomatic vous permet de gérer et d'organiser toute la partie alimentaire de votre foyer.
+						</p>
+							
+					</div>
+				</div>
+
+				<div class="col-md-6 p-b-30">
+					<div class="wrap-pic-welcome size2 bo-rad-10 hov-img-zoom m-l-r-auto">
+						<img src="{{asset('assets/images/frig.jpg')}}" alt="IMG-OUR">
+					</div>
+				</div>
+			</div>
+		</div>
+    </section>
+
+    <!-- Sign up -->
+	<div class="section-signup bg1-pattern p-t-85 p-b-85">
+		<form class="flex-c-m flex-w flex-col-c-m-lg p-l-5 p-r-5">
+			<span class="txt5 m-10 text-center">
+                Inscrivez vous <br> Pour recevoir des astuces <br> et suivre notre actualité
+			</span>
+
+			<div class="wrap-input-signup size17 bo2 bo-rad-10 bgwhite pos-relative txt10 m-10">
+				<input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="Votre adresse mail" placeholder="Email Adrress">
+				<i class="fa fa-envelope ab-r-m m-r-18" aria-hidden="true"></i>
+			</div>
+
+			<!-- Button3 -->
+			<button type="submit" class="btn3 flex-c-m size18 txt11 trans-0-4 m-10">
+				inscription
+			</button>
+		</form>
+	</div>
+    
+{# Affichage de la page et des bouton d'inscription et connexion avec lien vers modals #}    
+					
 {# MODAL - Affichage du formulaire de connexion #}
 <section class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -40,15 +76,17 @@
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}
                     </div>
                     {% endif %}
-
-                    <h1 class="h3 text-center mb-3 font-weight-normal">Connexion</h1>
-                    <label for="inputUsername" class="sr-only">Username</label>
+                    
+                    <h3 class=" modal-title text-center mt-2">Connexion</h3>
+                    <hr>
+                  
+                    <label for="inputUsername" class="sr-only">Votre identifiant</label>
                     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control"
-                        placeholder="Votre Username" required autofocus>
+                        placeholder="Votre identifiant" required autofocus>
                     <label for="inputPassword" class="sr-only">Mot de passe</label>
                     <input type="password" name="password" id="inputPassword" class="form-control my-3"
                         placeholder="Mot de passe" required>
-                    <input type="checkbox" onclick="myFunction()">Voir mon mot de passe
+                    <input type="checkbox" onclick="myFunction()"> Voir mon mot de passe
 
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
@@ -61,9 +99,9 @@
                                 <input type="checkbox" name="_remember_me"> Remember me
                             </label>
                         </div> #}
-
+                 <hr>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-dark m-4">Connexion</button>
+                        <button type="submit" class="btn btn-outline-dark m-4">Connexion</button>
                     </div>
                 </form>
             </artcile>
@@ -77,10 +115,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <article class="container">
-                <h1>Inscription</h1>
+                <h3 class=" modal-title text-center mt-2">Inscription</h3>
+                <hr>
                 {{form_start(form)}}
                 {{form_widget(form)}}
-                <button type="submit" class="btn btn-primary bg-dark mb-5">S'inscrire</button>
+                <hr>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-outline-dark mb-5">S'inscrire</button>
+                    </div>
+                
                 {{form_end(form)}}
             </article>
         </div>

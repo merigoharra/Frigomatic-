@@ -10,59 +10,89 @@
     {# Lien GoogleFont #}
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto&display=swap" rel="stylesheet">
     {# Lien FontAwsome #}
-    <script src="https://kit.fontawesome.com/e280f9e8fb.js"></script>
-    {# Lien vers le fichier css de l'application #}
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+<!--===============================================================================================-->  
+ 
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css-frigo/style.css') }}">
+    
+
+    
     <title>{% block title %}Frigomatic {% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
 
 <body>
-    <header>
-        {# Navigation accéssible seukement si l'utilisateur est connecté #}
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            {% if app.user %}
-            <a class="brand" href="{{path('app_home')}}">Frigomatic </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
-                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<!-- Header -->
+	<header>
+		<!-- Header desktop -->
+		<div class="wrap-menu-header gradient1 trans-0-4" {% if app.user %} style="position: relative;" {% endif %} >
+			<div class="container h-full">
+				<div class="wrap_header trans-0-3">
+					<!-- Logo -->
+					<div class="logo">
+						<a href="{{path('app_home')}}">
+							<img src="{{asset('assets/images/logo.png')}}" alt="Logo-frigomatic" >
+						</a>
+					</div>
+                {% if app.user %}
+       
+                    <!-- Menu -->
+                    <div class="wrap_menu p-l-45 p-l-0-xl">
+                        <nav class="menu">
+                            <ul class="main_menu">
+                                <li>
+                                    <a href="{{path('app_home')}}">Accueil</a>
+                                </li>
 
-            <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item {#active#}">
-                        <a href="{{path('app_home')}}">Accueil<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{path('app_userProduct_home')}}">Mon frigo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{path('app_recipe_home')}}">Recettes</a>
-                    </li>
-                </ul>
+                                <li>
+                                    <a href="{{path('app_userProduct_home')}}">Mon frigo</a>
+                                </li>
 
-                {# DropDown de la partie profil de l'utilisateur #}
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">{{ app.user.firstname }}</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('app_user_home') }}">Mon profil</a>
-                            <a class="dropdown-item" href="{{ path('app_user_recipe') }}">Mes recettes</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="{{ path('app_logout') }}" class="dropdown-item" style="color:red">Déconnexion</a>
-                        </div>
-                    </li>
-                </ul>
-                {% else %}
-                {# Si l'utilisateur n'est pas connecté (visiteur) pas de navigation mais le logo de Frigomatic #}
-                <a class="brand m-auto text-white" stylehref="{{ path('app_home') }}">Frigomatic </a>
-                {% endif %}
+                                <li>
+                                    <a href="{{path('app_recipe_home')}}">Recettes</a>
+                                </li>
+                             {# DropDown de la partie profil de l'utilisateur #}
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item dropdown">
+                                        <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">{{ app.user.firstname }}</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ path('app_user_home') }}">Mon profil</a>
+                                            <a class="dropdown-item" href="{{ path('app_user_recipe') }}">Mes recettes</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ path('app_logout') }}" class="dropdown-item"
+                                                style="color:red">Déconnexion</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </nav>
+                    </div>
+            {% else %}
+                    <li>
+                                    <a href="{{ path('app_login') }}" data-toggle="modal"
+                            data-target="#exampleModal" data-whatever="@mdo">Se connecter</a>
+                                </li>
 
+                                <li>
+                                    <a href="{{ path('new_user') }}" data-toggle="modal"
+                            data-target="#inscription" data-whatever="@mdo">S'inscrire</a>
+                                </li>
+            {% endif %}
+					<!-- Social -->
+					<div class="social flex-w flex-l-m p-r-20">
+						<a href="https://www.facebook.com/frigogelatoartigianale/" class="fs-15 c-white"><i class="fa fa-facebook m-l-21" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/explore/tags/FRIGO/?hl=fr" class="fs-15 c-white"><i class="fa fa-instagram m-l-21" aria-hidden="true"></i></a>
+						<a href="https://twitter.com/partagetonfrigo?lang=fr" class="fs-15 c-white"><i class="fa fa-twitter m-l-21" aria-hidden="true"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
 
-            </div>
-        </nav>
-    </header>
     {# Affichage des messages flash de l'application en fonction d'un label #}
     {% for label, messages in app.flashes %}
     {% for message in messages %}
@@ -74,7 +104,23 @@
 
     {# Bloc Body à remplir dans les templates enfants #}
     {% block body %}{% endblock %}
+<footer>
+<div class="end-footer bg2 ">
+			<div class="container">
+				<div class="flex-sb-m flex-w p-t-22 p-b-22">
+					<div class="p-t-5 p-b-5">
+						<a href="https://www.facebook.com/frigogelatoartigianale/" class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/explore/tags/FRIGO/?hl=fr" class="fs-15 c-white"><i class="fa fa-instagram m-l-18" aria-hidden="true"></i></a>
+						<a href="https://twitter.com/partagetonfrigo?lang=fr" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
+					</div>
 
+					<div class="txt17 p-r-20 p-t-5 p-b-5">
+						Copyright &copy; 2019 All rights reserved  |   Made with <i class="fa fa-heart"></i> O'clock - Quantum - Symfony
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
     {# SCRIPT #}
     {% block javascripts %}{% endblock %}
     {# Script JQuery #}
@@ -89,10 +135,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-
     {# Script Personnel #}
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
-</body>
+    </body>
 
 </html>
