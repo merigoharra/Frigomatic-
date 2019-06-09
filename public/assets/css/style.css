@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+ul {
+    margin-right: 8%;
+    margin-left: 5%;
+
+}
+
+.brand {
+    color: #fff;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 35px;
+    margin-left: 5%;
+
+}
+
+.brand:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+ul li a {
+    font-size: 17px;
+    padding-right: 40px;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+ul li a:hover {
+    text-decoration: none;
+    color: rgb(180, 175, 175);
+}
+
+.required::after {
+    content: "*";
+    color: red;
+}
+
+.user-profil {
+    -webkit-clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    border-radius: 50%;
+}
+
+.user-profil-img {
+    width: 100%;
+}
+
+footer {
+    background-color: #212529;
+}
+
+footer p {
+    color: #fff;
+}
+
+footer h5 {
+    color: #fff;
+}
