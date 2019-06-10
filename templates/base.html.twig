@@ -9,34 +9,33 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     {# Lien GoogleFont #}
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,500&display=swap" rel="stylesheet">
     {# Lien FontAwsome #}
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
- 
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/util.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/main.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css-frigo/style.css') }}">
-    
 
-    
     <title>{% block title %}Frigomatic {% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
 
 <body>
-<!-- Header -->
-	<header>
-		<!-- Header desktop -->
-		<div class="wrap-menu-header gradient1 trans-0-4" {% if app.user %} style="position: relative;" {% endif %} >
-			<div class="container h-full">
-				<div class="wrap_header trans-0-3">
-					<!-- Logo -->
-					<div class="logo">
-						<a href="{{path('app_home')}}">
-							<img src="{{asset('assets/images/logo.png')}}" alt="Logo-frigomatic" >
-						</a>
-					</div>
-                {% if app.user %}
-       
+    <!-- Header -->
+    <header>
+        <!-- Header desktop -->
+        <div class="wrap-menu-header gradient1 trans-0-4 " {% if app.user %} style="position: relative;" {% endif %}>
+            <div class="container h-full">
+                <div class="wrap_header trans-0-3">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="{{path('app_home')}}">
+                            <img src="{{asset('assets/images/logo.png')}}" alt="Logo-frigomatic">
+                        </a>
+                    </div>
+                    {% if app.user %}
+
                     <!-- Menu -->
                     <div class="wrap_menu p-l-45 p-l-0-xl">
                         <nav class="menu">
@@ -52,79 +51,87 @@
                                 <li>
                                     <a href="{{path('app_recipe_home')}}">Recettes</a>
                                 </li>
-                             {# DropDown de la partie profil de l'utilisateur #}
-                                <ul class="navbar-nav ml-auto">
+                                {# DropDown de la partie profil de l'utilisateur #}
+                                <ul class="navbar-nav ml-auto main_menu">
                                     <li class="nav-item dropdown">
                                         <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">{{ app.user.firstname }}</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ path('app_user_home') }}">Mon profil</a>
-                                            <a class="dropdown-item" href="{{ path('app_user_recipe') }}">Mes recettes</a>
+                                            <a class="dropdown-item" href="{{ path('app_user_recipe') }}">Mes
+                                                recettes</a>
                                             <div class="dropdown-divider"></div>
                                             <a href="{{ path('app_logout') }}" class="dropdown-item"
                                                 style="color:red">Déconnexion</a>
                                         </div>
                                     </li>
                                 </ul>
-                            </nav>
+                        </nav>
                     </div>
-            {% else %}
+                    {% else %}
                     <li>
-                                    <a href="{{ path('app_login') }}" data-toggle="modal"
-                            data-target="#exampleModal" data-whatever="@mdo">Se connecter</a>
-                                </li>
+                        <a href="{{ path('app_login') }}" data-toggle="modal" data-target="#exampleModal"
+                            data-whatever="@mdo">Se connecter</a>
+                    </li>
 
-                                <li>
-                                    <a href="{{ path('new_user') }}" data-toggle="modal"
-                            data-target="#inscription" data-whatever="@mdo">S'inscrire</a>
-                                </li>
-            {% endif %}
-					<!-- Social -->
-					<div class="social flex-w flex-l-m p-r-20">
-						<a href="https://www.facebook.com/frigogelatoartigianale/" class="fs-15 c-white"><i class="fa fa-facebook m-l-21" aria-hidden="true"></i></a>
-                        <a href="https://www.instagram.com/explore/tags/FRIGO/?hl=fr" class="fs-15 c-white"><i class="fa fa-instagram m-l-21" aria-hidden="true"></i></a>
-						<a href="https://twitter.com/partagetonfrigo?lang=fr" class="fs-15 c-white"><i class="fa fa-twitter m-l-21" aria-hidden="true"></i></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+                    <li>
+                        <a href="{{ path('new_user') }}" data-toggle="modal" data-target="#inscription"
+                            data-whatever="@mdo">S'inscrire</a>
+                    </li>
+                    {% endif %}
+                    <!-- Social -->
+                    <div class="social flex-w flex-l-m p-r-20">
+                        <a href="https://www.facebook.com/frigogelatoartigianale/" class="fs-15 c-white"><i
+                                class="fa fa-facebook m-l-21" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/explore/tags/FRIGO/?hl=fr" class="fs-15 c-white"><i
+                                class="fa fa-instagram m-l-21" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/partagetonfrigo?lang=fr" class="fs-15 c-white"><i
+                                class="fa fa-twitter m-l-21" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    {# Affichage des messages flash de l'application en fonction d'un label #}
-    {% for label, messages in app.flashes %}
-    {% for message in messages %}
-    <div class="container text-center m-3 alert alert-{{ label }}">
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% endfor %}
-
-    {# Bloc Body à remplir dans les templates enfants #}
+    {# Gestion de la class du main pour l'accueil #}
     {% if app.user %}
-    <main class="container">
+        <main class="container">
     {% else %}
-    <main class="container-fluid">
+        <main>
     {% endif %}
-    {% block body %}{% endblock %}
+        {# Affichage des messages flash de l'application en fonction d'un label #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+            <div class="container text-center m-3 alert alert-{{ label }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endfor %}
+        {# Bloc Body à remplir dans les templates enfants #}
+        {% block body %}{% endblock %}
     </main>
-<footer class="mt-5">
-<div class="end-footer bg2">
-			<div class="container">
-				<div class="flex-sb-m flex-w p-t-22 p-b-22">
-					<div class="p-t-5 p-b-5">
-						<a href="https://www.facebook.com/frigogelatoartigianale/" class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
-                        <a href="https://www.instagram.com/explore/tags/FRIGO/?hl=fr" class="fs-15 c-white"><i class="fa fa-instagram m-l-18" aria-hidden="true"></i></a>
-						<a href="https://twitter.com/partagetonfrigo?lang=fr" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
-					</div>
-					<div class="txt17 p-r-20 p-t-5 p-b-5">
-						Copyright &copy; 2019 All rights reserved  |   Made with <i class="fa fa-heart"></i> <a href="{{ path('secret_team_home') }}">Team frigomatic</a> - O'clock - Quantum - Symfony
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-
+    <footer class="m">
+        <div class="end-footer bg2">
+            <div class="container">
+                <div class="flex-sb-m flex-w p-t-22 p-b-22">
+                    <div class="p-t-5 p-b-5">
+                        <a href="https://www.facebook.com/frigogelatoartigianale/" class="fs-15 c-white"><i
+                                class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/explore/tags/FRIGO/?hl=fr" class="fs-15 c-white"><i
+                                class="fa fa-instagram m-l-18" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/partagetonfrigo?lang=fr" class="fs-15 c-white"><i
+                                class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="txt17 p-r-20 p-t-5 p-b-5">
+                        Copyright &copy; 2019 All rights reserved | Made with <i class="fa fa-heart"></i> by <a
+                            class="txt17" href="{{ path('secret_team_home') }}">Team frigomatic</a> - O'clock -
+                        Quantum - Symfony
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     {# SCRIPT #}
     {% block javascripts %}{% endblock %}
     {# Script JQuery #}
@@ -141,7 +148,6 @@
     </script>
     {# Script Personnel #}
     <script src="{{ asset('assets/js/app.js') }}"></script>
-
-    </body>
+</body>
 
 </html>

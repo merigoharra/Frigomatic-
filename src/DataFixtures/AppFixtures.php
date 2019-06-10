@@ -40,7 +40,7 @@ class AppFixtures extends Fixture {
         //j'encode mon mot de passe avant de le stocker dans ma propriété password
         $encodedPassword = $this->encoder->encodePassword($admin, 'admin');
         $admin->setusername('admin')
-            ->setFirstname('OH grand maître')
+            ->setFirstname('Administrateur')
             ->setLastname('admin')
             ->setEmail('admin@admin.fr')
             ->setPassword($encodedPassword)
@@ -60,7 +60,7 @@ class AppFixtures extends Fixture {
         $moderator = new User();
         $encodedPassword = $this->encoder->encodePassword($moderator, 'moderator');
         $moderator->setusername('moderator')
-            ->setFirstname('Sous chef de grade moderateur')
+            ->setFirstname('Moderateur')
             ->setLastname('moderator')
             ->setEmail('moderator@moderator.fr')
             ->setPassword($encodedPassword)

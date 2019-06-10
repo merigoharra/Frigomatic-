@@ -1,12 +1,13 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
     position: relative;
     font-family: 'Oswald', sans-serif
 }
 
 main {
-    min-height: 100%;
+    min-height: 80vh;
     padding-right: 0;
     padding-left: 0;
 }

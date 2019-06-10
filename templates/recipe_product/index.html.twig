@@ -6,59 +6,59 @@
 <h1>Bienvenue : {{ app.user.firstname }} </h1>
 <img style="width: 5rem; border-radius:50%;" src="{{app.user.avatar}}" alt="">
 
-<article class="container">
-    <h1>{{ recipe.name }}</h1>
-    {# Affichage des tags#}
-    {% for tag in recipe.tag %}
-    <a href="{{path('app_recipe_tag', {'id':tag.id})}}"><span class="badge badge-info">{{ tag.name }}</span></a>
-    {% endfor %}
+<h1>{{ recipe.name }}</h1>
+{# Affichage des tags#}
+{% for tag in recipe.tag %}
+<a href="{{path('app_recipe_tag', {'id':tag.id})}}"><span class="badge badge-info">{{ tag.name }}</span></a>
+{% endfor %}
 
-    {# A transformer en étoile du style github -> star ou unstar #}
-    {# {% if isFav %}
+{# A transformer en étoile du style github -> star ou unstar #}
+{# {% if isFav %}
     <a href="{{ path('app_recipe_delete_fav', {'id': recipe.id}) }}" class="btn btn-success mt-2">Supprimer des favorits</a>
     {% else %}
     <a href="{{ path('app_recipe_add_fav', {'id': recipe.id}) }}" class="btn btn-success">Ajouter à mes recettes favorites</a>
     {% endif %} #}
 
 
-    <div class="row">
-        <section class='col'>
-            <p class="card-text"> Personnes :
-                {% for i in 1..recipe.people %}
-                    <i class="fas fa-utensil-spoon"></i>
-                {% endfor %}
-            </p>
-            <p>Difficulté : 
-                {# ajout de cuillere dans un 'for' on recuperer la difficulté qui est un chiffre, et chaque fois que l'on rentre dans le for on rajoute une cuillere, exemple si la difficulté est de 5, on boucle 5 fois et chaque fois que l'on boucle on ajoute une cuillere, cad qu'il aurait 5 cuilleres #}
-                {% for i in 1..recipe.level %}
-                    <i class="fas fa-utensil-spoon"></i>
-                {% endfor %}
-            </p>
-            <p>temps total : {{ recipe.totalDuration }} minutes</p>
-            <p>temps de préparation : {{ recipe.prepDuration }} minutes</p>
-            <p>temps de cuisson : {{ recipe.bakingDuration }} minutes</p>
-            <p><img src="{{asset('assets/images/imagesRecipe/' ~ recipe.image)}}" alt="Image de la recette {{ recipe.name }}"></p>
-            <p>dernière modification : {{ recipe.updatedAt|date("d/m/Y") }}</p>
-            <p>{{ recipe.content }}</p>
-        </section>
-    </div>
-</article>
+<div class="row">
+    <section class='col'>
+        <p class="card-text"> Personnes :
+            {% for i in 1..recipe.people %}
+            <i class="fas fa-utensil-spoon"></i>
+            {% endfor %}
+        </p>
+        <p>Difficulté :
+            {# ajout de cuillere dans un 'for' on recuperer la difficulté qui est un chiffre, et chaque fois que l'on rentre dans le for on rajoute une cuillere, exemple si la difficulté est de 5, on boucle 5 fois et chaque fois que l'on boucle on ajoute une cuillere, cad qu'il aurait 5 cuilleres #}
+            {% for i in 1..recipe.level %}
+            <i class="fas fa-utensil-spoon"></i>
+            {% endfor %}
+        </p>
+        <p>temps total : {{ recipe.totalDuration }} minutes</p>
+        <p>temps de préparation : {{ recipe.prepDuration }} minutes</p>
+        <p>temps de cuisson : {{ recipe.bakingDuration }} minutes</p>
+        <p><img src="{{asset('assets/images/imagesRecipe/' ~ recipe.image)}}"
+                alt="Image de la recette {{ recipe.name }}"></p>
+        <p>dernière modification : {{ recipe.updatedAt|date("d/m/Y") }}</p>
+        <p>{{ recipe.content }}</p>
+    </section>
+</div>
 <p>Liste des ingrédients : </p>
 <ul>
     {% for product in recipeProducts %}
-        <li>{{ product.product }} - {{ product.quantity }} {{ product.product.measure}}(s)</li>
+    <li>{{ product.product }} - {{ product.quantity }} {{ product.product.measure}}(s)</li>
     {% endfor %}
 </ul>
 
 <h2>Ajouter des produit à la recette :</h2>
 
-    {{form_start(form)}}
-    {{form_widget(form)}}
-    <button type="submit" class="btn btn-primary bg-dark">Ajouter ce produit</button>
-    {{form_end(form)}}
+{{form_start(form)}}
+{{form_widget(form)}}
+<button type="submit" class="btn btn-primary bg-dark">Ajouter ce produit</button>
+{{form_end(form)}}
 
 
-<a href="{{ path('app_recipe_show', {'slug': recipe.slug}) }}" class="btn btn-primary bg-dark mt-2">Terminer la recette</a>
+<a href="{{ path('app_recipe_show', {'slug': recipe.slug}) }}" class="btn btn-primary bg-dark mt-2">Terminer la
+    recette</a>
 
 {# <label for="product-choice">Ajouter :</label>
 <input list="all-products" id="product-choice" name="product-choice" />

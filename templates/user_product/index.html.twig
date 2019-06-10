@@ -3,35 +3,41 @@
 {% block title %}{{ parent() }} | Mon Frigo {% endblock %}
 
 {% block body %}
-<h1>Ajouter des produit à mon frigo :</h1>
+<div class="row">
+<section class="col-8">
+<h2>Voici tous les produits que tu possèdes dans ton frigo :</h2>
+
+<article class="row" id="all-frigo">
+    {% for category in categories %}
+    <div class="card m-1" style="width: 22rem">
+        <div id="product-list-head" class="product-list-head-{{ category.id }}">
+            <h3>{{ category.name }}</h3>
+        </div>
+        <ul class="list-group" id="frigo-product">
+            {% for userProduct in app.user.userproducts %}
+                {% if userProduct.product.category.id == category.id %}
+                <li class="list-group-item">
+                    {{ userProduct.quantity }} - {{ userProduct.product }}
+                    <form class="d-inline" method="post" action="{{ path('app_userProduct_delete', {'id': userProduct.id}) }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userProduct.id) }}">
+                        <button class="btn" style="color:red"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                    </form>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</article>
+</section>
+<aside class="col-4 text-center">
+<h1>Ajouter</h1>
 
     {{form_start(form)}}
     {{form_widget(form)}}
     <button type="submit" class="btn btn-primary bg-dark">Ajouter</button>
     {{form_end(form)}}
-
-<h2>Voici tous les produits que tu possèdes dans ton frigo :</h2>
-
-<article class="row">
-    {% for category in categories %}
-    <div class="card m-1" style="width: 15rem">
-        <img src="http://lorempixel.com/200/100/food/{{ category.id }}" class="m-0" alt="...">
-            <h3>{{ category.name }}</h3>
-            <ul class="list-group">
-                {% for userProduct in app.user.userproducts %}
-                    {% if userProduct.product.category.id == category.id %}
-                    <li class="list-group-item">
-                        {{ userProduct.product }} - {{ userProduct.quantity }}
-                        <form class="d-inline" method="post" action="{{ path('app_userProduct_delete', {'id': userProduct.id}) }}">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userProduct.id) }}">
-                            <button class="btn" style="color:red"><i class="fas fa-times-circle"></i></button>
-                        </form>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-    </div>
-    {% endfor %}
-</article>
+</aside>
+</div>
 {% endblock %}
