@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 05 Juin 2019 à 12:18
+-- Généré le :  Lun 10 Juin 2019 à 11:52
 -- Version du serveur :  5.7.20-0ubuntu0.16.04.1
 -- Version de PHP :  7.2.17-1+ubuntu16.04.1+deb.sury.org+3
 
@@ -96,8 +96,9 @@ CREATE TABLE `migration_versions` (
 --
 
 INSERT INTO `migration_versions` (`version`, `executed_at`) VALUES
-('20190603100428', '2019-06-03 10:04:40'),
-('20190604100712', '2019-06-04 10:07:28');
+('20190606093610', '2019-06-06 09:36:14'),
+('20190607112604', '2019-06-07 11:26:16'),
+('20190607131736', '2019-06-07 13:17:45');
 
 -- --------------------------------------------------------
 
@@ -119,52 +120,52 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `category_id`, `name`, `measure`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Abricot', 'gr', '2019-06-03 12:12:00', '2019-06-03 12:12:00'),
-(2, 1, 'Ananas', 'gr', '2019-06-03 12:13:00', '2019-06-03 12:13:00'),
-(3, 1, 'Artichaut', 'pièce', '2019-06-03 12:14:00', '2019-06-03 12:14:00'),
+(1, 1, 'Abricot', 'pièce(s)', '2019-06-03 12:12:00', '2019-06-03 12:12:00'),
+(2, 1, 'Ananas', 'pièce(s)', '2019-06-03 12:13:00', '2019-06-03 12:13:00'),
+(3, 1, 'Artichaut', 'pièce(s)', '2019-06-03 12:14:00', '2019-06-03 12:14:00'),
 (4, 1, 'Asperge', 'gr', '2019-06-03 12:14:00', '2019-06-03 12:14:00'),
-(5, 1, 'Aubergine', 'pièce', '2019-06-03 12:14:00', '2019-06-03 12:14:00'),
-(6, 1, 'Avocat', 'pièce', '2019-06-03 12:14:00', '2019-06-03 12:14:00'),
+(5, 1, 'Aubergine', 'pièce(s)', '2019-06-03 12:14:00', '2019-06-03 12:14:00'),
+(6, 1, 'Avocat', 'pièce(s)', '2019-06-03 12:14:00', '2019-06-03 12:14:00'),
 (7, 1, 'Bettrave', 'gr', '2019-06-03 12:15:00', '2019-06-03 12:15:00'),
 (8, 1, 'Brocolli', 'gr', '2019-06-03 12:15:00', '2019-06-03 12:15:00'),
 (9, 1, 'Blette', 'gr', '2019-06-03 12:15:00', '2019-06-03 12:15:00'),
-(10, 1, 'Carotte', 'gr', '2019-06-03 12:15:00', '2019-06-03 12:15:00'),
+(10, 1, 'Carotte', 'pièce(s)', '2019-06-03 12:15:00', '2019-06-03 12:15:00'),
 (11, 1, 'Champignon', 'gr', '2019-06-03 12:15:00', '2019-06-03 12:15:00'),
-(12, 1, 'Choux-fleur', 'pièce', '2019-06-03 12:15:00', '2019-06-03 12:15:00'),
-(13, 1, 'Citron', 'pièce', '2019-06-03 12:16:00', '2019-06-03 12:16:00'),
-(14, 1, 'Ctrouille', 'pièce', '2019-06-03 12:16:00', '2019-06-03 12:16:00'),
-(15, 1, 'Clementine', 'pièce', '2019-06-03 12:16:00', '2019-06-03 12:16:00'),
-(16, 1, 'concombre', 'pièce', '2019-06-03 12:16:00', '2019-06-03 12:16:00'),
-(17, 1, 'courgette', 'pièce', '2019-06-03 12:16:00', '2019-06-03 12:16:00'),
-(18, 1, 'Endive', 'pièce', '2019-06-03 12:17:00', '2019-06-03 12:17:00'),
+(12, 1, 'Choux-fleur', 'pièce(s)', '2019-06-03 12:15:00', '2019-06-03 12:15:00'),
+(13, 1, 'Citron', 'pièce(s)', '2019-06-03 12:16:00', '2019-06-03 12:16:00'),
+(14, 1, 'Citrouille', 'pièce(s)', '2019-06-03 12:16:00', '2019-06-03 12:16:00'),
+(15, 1, 'Clementine', 'pièce(s)', '2019-06-03 12:16:00', '2019-06-03 12:16:00'),
+(16, 1, 'Concombre', 'pièce(s)', '2019-06-03 12:16:00', '2019-06-03 12:16:00'),
+(17, 1, 'Courgette', 'pièce(s)', '2019-06-03 12:16:00', '2019-06-03 12:16:00'),
+(18, 1, 'Endive', 'pièce(s)', '2019-06-03 12:17:00', '2019-06-03 12:17:00'),
 (19, 1, 'Epinard', 'gr', '2019-06-03 12:18:00', '2019-06-03 12:18:00'),
-(20, 1, 'Feunouille', 'gr', '2019-06-03 12:18:00', '2019-06-03 12:18:00'),
-(21, 1, 'Figue', 'gr', '2019-06-03 12:18:00', '2019-06-03 12:18:00'),
+(20, 1, 'Fenouil', 'gr', '2019-06-03 12:18:00', '2019-06-03 12:18:00'),
+(21, 1, 'Figue', 'pièce(s)', '2019-06-03 12:18:00', '2019-06-03 12:18:00'),
 (22, 1, 'Fraise', 'gr', '2019-06-03 12:18:00', '2019-06-03 12:18:00'),
 (23, 1, 'Framboise', 'gr', '2019-06-03 12:18:00', '2019-06-03 12:18:00'),
 (24, 1, 'Haricot vert', 'gr', '2019-06-03 12:19:00', '2019-06-03 12:19:00'),
-(25, 1, 'Kiwi', 'pièce', '2019-06-03 12:19:00', '2019-06-03 12:19:00'),
-(26, 1, 'laitue', 'pièce', '2019-06-03 12:19:00', '2019-06-03 12:19:00'),
-(27, 1, 'mache', 'pièce', '2019-06-03 12:19:00', '2019-06-03 12:19:00'),
-(28, 1, 'melon', 'pièce', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
-(29, 1, 'mure', 'gr', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
-(30, 1, 'oignon', 'pièce', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
-(31, 1, 'poireau', 'pièce', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
-(32, 1, 'pomme', 'gr', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
-(33, 1, 'pamplemouse', 'pièce', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
-(34, 1, 'prune', 'gr', '2019-06-03 12:21:00', '2019-06-03 12:21:00'),
-(35, 1, 'Radis', 'gr', '2019-06-03 12:21:00', '2019-06-03 12:21:00'),
-(36, 1, 'Tomate', 'gr', '2019-06-03 12:21:00', '2019-06-03 12:21:00'),
-(37, 1, 'Banane', 'pièce', '2019-06-03 12:21:00', '2019-06-03 12:21:00'),
+(25, 1, 'Kiwi', 'pièce(s)', '2019-06-03 12:19:00', '2019-06-03 12:19:00'),
+(26, 1, 'Laitue', 'pièce(s)', '2019-06-03 12:19:00', '2019-06-03 12:19:00'),
+(27, 1, 'Mache', 'pièce(s)', '2019-06-03 12:19:00', '2019-06-03 12:19:00'),
+(28, 1, 'Melon', 'pièce(s)', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
+(29, 1, 'Mure', 'gr', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
+(30, 1, 'Oignon', 'pièce(s)', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
+(31, 1, 'Poireau', 'pièce(s)', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
+(32, 1, 'Pomme', 'pièce(s)', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
+(33, 1, 'Pamplemouse', 'pièce(s)', '2019-06-03 12:20:00', '2019-06-03 12:20:00'),
+(34, 1, 'Prune', 'pièce(s)', '2019-06-03 12:21:00', '2019-06-03 12:21:00'),
+(35, 1, 'Radis', 'botte(s)', '2019-06-03 12:21:00', '2019-06-03 12:21:00'),
+(36, 1, 'Tomate', 'pièce(s)', '2019-06-03 12:21:00', '2019-06-03 12:21:00'),
+(37, 1, 'Banane', 'pièce(s)', '2019-06-03 12:21:00', '2019-06-03 12:21:00'),
 (38, 5, 'Avoine', 'gr', '2019-06-03 12:22:00', '2019-06-03 12:22:00'),
-(39, 5, 'blé', 'gr', '2019-06-03 12:22:00', '2019-06-03 12:22:00'),
+(39, 5, 'Blé', 'gr', '2019-06-03 12:22:00', '2019-06-03 12:22:00'),
 (40, 5, 'Farine', 'gr', '2019-06-03 12:22:00', '2019-06-03 12:22:00'),
 (41, 5, 'Haricot', 'gr', '2019-06-03 12:22:00', '2019-06-03 12:22:00'),
 (42, 5, 'lentille', 'gr', '2019-06-03 12:22:00', '2019-06-03 12:22:00'),
 (43, 5, 'Fève', 'gr', '2019-06-03 12:23:00', '2019-06-03 12:23:00'),
 (44, 5, 'Maïs', 'gr', '2019-06-03 12:24:00', '2019-06-03 12:24:00'),
 (45, 5, 'Pain', 'gr', '2019-06-03 12:24:00', '2019-06-03 12:24:00'),
-(46, 5, 'patate douce', 'gr', '2019-06-03 12:25:00', '2019-06-03 12:25:00'),
+(46, 5, 'Patate douce', 'gr', '2019-06-03 12:25:00', '2019-06-03 12:25:00'),
 (47, 5, 'Pâte', 'gr', '2019-06-03 12:25:00', '2019-06-03 12:25:00'),
 (48, 5, 'Poids cassées', 'gr', '2019-06-03 12:25:00', '2019-06-03 12:25:00'),
 (49, 5, 'Poids chiche', 'gr', '2019-06-03 12:26:00', '2019-06-03 12:26:00'),
@@ -179,27 +180,26 @@ INSERT INTO `product` (`id`, `category_id`, `name`, `measure`, `created_at`, `up
 (58, 6, 'Chèvre', 'gr', '2019-06-03 12:28:00', '2019-06-03 12:28:00'),
 (59, 6, 'Comté', 'gr', '2019-06-03 12:28:00', '2019-06-03 12:28:00'),
 (60, 6, 'Emmental', 'gr', '2019-06-03 12:29:00', '2019-06-03 12:29:00'),
-(61, 6, 'feta', 'gr', '2019-06-03 12:29:00', '2019-06-03 12:29:00'),
+(61, 6, 'Feta', 'gr', '2019-06-03 12:29:00', '2019-06-03 12:29:00'),
 (62, 6, 'Fromage Blanc', 'gr', '2019-06-03 12:29:00', '2019-06-03 12:29:00'),
 (63, 6, 'Fromage persillé', 'gr', '2019-06-03 12:29:00', '2019-06-03 12:29:00'),
 (64, 6, 'Gruyère', 'gr', '2019-06-03 12:30:00', '2019-06-03 12:30:00'),
 (65, 6, 'Lait', 'ml', '2019-06-03 12:30:00', '2019-06-03 12:30:00'),
 (66, 6, 'Maroille', 'gr', '2019-06-03 12:30:00', '2019-06-03 12:30:00'),
-(67, 6, 'mascarpone', 'gr', '2019-06-03 12:30:00', '2019-06-03 12:30:00'),
+(67, 6, 'Mascarpone', 'gr', '2019-06-03 12:30:00', '2019-06-03 12:30:00'),
 (68, 6, 'Mozzarella', 'gr', '2019-06-03 12:31:00', '2019-06-03 12:31:00'),
 (69, 6, 'Parmesan', 'gr', '2019-06-03 12:31:00', '2019-06-03 12:31:00'),
 (70, 6, 'Reblochon', 'gr', '2019-06-03 12:31:00', '2019-06-03 12:31:00'),
 (71, 6, 'Ricotta', 'gr', '2019-06-03 12:31:00', '2019-06-03 12:31:00'),
 (72, 6, 'Roquefort', 'gr', '2019-06-03 12:31:00', '2019-06-03 12:31:00'),
 (73, 6, 'Yaourt', 'gr', '2019-06-03 12:32:00', '2019-06-03 12:32:00'),
-(74, 6, 'Yaourt', 'gr', '2019-06-03 12:32:00', '2019-06-03 12:32:00'),
 (75, 7, 'Abats', 'gr', '2019-06-03 12:32:00', '2019-06-03 12:32:00'),
-(76, 7, 'Anchois', 'pièces', '2019-06-03 12:33:00', '2019-06-03 12:33:00'),
+(76, 7, 'Anchois', 'pièce(s)', '2019-06-03 12:33:00', '2019-06-03 12:33:00'),
 (77, 7, 'Boeuf', 'gr', '2019-06-03 12:33:00', '2019-06-03 12:33:00'),
-(78, 7, 'Cabillaud', 'pièces', '2019-06-03 12:33:00', '2019-06-03 12:33:00'),
-(79, 7, 'caille', 'pièces', '2019-06-03 12:33:00', '2019-06-03 12:33:00'),
+(78, 7, 'Cabillaud', 'pièce(s)', '2019-06-03 12:33:00', '2019-06-03 12:33:00'),
+(79, 7, 'Caille', 'pièce(s)', '2019-06-03 12:33:00', '2019-06-03 12:33:00'),
 (80, 7, 'Canard', 'gr', '2019-06-03 12:35:00', '2019-06-03 12:35:00'),
-(81, 7, 'cheval', 'gr', '2019-06-03 12:35:00', '2019-06-03 12:35:00'),
+(81, 7, 'Cheval', 'gr', '2019-06-03 12:35:00', '2019-06-03 12:35:00'),
 (82, 7, 'Chorizo', 'gr', '2019-06-03 12:35:00', '2019-06-03 12:35:00'),
 (83, 7, 'Crabe', 'gr', '2019-06-03 12:35:00', '2019-06-03 12:35:00'),
 (84, 7, 'crevette', 'gr', '2019-06-03 12:35:00', '2019-06-03 12:35:00'),
@@ -207,56 +207,55 @@ INSERT INTO `product` (`id`, `category_id`, `name`, `measure`, `created_at`, `up
 (86, 7, 'Foie gras', 'gr', '2019-06-03 12:36:00', '2019-06-03 12:36:00'),
 (87, 7, 'Fruit de mer', 'gr', '2019-06-03 12:36:00', '2019-06-03 12:36:00'),
 (88, 7, 'Gibiers', 'gr', '2019-06-03 12:36:00', '2019-06-03 12:36:00'),
-(89, 7, 'Huitre', 'pièce', '2019-06-03 12:36:00', '2019-06-03 12:36:00'),
-(90, 7, 'lard', 'gr', '2019-06-03 12:37:00', '2019-06-03 12:37:00'),
+(89, 7, 'Huitre', 'pièce(s)', '2019-06-03 12:36:00', '2019-06-03 12:36:00'),
+(90, 7, 'Lard', 'gr', '2019-06-03 12:37:00', '2019-06-03 12:37:00'),
 (91, 7, 'poisson', 'gr', '2019-06-03 12:37:00', '2019-06-03 12:37:00'),
-(92, 7, 'moule', 'de', '2019-06-03 12:38:00', '2019-06-03 12:38:00'),
+(92, 7, 'Moule', 'gr', '2019-06-03 12:38:00', '2019-06-03 12:38:00'),
 (93, 7, 'Mouton', 'gr', '2019-06-03 12:38:00', '2019-06-03 12:38:00'),
-(94, 7, 'porc', 'gr', '2019-06-03 12:38:00', '2019-06-03 12:38:00'),
-(95, 7, 'pole', 'gr', '2019-06-03 12:38:00', '2019-06-03 12:38:00'),
+(94, 7, 'Porc', 'gr', '2019-06-03 12:38:00', '2019-06-03 12:38:00'),
 (96, 7, 'Poulet', 'gr', '2019-06-03 12:38:00', '2019-06-03 12:38:00'),
-(97, 7, 'sardine', 'gr', '2019-06-03 12:39:00', '2019-06-03 12:39:00'),
-(98, 7, 'saucisse', 'gr', '2019-06-03 12:39:00', '2019-06-03 12:39:00'),
-(99, 7, 'thon', 'gr', '2019-06-03 12:39:00', '2019-06-03 12:39:00'),
-(100, 7, 'veau', 'gr', '2019-06-03 12:39:00', '2019-06-03 12:39:00'),
+(97, 7, 'Sardine', 'gr', '2019-06-03 12:39:00', '2019-06-03 12:39:00'),
+(98, 7, 'Saucisse', 'gr', '2019-06-03 12:39:00', '2019-06-03 12:39:00'),
+(99, 7, 'Thon', 'gr', '2019-06-03 12:39:00', '2019-06-03 12:39:00'),
+(100, 7, 'Veau', 'gr', '2019-06-03 12:39:00', '2019-06-03 12:39:00'),
 (101, 7, 'Viande blanche', 'gr', '2019-06-03 12:39:00', '2019-06-03 12:39:00'),
 (102, 7, 'Viande rouge', 'gr', '2019-06-03 12:40:00', '2019-06-03 12:40:00'),
 (103, 7, 'Volailles', 'gr', '2019-06-03 12:40:00', '2019-06-03 12:40:00'),
-(104, 7, 'Oeuf', 'gr', '2019-06-03 12:40:00', '2019-06-03 12:40:00'),
+(104, 7, 'Oeuf', 'pièce(s)', '2019-06-03 12:40:00', '2019-06-03 12:40:00'),
 (105, 8, 'Beurre', 'gr', '2019-06-03 12:41:00', '2019-06-03 12:41:00'),
-(106, 8, 'beurre de cacahuète', 'gr', '2019-06-03 12:41:00', '2019-06-03 12:41:00'),
+(106, 8, 'Beurre de cacahuète', 'gr', '2019-06-03 12:41:00', '2019-06-03 12:41:00'),
 (107, 6, 'Crème fraiche', 'gr', '2019-06-03 12:41:00', '2019-06-03 12:41:00'),
 (108, 8, 'Huile d\'olive', 'ml', '2019-06-03 12:41:00', '2019-06-03 12:41:00'),
-(109, 8, 'huile', 'ml', '2019-06-03 12:42:00', '2019-06-03 12:42:00'),
+(109, 8, 'Huile', 'ml', '2019-06-03 12:42:00', '2019-06-03 12:42:00'),
 (110, 8, 'Lait de coco', 'ml', '2019-06-03 12:42:00', '2019-06-03 12:42:00'),
-(111, 8, 'margarine', 'gr', '2019-06-03 12:42:00', '2019-06-03 12:42:00'),
+(111, 8, 'Margarine', 'gr', '2019-06-03 12:42:00', '2019-06-03 12:42:00'),
 (112, 8, 'Saindoux', 'gr', '2019-06-03 12:42:00', '2019-06-03 12:42:00'),
-(113, 9, 'Bonbons', 'gr', '2019-06-03 12:43:00', '2019-06-03 12:43:00'),
-(114, 9, 'sucre candi', 'gr', '2019-06-03 12:43:00', '2019-06-03 12:43:00'),
-(115, 9, 'sucre de canne', 'gr', '2019-06-03 12:44:00', '2019-06-03 12:44:00'),
-(116, 9, 'cassonade', 'gr', '2019-06-03 12:44:00', '2019-06-03 12:44:00'),
+(113, 9, 'Bonbons', 'pièce(s)', '2019-06-03 12:43:00', '2019-06-03 12:43:00'),
+(114, 9, 'Sucre candi', 'gr', '2019-06-03 12:43:00', '2019-06-03 12:43:00'),
+(115, 9, 'Sucre de canne', 'gr', '2019-06-03 12:44:00', '2019-06-03 12:44:00'),
+(116, 9, 'Cassonade', 'gr', '2019-06-03 12:44:00', '2019-06-03 12:44:00'),
 (117, 9, 'Chocolat', 'gr', '2019-06-03 12:44:00', '2019-06-03 12:44:00'),
 (118, 9, 'Miel', 'gr', '2019-06-03 12:44:00', '2019-06-03 12:44:00'),
 (119, 9, 'Sirop d\'érable', 'ml', '2019-06-03 12:45:00', '2019-06-03 12:45:00'),
 (120, 9, 'Sucre blanc', 'gr', '2019-06-03 12:45:00', '2019-06-03 12:45:00'),
-(121, 9, 'sucre glace', 'gr', '2019-06-03 12:45:00', '2019-06-03 12:45:00'),
-(122, 9, 'vergoise', 'gr', '2019-06-03 12:45:00', '2019-06-03 12:45:00'),
+(121, 9, 'Sucre glace', 'gr', '2019-06-03 12:45:00', '2019-06-03 12:45:00'),
+(122, 9, 'Vergoise', 'gr', '2019-06-03 12:45:00', '2019-06-03 12:45:00'),
 (123, 4, 'Alcool', 'ml', '2019-06-03 12:46:00', '2019-06-03 12:46:00'),
 (124, 4, 'Bière', 'ml', '2019-06-03 12:46:00', '2019-06-03 12:46:00'),
 (125, 4, 'Champagne', 'ml', '2019-06-03 12:46:00', '2019-06-03 12:46:00'),
 (126, 4, 'Cidre', 'ml', '2019-06-03 12:47:00', '2019-06-03 12:47:00'),
 (127, 4, 'Eau', 'ml', '2019-06-03 12:47:00', '2019-06-03 12:47:00'),
-(128, 4, 'lait d\'amande', 'ml', '2019-06-03 12:47:00', '2019-06-03 12:47:00'),
+(128, 4, 'Lait d\'amande', 'ml', '2019-06-03 12:47:00', '2019-06-03 12:47:00'),
 (129, 4, 'Lait végétal', 'ml', '2019-06-03 12:47:00', '2019-06-03 12:47:00'),
 (130, 4, 'Rhum', 'ml', '2019-06-03 12:47:00', '2019-06-03 12:47:00'),
-(131, 4, 'vin blanc', 'ml', '2019-06-03 12:48:00', '2019-06-03 12:48:00'),
+(131, 4, 'Vin blanc', 'ml', '2019-06-03 12:48:00', '2019-06-03 12:48:00'),
 (132, 4, 'Vin rouge', 'ml', '2019-06-03 12:48:00', '2019-06-03 12:48:00'),
-(133, 5, 'Pâte feuilletée', 'pièce', '2019-06-03 13:44:00', '2019-06-03 13:44:00'),
-(134, 5, 'pâte sablée', 'pièce(s)', '2019-06-05 10:22:00', '2019-06-05 10:22:00'),
-(135, 1, 'poudre d\'amande', 'gramme(s)', '2019-06-05 10:24:00', '2019-06-05 10:24:00'),
-(138, 1, 'pâte de pistache', 'c à s', '2019-06-05 10:27:00', '2019-06-05 10:27:00'),
-(139, 1, 'Potimarron', 'gr', '2019-06-05 10:28:00', '2019-06-05 10:28:00'),
-(140, 1, 'pistache non salées', 'gramme(s)', '2019-06-05 10:28:00', '2019-06-05 10:28:00'),
+(133, 5, 'Pâte feuilletée', 'pièce(s)', '2019-06-03 13:44:00', '2019-06-03 13:44:00'),
+(134, 5, 'Pâte sablée', 'pièce(s)', '2019-06-05 10:22:00', '2019-06-05 10:22:00'),
+(135, 1, 'Poudre d\'amande', 'gr', '2019-06-05 10:24:00', '2019-06-05 10:24:00'),
+(138, 1, 'Pâte de pistache', 'gr', '2019-06-05 10:27:00', '2019-06-05 10:27:00'),
+(139, 1, 'Potimarron', 'pièce(s)', '2019-06-05 10:28:00', '2019-06-05 10:28:00'),
+(140, 1, 'Pistache non salées', 'gr', '2019-06-05 10:28:00', '2019-06-05 10:28:00'),
 (141, 10, 'Sel', 'gr', '2019-06-05 10:30:00', '2019-06-05 10:30:00'),
 (142, 10, 'Poivre', 'gr', '2019-06-05 10:30:00', '2019-06-05 10:30:00'),
 (143, 10, 'Ail', 'gr', '2019-06-05 10:30:00', '2019-06-05 10:30:00'),
@@ -294,15 +293,17 @@ CREATE TABLE `recipe` (
 --
 
 INSERT INTO `recipe` (`id`, `user_id`, `name`, `people`, `level`, `image`, `total_duration`, `prep_duration`, `baking_duration`, `created_at`, `updated_at`, `content`, `slug`) VALUES
-(1, 1, 'Tarte à la tomate et au chèvre', 4, 1, 'https://static.750g.com/images/auto-427/2b7c59b8ff62b6c0a826f899e640ab4d/tartechevre.jpeg', 55, 15, 40, '2019-06-03 13:45:00', '2019-06-03 13:45:00', 'ÉTAPE 1 :\r\nEtalez votre pâte dans un moule. Mettez de la moutarde sur le fond de pâte.\r\n\r\nÉTAPE 2 :\r\nCoupez les tomates en fines rondelles, le chèvre aussi. Alternez 3 tranches de tomate et 1 tranche de chèvre en formant une rosace. Salez, poivrez et saupoudrez d\'herbe de Provence.\r\n\r\nÉTAPE 3 :\r\nBattez les 3 oeufs en omelette et versez-les dessus.\r\n\r\nÉTAPE 4 :\r\nPréchauffez votre four Th.6 (180°C).\r\n\r\nÉTAPE 5 :\r\nEnfournez votre tarte à Th.5 pendant 40 minutes environ. A la sortie du four, déposez quelques feuilles de basilic fraîche et bon appétit.', 'tarte-a-la-tomate-et-au-chevre'),
-(2, 1, 'Tortilla de patatas ou Omelette aux pommes de terre', 4, 1, 'https://es.rc-cdn.community.thermomix.com/recipeimage/flz0tm0r-a2069-162740-cfcd2-zlr8kinc/733f35bb-e440-4c4f-9b87-949a0e20e384/main/tortilla-de-patatas-con-cebolla.jpg', 50, 15, 35, '2019-06-05 10:09:00', '2019-06-05 10:09:00', 'ÉTAPE 1 :\r\nÉpluchez puis lavez vos pommes de terre. Coupez-les en cubes d’environ 1 cm de côté. Sans les rincer, faites les rissoler dans un fond d’huile assez généreux. Faites-les d’abord saisir, salez, poivrez puis couvrez. Laissez cuire environ 15 à 20 minutes, jusqu’à une cuisson à cœur.\r\n\r\n\r\nÉTAPE 2 :\r\nPendant ce temps, battez vos œufs en omelette, salez/poivrez. Séparez votre fond d’huile et vos pommes de terre une fois rissolées, réservez votre fond d’huile car il va vous resservir. Mettez vos pommes de terre dans un cul de poule puis écrasez-les grossièrement à la fourchette.\r\n\r\n\r\nÉTAPE 3 :\r\nVersez vos œufs dessus, mélangez et versez la préparation dans votre restant d’huile que vous aurez remis à chauffer. Choisissez le diamètre de votre poêle afin d’obtenir une bonne épaisseur de la tortilla, environ 3 centimètres. Faites cuire d’abord sur une face puis sur la seconde face.\r\n\r\nLa seule difficulté de cette recette consiste à retourner votre tortilla pour la faire cuire sur les deux faces. L\'idéal est de vous servir d\'un grand couvercle huilé.\r\n\r\nLa bonne cuisson est obtenue quand l’œuf a pris, sans coloration excessive des faces et avec un cœur cuit mais sans être sec. Servez avec une salade.', 'tortilla-de-patatas-ou-omelette-aux-pommes-de-terre'),
-(3, 1, 'Tartines avocat, roquette, tomate et œuf mollet', 4, 1, 'https://static.750g.com/images/622-auto/dc404ec1af4a90637f20711851570836/toast.jpg', 5, 5, 0, '2019-06-05 10:24:00', '2019-06-05 10:24:00', 'ÉTAPE 1 :\r\nPlonger les oeufs dans une eau bouillante et laisser cuire 5 minutes dès reprise de l\'ébullition. Retirer les oeufs de l\'eau avec une écumoire et plonger dans un saladier d\'eau froide voire glacée.\r\n\r\nÉTAPE 2 :\r\nCouper l\'avocat en deux, retirer le noyau. Découper les deux moitiés d\'avocat en fines tranches. Couper les tomates en rondelles, la moitié de la feta en petits cubes et l\'autre émiettée. \r\n\r\nÉTAPE 3 :\r\nDéposer quelques lamelles d\'avocat sur les tranches de pain, ajouter un peu de feta émiettée, les tomates cerise coupées en rondelles, un peu de roquette. Écailler les oeufs et en déposer un par tartine. Saler, poivrer et servir.', 'tartines-avocat-roquette-tomate-et-œuf-mollet'),
-(4, 1, 'Tomates farcies', 3, 1, 'https://assets.afcdn.com/recipe/20171012/73069_w420h344c1cx1944cy1292cxt0cyt0cxb3888cyb2585.jpg', 80, 20, 60, '2019-06-05 10:25:00', '2019-06-05 10:25:00', 'Etape 1\r\nEplucher et hacher les oignons. Eplucher et hacher les gousses d\'ail.\r\nEtape 2\r\nMettre la moitié des oignons dans la chair à saucisse. Ajouter l\'ail, le sel, le poivre et un peu de persil.\r\nEtape 3\r\nCouper le haut des tomates et les évider. Poivrer et saler l\'intérieur. Mettre la farce à l\'intérieur et remettre les chapeaux.\r\nEtape 4\r\nMettre le reste des oignons dans un plat avec la chair des tomates.\r\nEtape 5\r\nMettre les tomates farcies dans le plat. Parsemez d\'un peu de thym et mette une noisette de beurre sur chaque tomates. Faire cuire au four chaud à 180°C (thermostat 6) pendant 1 heure environ.\r\nEtape 6\r\nServir avec du riz.', 'Tomates-farcies'),
-(5, 1, 'Tagliatelles aux crevettes', 4, 2, 'https://assets.afcdn.com/recipe/20190308/89021_w420h344c1cx2659cy1773cxt0cyt0cxb5319cyb3546.jpg', 40, 25, 15, '2019-06-05 10:30:00', '2019-06-05 10:30:00', 'Etape 1\r\nCuire les tagliatelles dans un grand volume d’eau salée 4 à 6 minutes selon la cuisson souhaitée.\r\nEtape 2\r\nLes égoutter, et les rincer à l’eau tiède quelques secondes pour enlever l’excédent d’amidon et les réserver au chaud.\r\nEtape 3\r\nÉplucher la courgette et la tailler en tagliatelles à l’aide d’un économe.\r\nEtape 4\r\nBlanchir 1 minute les tagliatelles de courgette dans de l’eau bouillante salée et les rafraîchir rapidement après la cuisson afin de la stopper.\r\nEtape 5\r\nCouper les tomates cerises en deux et mélanger dans un saladier avec les tagliatelles et les courgettes, ajouter sel, poivre et un trait d’huile d’olive.\r\nEtape 6\r\nDécongeler les crevettes 5 minutes sous l’eau courante, les égoutter puis les saler et poivrer.\r\nEtape 7\r\nMettre les zestes de citron dessus et les poêler rapidement environ 4 à 5 minutes puis déglacer avec le jus de citron, réserver.\r\nEtape 8\r\nÉmulsionner le bouillon de légumes avec le beurre et le mélanger avec le tout pour réchauffer.\r\nEtape 9\r\nDresser dans des assiettes creuses chaudes.', 'Tagliatelles-aux-crevettes'),
-(6, 1, 'Tarte à la pistache et fraises', 6, 1, 'https://static.750g.com/images/auto-525/e876be0c3dfd286de09a84a59af70f7e/aop-igp-fraise-tarte-fraise-pistache-bd-web.jpg', 60, 30, 30, '2019-06-05 10:23:00', '2019-06-05 10:23:00', 'ÉTAPE 1 :\r\nPréchauffer le four à 180°C. Placer la pâte sablée dans un moule à tarte idéalement à fond amovible. Piquer le fond de pâte puis réservez au frais. \r\n\r\nÉTAPE 2 :\r\nDans un bol, mélanger le beurre mou avec les 100g de sucre et 3 c à s rase de pâte de pistache. Ajouter les œufs et la poudre d’amande en continuant de mélanger. Verser sur le fond de pâte, lisser le dessus et enfourner pour 30 minutes de cuisson. Sortir la tarte du four, laisser tiédir avant de démouler sur une grille puis laisser complètement refroidir. \r\n\r\nÉTAPE 3 :\r\nRincer rapidement les fraises sous l’eau, les équeuter et les couper en tranches épaisses. Mélanger le mascarpone avec les 40g de sucre glace et 1 c. à soupe de pâte de pistache. Étaler sur le dessus de la tarte puis piquer dedans les tranches de fraises. Parsemer de pistaches concassées et servir. \r\n\r\nÉTAPE 4 :\r\nPetit plus : Préparez votre pâte sablée en mélangeant dans un saladier (ou la cuve d’un robot) 100 g de beurre mou et 80g de sucre pour obtenir une crème. Incorporer 1 œuf puis 200g de farine et une pincée de sel et travailler rapidement pour avoir une pâte molle sans traces de beurre. Former une boule aplatie et laisser reposer au moins 30 minutes au réfrigérateur avant de l’étaler au rouleau sur un plan de travail fariné.', 'Tarte-à-la-pistache-et-fraise'),
-(7, 1, 'Soupe de potimarron, oigon, quinoa et chorizo', 4, 2, 'https://static.750g.com/images/622-auto/f8f5e85ea993d9df811e913f1fc50caa/comment-realiser-une-soupe-de-potimarron.jpg', 45, 20, 25, '2019-06-05 10:33:00', '2019-06-05 10:33:00', 'ÉTAPE 1 :\r\nEpluchez l\'oignon et coupez-le en lamelles.\r\n\r\n\r\nÉTAPE 2 :\r\nLavez le potimarron et coupez-le en deux. Enlevez les pépins et détaillez la chair en cubes.\r\n\r\n\r\nÉTAPE 3 :\r\nDans un faitout, faites fondre l\'oignon avec l\'huile d\'olive pendant 5 minutes environ.\r\n\r\n\r\nÉTAPE 4 :\r\nAjoutez le potimarron.\r\n\r\n\r\nÉTAPE 5 :\r\nCouvrez d\'eau et salez. Faites cuire pendant 20 minutes environ jusqu\'à ce que la chair soit bien tendre.\r\nPendant ce temps, préparez le quinoa comme indiqué sur le paquet.\r\n\r\n\r\nÉTAPE 6 :\r\nQuand la soupe est cuite, passez-la au mixeur plongeant et rectifiez l\'assaisonnement si nécessaire.\r\n\r\n\r\nÉTAPE 7 :\r\nCoupez le chorizo en fines tranches.\r\n\r\n\r\nÉTAPE 8 :\r\nServez la soupe bien chaude, ajoutez-y une cuillère de quinoa et les tranches de chorizo. Régalez-vous !', 'soupe-de-potimarron-oignon-quinoa-et-chorizo'),
-(8, 1, 'Poulet au curry', 3, 3, 'https://assets.afcdn.com/recipe/20100120/12710_w420h344c1cx256cy192.jpg', 40, 10, 30, '2019-06-05 10:36:00', '2019-06-05 10:36:00', 'Etape 1\r\nCoupez les blancs de poulet en dés.\r\nEtape 2\r\nFaites chauffer l\'huile dans une poêle et faites-y revenir l\'oignon, la gousse d\'ail et les dés de poulet. Ajoutez la chair de tomates, la pomme coupée en dés et la crème. Salez, poivrez, ajoutez le bouquet garni et le curry.\r\nEtape 3\r\nFaites cuire 20-25 min à feu très doux. Accompagnez de riz.\r\nEtape 4\r\nRecette pouvant être cuite au four à micro-ondes.\r\nEtape 5\r\nDans ce cas, cuire 2 min à 750 W, l\'oignon, la gousse d\'ail et le poulet. Salez, poivrez, ajoutez le bouquet garni et le curry.\r\nEtape 6\r\nFaites cuire 10-13 min à 750 W.', 'Poulet-au-curry'),
-(9, 1, 'Lasagnes au tofu', 6, 2, 'https://assets.afcdn.com/recipe/20150312/26968_w420h344c1cx1250cy1875.jpg', 110, 60, 50, '2019-06-05 10:41:00', '2019-06-05 10:41:00', 'Etape 1\r\nFaites revenir dans une poêle huilée les oignons et les champignons coupés en lamelles. Ajoutez les tomates pelées et copées en morceaux, le tofu émietté et l\'ail haché.\r\nEtape 2\r\nAjoutez les herbes de Provence, la muscade, la sauce de soja et le poivre. Laissez mijoter 20 minutes.\r\nEtape 3\r\nPréparez la sauce béchamel. Dans un plat à four rectangulaire huilé, disposez un fond de béchamel puis une couche de 3 lasages, recouvrez avec la moitié du mélange tofu + légumes et une couche de béchamel.\r\nEtape 4\r\nDisposez une deuxième couche de lasagnes, les reste du mélange tofu + légumes, les dernières lasagnes et recouvrir de béchamel. Parsemez de parmesan.\r\nEtape 5\r\nCuisez à four chaud 30 minutes (200°C/thermostat 6-7).', 'Lasagnes-au-tofu');
+(1, 1, 'Tarte à la tomate et au chèvre', 4, 1, 'image-of-recipe-tarte-a-la-tomate-et-au-chevre.jpg', 55, 15, 40, '2019-06-03 13:45:00', '2019-06-03 13:45:00', 'ÉTAPE 1 :\r\nEtalez votre pâte dans un moule. Mettez de la moutarde sur le fond de pâte.\r\n\r\nÉTAPE 2 :\r\nCoupez les tomates en fines rondelles, le chèvre aussi. Alternez 3 tranches de tomate et 1 tranche de chèvre en formant une rosace. Salez, poivrez et saupoudrez d\'herbe de Provence.\r\n\r\nÉTAPE 3 :\r\nBattez les 3 oeufs en omelette et versez-les dessus.\r\n\r\nÉTAPE 4 :\r\nPréchauffez votre four Th.6 (180°C).\r\n\r\nÉTAPE 5 :\r\nEnfournez votre tarte à Th.5 pendant 40 minutes environ. A la sortie du four, déposez quelques feuilles de basilic fraîche et bon appétit.', 'tarte-a-la-tomate-et-au-chevre'),
+(2, 1, 'Tortilla de patatas ou Omelette aux pommes de terre', 4, 1, 'image-of-recipe-tortilla-de-patatas-ou-omelette-aux-pommes-de-terre.jpg', 50, 15, 35, '2019-06-05 10:09:00', '2019-06-05 10:09:00', 'ÉTAPE 1 :\r\nÉpluchez puis lavez vos pommes de terre. Coupez-les en cubes d’environ 1 cm de côté. Sans les rincer, faites les rissoler dans un fond d’huile assez généreux. Faites-les d’abord saisir, salez, poivrez puis couvrez. Laissez cuire environ 15 à 20 minutes, jusqu’à une cuisson à cœur.\r\n\r\n\r\nÉTAPE 2 :\r\nPendant ce temps, battez vos œufs en omelette, salez/poivrez. Séparez votre fond d’huile et vos pommes de terre une fois rissolées, réservez votre fond d’huile car il va vous resservir. Mettez vos pommes de terre dans un cul de poule puis écrasez-les grossièrement à la fourchette.\r\n\r\n\r\nÉTAPE 3 :\r\nVersez vos œufs dessus, mélangez et versez la préparation dans votre restant d’huile que vous aurez remis à chauffer. Choisissez le diamètre de votre poêle afin d’obtenir une bonne épaisseur de la tortilla, environ 3 centimètres. Faites cuire d’abord sur une face puis sur la seconde face.\r\n\r\nLa seule difficulté de cette recette consiste à retourner votre tortilla pour la faire cuire sur les deux faces. L\'idéal est de vous servir d\'un grand couvercle huilé.\r\n\r\nLa bonne cuisson est obtenue quand l’œuf a pris, sans coloration excessive des faces et avec un cœur cuit mais sans être sec. Servez avec une salade.', 'tortilla-de-patatas-ou-omelette-aux-pommes-de-terre'),
+(3, 1, 'Tartines avocat, roquette, tomate et œuf mollet', 4, 1, 'image-of-recipe-tartines-avocat-roquette-tomate-et-œuf-mollet.jpg', 5, 5, 0, '2019-06-05 10:24:00', '2019-06-05 10:24:00', 'ÉTAPE 1 :\r\nPlonger les oeufs dans une eau bouillante et laisser cuire 5 minutes dès reprise de l\'ébullition. Retirer les oeufs de l\'eau avec une écumoire et plonger dans un saladier d\'eau froide voire glacée.\r\n\r\nÉTAPE 2 :\r\nCouper l\'avocat en deux, retirer le noyau. Découper les deux moitiés d\'avocat en fines tranches. Couper les tomates en rondelles, la moitié de la feta en petits cubes et l\'autre émiettée. \r\n\r\nÉTAPE 3 :\r\nDéposer quelques lamelles d\'avocat sur les tranches de pain, ajouter un peu de feta émiettée, les tomates cerise coupées en rondelles, un peu de roquette. Écailler les oeufs et en déposer un par tartine. Saler, poivrer et servir.', 'tartines-avocat-roquette-tomate-et-œuf-mollet'),
+(4, 1, 'Tomates farcies', 3, 1, 'image-of-recipe-tomates-farcies.jpg', 80, 20, 60, '2019-06-05 10:25:00', '2019-06-05 10:25:00', 'Etape 1\r\nEplucher et hacher les oignons. Eplucher et hacher les gousses d\'ail.\r\nEtape 2\r\nMettre la moitié des oignons dans la chair à saucisse. Ajouter l\'ail, le sel, le poivre et un peu de persil.\r\nEtape 3\r\nCouper le haut des tomates et les évider. Poivrer et saler l\'intérieur. Mettre la farce à l\'intérieur et remettre les chapeaux.\r\nEtape 4\r\nMettre le reste des oignons dans un plat avec la chair des tomates.\r\nEtape 5\r\nMettre les tomates farcies dans le plat. Parsemez d\'un peu de thym et mette une noisette de beurre sur chaque tomates. Faire cuire au four chaud à 180°C (thermostat 6) pendant 1 heure environ.\r\nEtape 6\r\nServir avec du riz.', 'tomates-farcies'),
+(5, 1, 'Tagliatelles aux crevettes', 4, 2, 'image-of-recipe-tagliatelles-aux-crevettes.jpg', 40, 25, 15, '2019-06-05 10:30:00', '2019-06-05 10:30:00', 'Etape 1\r\nCuire les tagliatelles dans un grand volume d’eau salée 4 à 6 minutes selon la cuisson souhaitée.\r\nEtape 2\r\nLes égoutter, et les rincer à l’eau tiède quelques secondes pour enlever l’excédent d’amidon et les réserver au chaud.\r\nEtape 3\r\nÉplucher la courgette et la tailler en tagliatelles à l’aide d’un économe.\r\nEtape 4\r\nBlanchir 1 minute les tagliatelles de courgette dans de l’eau bouillante salée et les rafraîchir rapidement après la cuisson afin de la stopper.\r\nEtape 5\r\nCouper les tomates cerises en deux et mélanger dans un saladier avec les tagliatelles et les courgettes, ajouter sel, poivre et un trait d’huile d’olive.\r\nEtape 6\r\nDécongeler les crevettes 5 minutes sous l’eau courante, les égoutter puis les saler et poivrer.\r\nEtape 7\r\nMettre les zestes de citron dessus et les poêler rapidement environ 4 à 5 minutes puis déglacer avec le jus de citron, réserver.\r\nEtape 8\r\nÉmulsionner le bouillon de légumes avec le beurre et le mélanger avec le tout pour réchauffer.\r\nEtape 9\r\nDresser dans des assiettes creuses chaudes.', 'tagliatelles-aux-crevettes'),
+(6, 1, 'Tarte à la pistache et fraises', 6, 1, 'image-of-recipe-tarte-à-la-pistache-et-fraise.jpg', 60, 30, 30, '2019-06-05 10:23:00', '2019-06-05 10:23:00', 'ÉTAPE 1 :\r\nPréchauffer le four à 180°C. Placer la pâte sablée dans un moule à tarte idéalement à fond amovible. Piquer le fond de pâte puis réservez au frais. \r\n\r\nÉTAPE 2 :\r\nDans un bol, mélanger le beurre mou avec les 100g de sucre et 3 c à s rase de pâte de pistache. Ajouter les œufs et la poudre d’amande en continuant de mélanger. Verser sur le fond de pâte, lisser le dessus et enfourner pour 30 minutes de cuisson. Sortir la tarte du four, laisser tiédir avant de démouler sur une grille puis laisser complètement refroidir. \r\n\r\nÉTAPE 3 :\r\nRincer rapidement les fraises sous l’eau, les équeuter et les couper en tranches épaisses. Mélanger le mascarpone avec les 40g de sucre glace et 1 c. à soupe de pâte de pistache. Étaler sur le dessus de la tarte puis piquer dedans les tranches de fraises. Parsemer de pistaches concassées et servir. \r\n\r\nÉTAPE 4 :\r\nPetit plus : Préparez votre pâte sablée en mélangeant dans un saladier (ou la cuve d’un robot) 100 g de beurre mou et 80g de sucre pour obtenir une crème. Incorporer 1 œuf puis 200g de farine et une pincée de sel et travailler rapidement pour avoir une pâte molle sans traces de beurre. Former une boule aplatie et laisser reposer au moins 30 minutes au réfrigérateur avant de l’étaler au rouleau sur un plan de travail fariné.', 'tarte-à-la-pistache-et-fraise'),
+(7, 1, 'Soupe de potimarron, oigon, quinoa et chorizo', 4, 2, 'image-of-recipe-soupe-de-potimarron-oignon-quinoa-et-chorizo.jpg', 45, 20, 25, '2019-06-05 10:33:00', '2019-06-05 10:33:00', 'ÉTAPE 1 :\r\nEpluchez l\'oignon et coupez-le en lamelles.\r\n\r\n\r\nÉTAPE 2 :\r\nLavez le potimarron et coupez-le en deux. Enlevez les pépins et détaillez la chair en cubes.\r\n\r\n\r\nÉTAPE 3 :\r\nDans un faitout, faites fondre l\'oignon avec l\'huile d\'olive pendant 5 minutes environ.\r\n\r\n\r\nÉTAPE 4 :\r\nAjoutez le potimarron.\r\n\r\n\r\nÉTAPE 5 :\r\nCouvrez d\'eau et salez. Faites cuire pendant 20 minutes environ jusqu\'à ce que la chair soit bien tendre.\r\nPendant ce temps, préparez le quinoa comme indiqué sur le paquet.\r\n\r\n\r\nÉTAPE 6 :\r\nQuand la soupe est cuite, passez-la au mixeur plongeant et rectifiez l\'assaisonnement si nécessaire.\r\n\r\n\r\nÉTAPE 7 :\r\nCoupez le chorizo en fines tranches.\r\n\r\n\r\nÉTAPE 8 :\r\nServez la soupe bien chaude, ajoutez-y une cuillère de quinoa et les tranches de chorizo. Régalez-vous !', 'soupe-de-potimarron-oignon-quinoa-et-chorizo'),
+(8, 1, 'Poulet au curry', 3, 3, 'image-of-recipe-poulet-au-curry.jpg', 40, 10, 30, '2019-06-05 10:36:00', '2019-06-05 10:36:00', 'Etape 1\r\nCoupez les blancs de poulet en dés.\r\nEtape 2\r\nFaites chauffer l\'huile dans une poêle et faites-y revenir l\'oignon, la gousse d\'ail et les dés de poulet. Ajoutez la chair de tomates, la pomme coupée en dés et la crème. Salez, poivrez, ajoutez le bouquet garni et le curry.\r\nEtape 3\r\nFaites cuire 20-25 min à feu très doux. Accompagnez de riz.\r\nEtape 4\r\nRecette pouvant être cuite au four à micro-ondes.\r\nEtape 5\r\nDans ce cas, cuire 2 min à 750 W, l\'oignon, la gousse d\'ail et le poulet. Salez, poivrez, ajoutez le bouquet garni et le curry.\r\nEtape 6\r\nFaites cuire 10-13 min à 750 W.', 'poulet-au-curry'),
+(9, 1, 'Lasagnes au tofu', 6, 2, 'image-of-recipe-lasagnes-au-tofu.jpg', 110, 60, 50, '2019-06-05 10:41:00', '2019-06-05 10:41:00', 'Etape 1\r\nFaites revenir dans une poêle huilée les oignons et les champignons coupés en lamelles. Ajoutez les tomates pelées et copées en morceaux, le tofu émietté et l\'ail haché.\r\nEtape 2\r\nAjoutez les herbes de Provence, la muscade, la sauce de soja et le poivre. Laissez mijoter 20 minutes.\r\nEtape 3\r\nPréparez la sauce béchamel. Dans un plat à four rectangulaire huilé, disposez un fond de béchamel puis une couche de 3 lasages, recouvrez avec la moitié du mélange tofu + légumes et une couche de béchamel.\r\nEtape 4\r\nDisposez une deuxième couche de lasagnes, les reste du mélange tofu + légumes, les dernières lasagnes et recouvrir de béchamel. Parsemez de parmesan.\r\nEtape 5\r\nCuisez à four chaud 30 minutes (200°C/thermostat 6-7).', 'lasagnes-au-tofu'),
+(13, 1, 'Pâtes Carbonara', 4, 1, 'image-of-recipe-pates-carbonara.jpeg', 25, 15, 10, '2019-06-07 13:33:30', '2019-06-07 13:33:30', 'ÉTAPE 1 : Faites chauffer une cuillerée d\'huile dans une petite poêle anti-adhésive, versez-y le dés de guanciale (ou les lardons) et laissez-les rissoler quelques minutes.   ÉTAPE 2 : Cassez les oeufs dans un grand saladier.   ÉTAPE 3 : Ajoutez-y une petite pincée de sel.    ÉTAPE 4 : Poivrez abondamment.   ÉTAPE 5 : Mélangez à l\'aide d\'un fouet.   ÉTAPE 6 : Ajoutez peu à peu le parmesan râpé.   ÉTAPE 7 : Commencez à battre avec une fourchette ou avec un fouet.   ÉTAPE 8 : Faites bouillir un grand volume d\'eau dans une grande casserole. Dès que l\'eau bout, salez-la et plongez-y les pâtes. Laissez-les cuire le temps indiqué sur le paquet en les mélangeant de temps en temps.  Pendant la cuisson des pâtes, récupérez avec une petite louche un peu d\'eau de cuisson des pâtes et réservez-la dans un bol.   ÉTAPE 9 : Une fois les pâtes égouttées, versez-les immédiatement encore chaudes dans le saladier avec la sauce.   ÉTAPE 10 : Ajoutez les lardons.   ÉTAPE 11 : Remuez-les bien et si vous trouvez que c\'est un peu sec, vous pouvez ajouter une ou deux cuillerées d\'eau de cuisson des pâtes que vous avez préalablement réservé afin de délayer légèrement la sauce qui enrobe les pâtes et la rendre plus crémeuse.   ÉTAPE 12 : Poivrez abondamment, saupoudrez avec un peu de parmesan râpé selon les goûts et passez à table aussitôt.', 'pates-carbonara'),
+(14, 1, 'Gâteau au yaourt léger et moelleux', 6, 3, 'image-of-recipe-gateau-au-yaourt-leger-et-moelleux.jpeg', 55, 10, 45, '2019-06-07 15:24:10', '2019-06-07 15:24:10', 'ÉTAPE 1 : Préchauffer le four à 180°C.  ÉTAPE 2 : Dans un saladier, verser le yaourt et s\'en servir comme verre doseur pour la suite de la recette.  ÉTAPE 3 : Ajouter ensuite le sucre, la farine, la maïzena, la levure, les oeufs, l\'huile, le sucre vanillé et le lait. Veiller à bien mélanger entre chaque ingrédient.  ÉTAPE 4 : Une fois que la pâte est bien lisse, la verser dans un plat rond préalablement beurré et mettre le tout au four pendant 40 à 45 minutes.', 'gateau-au-yaourt-leger-et-moelleux');
 
 -- --------------------------------------------------------
 
@@ -311,78 +312,70 @@ INSERT INTO `recipe` (`id`, `user_id`, `name`, `people`, `level`, `image`, `tota
 --
 
 CREATE TABLE `recipe_product` (
-  `recipe_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `recipe_id` int(11) DEFAULT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Contenu de la table `recipe_product`
 --
 
-INSERT INTO `recipe_product` (`recipe_id`, `product_id`) VALUES
-(1, 36),
-(1, 55),
-(1, 104),
-(1, 133),
-(2, 26),
-(2, 51),
-(2, 104),
-(2, 108),
-(3, 6),
-(3, 26),
-(3, 36),
-(3, 45),
-(3, 61),
-(3, 104),
-(4, 30),
-(4, 36),
-(4, 105),
-(5, 13),
-(5, 17),
-(5, 36),
-(5, 47),
-(5, 84),
-(5, 105),
-(5, 108),
-(5, 141),
-(5, 142),
-(6, 22),
-(6, 67),
-(6, 104),
-(6, 105),
-(6, 120),
-(6, 121),
-(6, 134),
-(6, 135),
-(6, 138),
-(6, 140),
-(7, 30),
-(7, 52),
-(7, 82),
-(7, 108),
-(7, 139),
-(7, 141),
-(7, 142),
-(8, 30),
-(8, 32),
-(8, 36),
-(8, 96),
-(8, 107),
-(8, 108),
-(8, 141),
-(8, 142),
-(8, 143),
-(8, 145),
-(8, 148),
-(9, 11),
-(9, 30),
-(9, 36),
-(9, 108),
-(9, 141),
-(9, 142),
-(9, 143),
-(9, 144),
-(9, 149);
+INSERT INTO `recipe_product` (`id`, `recipe_id`, `product_id`, `quantity`) VALUES
+(1, 1, 36, 10),
+(2, 1, 133, 1),
+(3, 1, 104, 4),
+(13, 2, 51, 4),
+(14, 2, 104, 4),
+(16, 2, 108, 1),
+(17, 2, 141, 1),
+(20, 1, 55, 1),
+(21, 3, 45, 1),
+(22, 3, 104, 1),
+(23, 3, 36, 1),
+(24, 3, 26, 1),
+(25, 3, 6, 1),
+(26, 3, 61, 1),
+(27, 4, 77, 1),
+(28, 4, 36, 1),
+(29, 4, 30, 1),
+(30, 4, 105, 1),
+(31, 5, 84, 1),
+(32, 5, 143, 1),
+(33, 5, 107, 1),
+(34, 5, 69, 1),
+(35, 6, 134, 1),
+(36, 6, 22, 1),
+(37, 6, 120, 1),
+(38, 6, 104, 1),
+(39, 6, 140, 1),
+(40, 6, 105, 1),
+(41, 6, 135, 1),
+(42, 7, 139, 1),
+(43, 7, 52, 1),
+(44, 7, 82, 1),
+(45, 7, 30, 1),
+(46, 8, 96, 1),
+(47, 8, 30, 1),
+(48, 8, 107, 1),
+(49, 8, 148, 1),
+(50, 8, 146, 1),
+(51, 9, 149, 1),
+(52, 9, 47, 1),
+(53, 9, 11, 1),
+(54, 9, 36, 1),
+(55, 9, 30, 1),
+(57, 13, 47, 1),
+(58, 13, 104, 1),
+(59, 13, 69, 1),
+(60, 13, 108, 1),
+(61, 14, 104, 3),
+(62, 14, 40, 1),
+(63, 14, 120, 1),
+(64, 14, 73, 1),
+(65, 14, 65, 1),
+(66, 14, 109, 1);
 
 -- --------------------------------------------------------
 
@@ -417,7 +410,13 @@ INSERT INTO `recipe_tag` (`recipe_id`, `tag_id`) VALUES
 (7, 1),
 (8, 2),
 (9, 2),
-(9, 6);
+(9, 6),
+(13, 2),
+(13, 11),
+(13, 12),
+(14, 3),
+(14, 11),
+(14, 12);
 
 -- --------------------------------------------------------
 
@@ -435,7 +434,6 @@ CREATE TABLE `recipe_user` (
 --
 
 INSERT INTO `recipe_user` (`recipe_id`, `user_id`) VALUES
-(2, 1),
 (2, 2),
 (2, 3),
 (3, 2),
@@ -521,16 +519,21 @@ CREATE TABLE `user_product` (
 
 INSERT INTO `user_product` (`id`, `user_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
 (1, 1, 133, 1, '2019-06-03 14:34:00', '2019-06-03 14:34:00'),
-(2, 1, 36, 10, '2019-06-03 14:34:00', '2019-06-03 14:34:00'),
 (3, 1, 55, 1, '2019-06-03 14:34:00', '2019-06-03 14:34:00'),
 (5, 1, 6, 1, '2019-06-03 15:02:48', '2019-06-03 15:02:48'),
-(7, 1, 3, 2, '2019-06-03 15:03:36', '2019-06-03 15:03:36'),
-(14, 1, 18, 1, '2019-06-03 20:46:00', '2019-06-03 20:46:00'),
-(15, 1, 1, 3, '2019-06-04 10:32:52', '2019-06-04 10:32:52'),
 (16, 1, 47, 1, '2019-06-04 10:39:40', '2019-06-04 10:39:40'),
 (17, 1, 77, 1, '2019-06-05 11:02:01', '2019-06-05 11:02:01'),
 (18, 1, 141, 1, '2019-06-05 11:02:27', '2019-06-05 11:02:27'),
-(19, 1, 45, 1, '2019-06-05 11:54:42', '2019-06-05 11:54:42');
+(19, 1, 45, 1, '2019-06-05 11:54:42', '2019-06-05 11:54:42'),
+(20, 1, 26, 1, '2019-06-05 12:29:50', '2019-06-05 12:29:50'),
+(21, 1, 61, 1, '2019-06-05 12:29:57', '2019-06-05 12:29:57'),
+(22, 1, 104, 1, '2019-06-05 12:30:03', '2019-06-05 12:30:03'),
+(23, 1, 13, 1, '2019-06-06 15:55:59', '2019-06-06 15:55:59'),
+(24, 1, 14, 1, '2019-06-06 15:56:10', '2019-06-06 15:56:10'),
+(26, 1, 36, 1, '2019-06-07 09:54:35', '2019-06-07 09:54:35'),
+(27, 1, 127, 1, '2019-06-07 12:07:14', '2019-06-07 12:07:14'),
+(28, 1, 126, 1, '2019-06-07 12:07:19', '2019-06-07 12:07:19'),
+(29, 1, 2, 1, '2019-06-10 11:25:52', '2019-06-10 11:25:52');
 
 --
 -- Index pour les tables exportées
@@ -573,7 +576,7 @@ ALTER TABLE `recipe`
 -- Index pour la table `recipe_product`
 --
 ALTER TABLE `recipe_product`
-  ADD PRIMARY KEY (`recipe_id`,`product_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_9FAE0AED59D8A214` (`recipe_id`),
   ADD KEY `IDX_9FAE0AED4584665A` (`product_id`);
 
@@ -636,7 +639,12 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT pour la table `recipe`
 --
 ALTER TABLE `recipe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT pour la table `recipe_product`
+--
+ALTER TABLE `recipe_product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 --
 -- AUTO_INCREMENT pour la table `role`
 --
@@ -651,7 +659,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT pour la table `user_product`
 --
 ALTER TABLE `user_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- Contraintes pour les tables exportées
 --
@@ -678,8 +686,8 @@ ALTER TABLE `recipe`
 -- Contraintes pour la table `recipe_product`
 --
 ALTER TABLE `recipe_product`
-  ADD CONSTRAINT `FK_9FAE0AED4584665A` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_9FAE0AED59D8A214` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_9FAE0AED4584665A` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `FK_9FAE0AED59D8A214` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`);
 
 --
 -- Contraintes pour la table `recipe_tag`

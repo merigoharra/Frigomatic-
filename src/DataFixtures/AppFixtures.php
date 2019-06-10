@@ -77,21 +77,22 @@ class AppFixtures extends Fixture {
 
         $manager->flush();
 
-        
-        // ******************* Fixtures Alice *******************
-        // $loader = new NativeLoader();
-        $loader = new MyCustomNativeLoader();
+        // Mise en commentaire pour créer uniquement des users -> décommenter pour remplir le site avec des fixtures, sinon importer le fichier sql disponible dans Zdoc
 
-        //importe le fichier de fixtures et récupère les entités générés
-        $entities = $loader->loadFile(__DIR__.'/fixtures.yml')->getObjects();
+        // // ******************* Fixtures Alice *******************
+        // // $loader = new NativeLoader();
+        // $loader = new MyCustomNativeLoader();
+
+        // //importe le fichier de fixtures et récupère les entités générés
+        // $entities = $loader->loadFile(__DIR__.'/fixtures.yml')->getObjects();
         
-        //empile la liste d'objet à enregistrer en BDD
-        foreach ($entities as $entity) {
-            $manager->persist($entity);
-        };
+        // //empile la liste d'objet à enregistrer en BDD
+        // foreach ($entities as $entity) {
+        //     $manager->persist($entity);
+        // };
         
-        //enregistre
-        $manager->flush();
+        // //enregistre
+        // $manager->flush();
 
     }
 }
