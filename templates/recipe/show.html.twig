@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | {{ recipe.name }} {% endblock %}
-{% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('assets/css/recipe.css') }}">{% endblock %}
+{% block stylesheets %}  <link rel="stylesheet" href="{{asset('assets/css-frigo/app-home.css')}}"> {% endblock %}
 
 {% block body %}
     <h1>{{ recipe.name }}</h1>
