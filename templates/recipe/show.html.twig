@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="{{ asset('assets/css/recipe.css') }}">{% endblock %}
 
 {% block body %}
-<article class="container">
     <h1>{{ recipe.name }}</h1>
     {# Affichage des tags#}
     {% for tag in recipe.tag %}
@@ -53,5 +52,4 @@
     <a href="#" class="btn btn-success">J'ai réalisé cette recette (enlever les ingrédients correspondant de mon
         Frigo)</a>
 
-</article>
 {% endblock %}

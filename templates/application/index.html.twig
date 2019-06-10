@@ -4,9 +4,6 @@
 {% block stylesheets %}  <link rel="stylesheet" href="{{asset('assets/css-frigo/app-home.css')}}"> {% endblock %}
 
 {% block body %}
-
-
-<section class="container ">
 <h1 class="text-center my-4">Bonjour {{ app.user.firstname }}</h1>
 <h5 class=" mb-3">Voici quelques recettes que vous pouvez réaliser avec ce que vous avez dans votre frigo : </h5>
     <article class="row">
@@ -62,9 +59,4 @@
 <div class="text-center">
           <a class="btn btn-success mb-5" href="{{ path('app_userProduct_home') }}">Aller dans mon frigo</a>         
                     </div>
-
-    
-
-
-</section>
 {% endblock %}

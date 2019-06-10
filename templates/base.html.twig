@@ -10,9 +10,7 @@
     {# Lien GoogleFont #}
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto&display=swap" rel="stylesheet">
     {# Lien FontAwsome #}
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-<!--===============================================================================================-->  
  
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/util.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/main.css')}}">
@@ -103,9 +101,15 @@
     {% endfor %}
 
     {# Bloc Body à remplir dans les templates enfants #}
+    {% if app.user %}
+    <main class="container">
+    {% else %}
+    <main class="container-fluid">
+    {% endif %}
     {% block body %}{% endblock %}
-<footer>
-<div class="end-footer bg2 ">
+    </main>
+<footer class="mt-5">
+<div class="end-footer bg2">
 			<div class="container">
 				<div class="flex-sb-m flex-w p-t-22 p-b-22">
 					<div class="p-t-5 p-b-5">
@@ -113,74 +117,14 @@
                         <a href="https://www.instagram.com/explore/tags/FRIGO/?hl=fr" class="fs-15 c-white"><i class="fa fa-instagram m-l-18" aria-hidden="true"></i></a>
 						<a href="https://twitter.com/partagetonfrigo?lang=fr" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
 					</div>
-
-<<<<<<< HEAD
 					<div class="txt17 p-r-20 p-t-5 p-b-5">
-						Copyright &copy; 2019 All rights reserved  |   Made with <i class="fa fa-heart"></i> O'clock - Quantum - Symfony
+						Copyright &copy; 2019 All rights reserved  |   Made with <i class="fa fa-heart"></i> <a href="{{ path('secret_team_home') }}">Team frigomatic</a> - O'clock - Quantum - Symfony
 					</div>
 				</div>
 			</div>
 		</div>
 	</footer>
-=======
-    <!-- Footer -->
-    <footer class="font-small pt-4 mt-5">
-        <div class="container-fluid text-center text-md-left">
-            <div class="row">
-                <div class="col-md-6 mt-md-0 mt-3">
-                    <!-- Texte ou formulaire de contact -->
-                    <h5 class="text-uppercase">Frigomatic</h5>
-                    <p>Ici des informations sur Frigomatic et pourquoi un turc pour nous contacter</p>
-                </div>
 
-                <hr class="clearfix w-100 d-md-none pb-3">
-                <!-- Colenne-1 liens -->
-                <div class="col-md-3 mb-md-0 mb-3">
-                    <!-- Liens -->
-                    <h5 class="text-uppercase">Navigations</h5>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="{{path('app_home')}}">Accueil</a>
-                        </li>
-                        <li>
-                            <a href="{{path('app_userProduct_home')}}">Mon frigo</a>
-                        </li>
-                        <li>
-                            <a href="{{path('app_recipe_home')}}">Recettes</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_user_recipe') }}">Mes recettes</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Colonne-2 liens -->
-                <div class="col-md-3 mb-md-0 mb-3">
-                    <!-- Liens -->
-                    <h5 class="text-uppercase">Liens Utiles</h5>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="#!">Nous contacter</a>
-                        </li>
-                        <li>
-                            <a href="#!">Legal</a>
-                        </li>
-                        <li>
-                            <a href="#!">Lien 3</a>
-                        </li>
-                        <li>
-                            <a href="#!">Lien 4</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright text-center py-3">
-            © 2018 Copyright: Frigomatic
-        </div>
-    </footer>
-
->>>>>>> 93199970c1b99fc6a8fea9048ef2ef7d3f85a399
     {# SCRIPT #}
     {% block javascripts %}{% endblock %}
     {# Script JQuery #}

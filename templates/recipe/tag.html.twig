@@ -3,7 +3,6 @@
 {% block title %}{{ parent() }} | recettes {% endblock %}
 
 {% block body %}
-<article class="container">
 
     {# Affichage des tags#}
     <h1>{{ tags.name }}</h1>
@@ -42,5 +41,4 @@
             {% endfor %}
         </div>
     </div>
-</article>
 {% endblock %}
