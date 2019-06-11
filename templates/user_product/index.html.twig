@@ -18,7 +18,10 @@
             {% for userProduct in app.user.userproducts %}
                 {% if userProduct.product.category.id == category.id %}
                 <li class="list-group-item">
-                    {{ userProduct.quantity }} - {{ userProduct.product }}
+                    <span class="product-quantity">{{ userProduct.quantity }}</span> - {{ userProduct.product }}
+                    <a href="{{ path('app_userProduct_add', {'id': userProduct.product.id, 'action': 'add'}) }}" style="color: green;" class="js-add"> +1</a>
+                    <a href="{{ path('app_userProduct_add', {'id': userProduct.product.id, 'action': 'remove'}) }}" style="color: red;" class="js-remove"> -1</a>
+                   
                     <form class="d-inline" method="post" action="{{ path('app_userProduct_delete', {'id': userProduct.id}) }}">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userProduct.id) }}">
@@ -42,3 +45,45 @@
 </aside>
 </div>
 {% endblock %}
+
+{% block javascripts %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        {# Axios pour faire +1 un produit #}
+        function onClickBtnAdd(event){
+            event.preventDefault();
+            const url = this.href;
+
+            const spanProductQuantity = event.target.previousElementSibling;
+
+            axios.get(url).then(function(response) {
+                spanProductQuantity.textContent = response.data.quantity;
+                console.log(response.data.message);
+            })
+        }
+
+        document.querySelectorAll('a.js-add').forEach(function (link) {
+            link.addEventListener('click', onClickBtnAdd);
+        })
+
+        {# Axios pour faire -1 un produit #}
+        function onClickBtnRemove(event){
+            event.preventDefault();
+            const url = this.href;
+
+            const spanProductQuantity = event.target.previousElementSibling.previousElementSibling;
+
+            axios.get(url).then(function(response) {
+                spanProductQuantity.textContent = response.data.quantity;
+                console.log(response.data.message);
+            })
+        }
+
+        document.querySelectorAll('a.js-remove').forEach(function (link) {
+            link.addEventListener('click', onClickBtnRemove);
+        })
+
+    </script>
+{% endblock %}
+

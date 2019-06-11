@@ -82,13 +82,12 @@ class UserProductController extends AbstractController
     }
 
     /**
-     * @Route("/ajouter-au-frigo/{id}", name="add")
+     * @Route("/ajouter-au-frigo/{id}/{action}", name="add")
      */
-    public function add(Product $product, UserProductRepository $userProductRepo)
+    public function addRemove(Product $product, UserProductRepository $userProductRepo, $action)
     {
         // Route permettant d'ajouter un produit rapidement dasn le frigo 
         // Non utilisé pour le moment mais peut servir en AJAX peut être 
-
         if($userProductRepo->findOneBy([
             'user' => $this->getUser(),
             'product' => $product
@@ -98,25 +97,25 @@ class UserProductController extends AbstractController
                 'product' => $product
             ]);
             $quantity = $userProduct->getQuantity();
-            $quantity++;
+            if ($action == 'add') {
+                $quantity++;
+            } else {
+                $quantity--;
+            }
             $userProduct->setQuantity($quantity);
-        
-        } else {
-        $userProduct = new UserProduct;
-        $userProduct->setProduct($product);
-        $userProduct->setQuantity(1);
-        $userProduct->setUser($this->getUser());
-        }
+        } 
+        // else {
+        // $userProduct = new UserProduct;
+        // $userProduct->setProduct($product);
+        // $userProduct->setQuantity(1);
+        // $userProduct->setUser($this->getUser());
+        // }
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($userProduct);
         $entityManager->flush();
-        
-        $this->addFlash(
-            'success',
-            'Produit ajouté'
-        );
 
-        return $this->redirectToRoute('app_userProduct_home');
+        // return $this->redirectToRoute('app_userProduct_home');
+        return $this->json(['code' => 200, 'quantity' => $quantity, 'message' => '+1 ok'], 200);
     }
 
     /**

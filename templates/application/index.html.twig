@@ -4,15 +4,23 @@
 {% block stylesheets %}  <link rel="stylesheet" href="{{asset('assets/css-frigo/app-home.css')}}"> {% endblock %}
 
 {% block body %}
-<h1 class="text-center my-4">Bonjour {{ app.user.firstname }}</h1>
-<h5 class=" mb-3">Voici quelques recettes que vous pouvez réaliser avec ce que vous avez dans votre frigo : </h5>
-    <article class="row">
-        {% for recipe in recipes %}
-
-            {% include 'utils/recipe-card.html.twig' %}
-
+<h1 class="text-center my-4">Aux fourneaux <span id="user-name">{{ app.user.firstname }}</span> !</h1>
+{# Objectif : afficher s'il y en a, les recettes trier par Entrée, Plat, Dessert #}
+{# On boucle sur les tags seulement si == Entrée, Plat ou dessert #}
+{% for tag in tags if tag == 'Entrée' or tag == 'Plat' or tag == 'Dessert'%}
+    {# On boucle sur les recettes #}
+    {% for recipe in recipes %}
+        {# On boucle sur les tags (rtag) d'une recette si celui-ci correspond au tag en cours#}
+        {% for rtag in recipe.tag if rtag == tag.name %}
+            <h5 class=" mb-3">Voici quelques <span style="color:red;">{{ rtag.name }}</span> que vous pouvez réaliser avec ce que vous avez dans votre frigo : </h5>
+            <article class="row">
+                {# On affiche la / les recette(s) correspondante(s) #}
+                {% include 'utils/recipe-card.html.twig' %}
+            </article>
         {% endfor %}
-    </article>
+    {% endfor %}
+{% endfor %}
+
     <article>
         <h5 class=" mb-3">Voici les aliments les plus ancien de votre frigo ! (uniquement : Fruit et légume, Produit laitier, Viande
             poisson oeuf) Pourquoi ne pas les manger aujourd'hui ?</h5>
@@ -30,6 +38,6 @@
   
     </article>
 <div class="text-center">
-          <a class="btn btn-success mb-5" href="{{ path('app_userProduct_home') }}">Aller dans mon frigo</a>         
-                    </div>
+    <a class="btn btn-success mb-5" href="{{ path('app_userProduct_home') }}">Aller dans mon frigo</a>         
+</div>
 {% endblock %}

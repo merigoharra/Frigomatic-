@@ -1,54 +1,53 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | {{ recipe.name }} {% endblock %}
-{% block stylesheets %}  <link rel="stylesheet" href="{{asset('assets/css-frigo/app-home.css')}}"> {% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/css-frigo/app-show-recipe.css')}}"> {% endblock %}
 
 {% block body %}
-    <h1>{{ recipe.name }}</h1>
-    {# Affichage des tags#}
-    {% for tag in recipe.tag %}
-    <a href="{{path('app_recipe_tag', {'id':tag.id})}}"><span class="badge badge-info">{{ tag.name }}</span></a>
-    {% endfor %}
-
-    {# A transformer en étoile du style github -> star ou unstar #}
-    {% if isFav %}
-    <a href="{{ path('app_recipe_delete_fav', {'id': recipe.id}) }}" class="btn btn-success mt-2">Supprimer des favorits</a>
-    {% else %}
-    <a href="{{ path('app_recipe_add_fav', {'id': recipe.id}) }}" class="btn btn-success">Ajouter à mes recettes favorites</a>
-    {% endif %}
-
-
-    <div class="row">
-        <section class='col'>
-            <p class="card-text"> Personnes :
-                {% for i in 1..recipe.people %}
-                    <i class="fas fa-utensil-spoon"></i>
-                {% endfor %}
-            </p>
-            <p>Difficulté : 
-                {# ajout de cuillere dans un 'for' on recuperer la difficulté qui est un chiffre, et chaque fois que l'on rentre dans le for on rajoute une cuillere, exemple si la difficulté est de 5, on boucle 5 fois et chaque fois que l'on boucle on ajoute une cuillere, cad qu'il aurait 5 cuilleres #}
-                {% for i in 1..recipe.level %}
-                    <i class="fas fa-utensil-spoon"></i>
-                {% endfor %}
-            </p>
-            <p>temps total : {{ recipe.totalDuration }} minutes</p>
-            <p>temps de préparation : {{ recipe.prepDuration }} minutes</p>
-            <p>temps de cuisson : {{ recipe.bakingDuration }} minutes</p>
-            <p><img src="{{asset('assets/images/imagesRecipe/' ~ recipe.image)}}" alt="Image de la recette {{ recipe.name }}"></p>
-            <p>dernière modification : {{ recipe.updatedAt|date("d/m/Y") }}</p>
-            <div>
-                <p>Liste des ingrédients :</p>
-                <ul>
-                {% for product in recipeProducts %}
-                    <li>{{ product.product }} - {{ product.quantity }} {{ product.product.measure}}(s)</li>
-                {% endfor %}
-                </ul>
-            </div>
-            <p>{{ recipe.content }}</p>
-        </section>
-
+<article class="jumbotron">
+    <div id="recipe-head">
+        <h1>
+            {{ recipe.name }}
+            {% if isFav %}
+            <a href="{{ path('app_recipe_delete_fav', {'id': recipe.id}) }}" class=" mt-2"><i class="fa fa-star fa-2x"
+                    aria-hidden="true"></i></a>
+            {% else %}
+            <a href="{{ path('app_recipe_add_fav', {'id': recipe.id}) }}"><i class="fa fa-star-o fa-2x text-orange"
+                    aria-hidden="true"></i></a>
+            {% endif %}
+        </h1>
     </div>
-    <a href="#" class="btn btn-success">J'ai réalisé cette recette (enlever les ingrédients correspondant de mon
-        Frigo)</a>
+    <div class="recipe-content">
+        {# Affichage des tags#}
+        {% for tag in recipe.tag %}
+        <a href="{{path('app_recipe_tag', {'id':tag.id})}}"><span class="badge badge-info">{{ tag.name }}</span></a>
+        {% endfor %}
+        <p>dernière modification : {{ recipe.updatedAt|date("d/m/Y") }}</p>
+        <div class="row">
+            <section class='col'>
+                <p class="card-text">
+                    Personnes : {{ recipe.people }} <i class="fa fa-spoon" aria-hidden="true"></i>  |  Difficulté :
+                    {% for i in 1..recipe.level %}
+                    <i class="fa fa-bolt" aria-hidden="true" style="color: orange;"></i>
+                    {% endfor %}  |  temps total : {{ recipe.totalDuration }} minutes  |  temps de préparation : {{ recipe.prepDuration }} minutes  |  temps de cuisson : {{ recipe.bakingDuration }} minutes</p>
+                <p><img class="img-recette" src="{{asset('assets/images/imagesRecipe/' ~ recipe.image)}}"
+                        alt="Image de la recette {{ recipe.name }}"></p>
+                
+                <div>
+                    <p>Liste des ingrédients :</p>
+                    <ul>
+                        {% for product in recipeProducts %}
+                        <li>{{ product.product }} - {{ product.quantity }} {{ product.product.measure}}(s)</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <p>{{ recipe.content }}</p>
+            </section>
+
+        </div>
+        <a href="#" class="btn btn-success">J'ai réalisé cette recette (enlever les ingrédients correspondant de mon
+            Frigo)</a></div>
+</article>
 
 {% endblock %}

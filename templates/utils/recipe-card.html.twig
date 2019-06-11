@@ -14,10 +14,8 @@
                     <i class="fa fa-bolt" aria-hidden="true" style="color: orange;"></i>
                 {% endfor %}
             </p>
-            <p class="card-text"> Personnes :
-                {% for i in 1..recipe.people %}
-                    <i class="fa fa-spoon" aria-hidden="true"></i>
-                {% endfor %}
+            <p class="card-text"> Personnes : {{ recipe.people }} <i class="fa fa-spoon" aria-hidden="true"></i>
+                    
             </p>
             {# Affichage des tags #}
             <p>

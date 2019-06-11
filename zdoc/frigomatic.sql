@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Lun 10 Juin 2019 à 11:52
+-- Généré le :  Mar 11 Juin 2019 à 15:32
 -- Version du serveur :  5.7.20-0ubuntu0.16.04.1
 -- Version de PHP :  7.2.17-1+ubuntu16.04.1+deb.sury.org+3
 
@@ -49,9 +49,9 @@ CREATE TABLE `app_users` (
 --
 
 INSERT INTO `app_users` (`id`, `role_id`, `username`, `password`, `firstname`, `lastname`, `email`, `age`, `weight`, `height`, `gender`, `avatar`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin', '$2y$13$KT.4GPcmT/YQflL6QVLvu.Vg2uxTq/xlKyIJ2iWviUvTN12nG9FHq', 'OH grand maître', 'admin', 'admin@admin.fr', 25, NULL, NULL, NULL, 'http://lorempixel.com/output/food-q-c-64-64-4.jpg', 1, '2019-06-03 12:05:50', '2019-06-03 12:05:50'),
+(1, 1, 'admin', '$2y$13$KT.4GPcmT/YQflL6QVLvu.Vg2uxTq/xlKyIJ2iWviUvTN12nG9FHq', 'Administrateur', 'admin', 'admin@admin.fr', 25, NULL, NULL, NULL, 'http://lorempixel.com/output/food-q-c-64-64-4.jpg', 1, '2019-06-03 12:05:50', '2019-06-03 12:05:50'),
 (2, 2, 'user', '$2y$13$pOs6IChHudV6yg/HPYI7rOAftOBEfYekSmlFoSDissjwCYNqQ86xC', 'Simple utilisateur', 'user', 'user@user.fr', 45, NULL, NULL, NULL, 'http://lorempixel.com/output/food-q-c-64-64-4.jpg', 1, '2019-06-03 12:05:51', '2019-06-03 12:05:51'),
-(3, 3, 'moderator', '$2y$13$X/dWPewhxgFFw9Ij9TG0Eev8D9vmuQF9lpVawU.0X8bjB01kCvnHy', 'Sous chef de grade moderateur', 'moderator', 'moderator@moderator.fr', 58, NULL, NULL, NULL, 'http://lorempixel.com/output/food-q-c-64-64-4.jpg', 1, '2019-06-03 12:05:51', '2019-06-03 12:05:51');
+(3, 3, 'moderator', '$2y$13$X/dWPewhxgFFw9Ij9TG0Eev8D9vmuQF9lpVawU.0X8bjB01kCvnHy', 'Moderateur', 'moderator', 'moderator@moderator.fr', 58, NULL, NULL, NULL, 'http://lorempixel.com/output/food-q-c-64-64-4.jpg', 1, '2019-06-03 12:05:51', '2019-06-03 12:05:51');
 
 -- --------------------------------------------------------
 
@@ -434,12 +434,12 @@ CREATE TABLE `recipe_user` (
 --
 
 INSERT INTO `recipe_user` (`recipe_id`, `user_id`) VALUES
+(1, 1),
 (2, 2),
 (2, 3),
 (3, 2),
 (3, 3),
-(4, 1),
-(7, 1),
+(6, 1),
 (7, 2),
 (7, 3);
 
@@ -518,22 +518,27 @@ CREATE TABLE `user_product` (
 --
 
 INSERT INTO `user_product` (`id`, `user_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(1, 1, 133, 1, '2019-06-03 14:34:00', '2019-06-03 14:34:00'),
-(3, 1, 55, 1, '2019-06-03 14:34:00', '2019-06-03 14:34:00'),
-(5, 1, 6, 1, '2019-06-03 15:02:48', '2019-06-03 15:02:48'),
-(16, 1, 47, 1, '2019-06-04 10:39:40', '2019-06-04 10:39:40'),
+(1, 1, 133, 7, '2019-06-03 14:34:00', '2019-06-03 14:34:00'),
+(3, 1, 55, 6, '2019-06-03 14:34:00', '2019-06-03 14:34:00'),
+(5, 1, 6, 38, '2019-06-03 15:02:48', '2019-06-03 15:02:48'),
+(16, 1, 47, 8, '2019-06-04 10:39:40', '2019-06-04 10:39:40'),
 (17, 1, 77, 1, '2019-06-05 11:02:01', '2019-06-05 11:02:01'),
 (18, 1, 141, 1, '2019-06-05 11:02:27', '2019-06-05 11:02:27'),
-(19, 1, 45, 1, '2019-06-05 11:54:42', '2019-06-05 11:54:42'),
-(20, 1, 26, 1, '2019-06-05 12:29:50', '2019-06-05 12:29:50'),
-(21, 1, 61, 1, '2019-06-05 12:29:57', '2019-06-05 12:29:57'),
+(19, 1, 45, 5, '2019-06-05 11:54:42', '2019-06-05 11:54:42'),
+(20, 1, 26, 13, '2019-06-05 12:29:50', '2019-06-05 12:29:50'),
+(21, 1, 61, 8, '2019-06-05 12:29:57', '2019-06-05 12:29:57'),
 (22, 1, 104, 1, '2019-06-05 12:30:03', '2019-06-05 12:30:03'),
-(23, 1, 13, 1, '2019-06-06 15:55:59', '2019-06-06 15:55:59'),
-(24, 1, 14, 1, '2019-06-06 15:56:10', '2019-06-06 15:56:10'),
-(26, 1, 36, 1, '2019-06-07 09:54:35', '2019-06-07 09:54:35'),
+(24, 1, 14, 6, '2019-06-06 15:56:10', '2019-06-06 15:56:10'),
 (27, 1, 127, 1, '2019-06-07 12:07:14', '2019-06-07 12:07:14'),
-(28, 1, 126, 1, '2019-06-07 12:07:19', '2019-06-07 12:07:19'),
-(29, 1, 2, 1, '2019-06-10 11:25:52', '2019-06-10 11:25:52');
+(28, 1, 126, 9, '2019-06-07 12:07:19', '2019-06-07 12:07:19'),
+(29, 1, 2, 1, '2019-06-10 11:25:52', '2019-06-10 11:25:52'),
+(30, 1, 105, 500, '2019-06-10 12:19:10', '2019-06-10 12:19:10'),
+(31, 1, 114, 1, '2019-06-10 17:12:28', '2019-06-10 17:12:28'),
+(32, 1, 1, 1, '2019-06-11 09:09:24', '2019-06-11 09:09:24'),
+(33, 1, 22, 1, '2019-06-11 09:48:30', '2019-06-11 09:48:30'),
+(34, 1, 5, 4, '2019-06-11 10:54:42', '2019-06-11 10:54:42'),
+(35, 1, 41, 1, '2019-06-11 14:00:50', '2019-06-11 14:00:50'),
+(36, 1, 40, 627, '2019-06-11 14:03:25', '2019-06-11 14:03:25');
 
 --
 -- Index pour les tables exportées
@@ -659,7 +664,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT pour la table `user_product`
 --
 ALTER TABLE `user_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- Contraintes pour les tables exportées
 --

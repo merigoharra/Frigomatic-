@@ -93,11 +93,6 @@ class RecipeController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        $this->addFlash(
-            'success',
-            'Votre recette est bien ajoutée à vos favoris'
-        );
-
         return $this->redirectToRoute('app_recipe_show', ['slug' => $recipe->getSlug()]);
     }
 
@@ -113,12 +108,7 @@ class RecipeController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        $this->addFlash(
-            'success',
-            'Votre recette est bien ajoutée à vos favoris'
-        );
-
-        return $this->redirectToRoute('app_user_recipe');
+        return $this->redirectToRoute('app_recipe_show', ['slug' => $recipe->getSlug()]);
     }
 
     /**
@@ -145,8 +135,6 @@ class RecipeController extends AbstractController
         }
 
         $recipeProducts = $recipe->getRecipeProducts();
-
-        // dd($recipeProducts);
 
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
