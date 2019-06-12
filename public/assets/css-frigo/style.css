@@ -16,14 +16,9 @@ main {
     color: red;
 }
 
-.user-profil {
-    -webkit-clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
-    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
-    border-radius: 50%;
-}
-
 .user-profil-img {
-    width: 100%;
+    width: 40%;
+    border-radius: 50%;
     
 }
 
