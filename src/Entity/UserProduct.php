@@ -18,7 +18,7 @@ class UserProduct
     private $id;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="integer")
      */
     private $quantity;
 

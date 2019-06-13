@@ -20,24 +20,21 @@
         {% endfor %}
     {% endfor %}
 {% endfor %}
+<h5 class=" mb-3">Voici les aliments les plus ancien de votre frigo ! Pourquoi ne pas les manger aujourd'hui ?</h5>
+<article class="row">
+        {% for userProduct in oldestProducts %}
+            <div class="card bg" style="width: 13rem;);">
+                <div class="card-body">
+                    <h5 class="card-title">{{ userProduct.product.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Dans le frigo depuis :</br>le {{ userProduct.updatedAt | date("d/m")}}</h6>
+                    {# <p class="card-text"></p> #}
+                    <a href="{{ path('app_product_home', {'id': userProduct.product.id}) }}" class="btn btn-dark">Recettes</a>
+                </div>
+            </div>
+        {% endfor %}
+</article>
 
-    <article>
-        <h5 class=" mb-3">Voici les aliments les plus ancien de votre frigo ! (uniquement : Fruit et légume, Produit laitier, Viande
-            poisson oeuf) Pourquoi ne pas les manger aujourd'hui ?</h5>
-      
-            <p>Liste des produit avec le createdAt le plus ancien -> lien vers la page recette avec le tri par produit
-            correspondant</p>
-    </article>
-                
-    <article>
-        
-        <h5 class=" my-3">Ce que vous avez d'autre dans votre Frigo ...</h5> 
-        <p>affichage des produits du frigo</p> 
-    
-       
-  
-    </article>
 <div class="text-center">
-    <a class="btn btn-success mb-5" href="{{ path('app_userProduct_home') }}">Aller dans mon frigo</a>         
+    <a class="btn btn-success m-5" href="{{ path('app_userProduct_home') }}">Aller dans mon frigo</a>
 </div>
 {% endblock %}

@@ -60,6 +60,7 @@ class UserProductController extends AbstractController
                 $quantity = $newUserProduct->getQuantity();
                 $quantity = $quantity + $quantityToAdd;
                 $newUserProduct->setQuantity($quantity);
+                $newUserProduct->setUpdatedAt(new \DateTime());
             } 
             // Enregistrement de l'objet en BDD
             $entityManager = $this->getDoctrine()->getManager();
@@ -86,8 +87,7 @@ class UserProductController extends AbstractController
      */
     public function addRemove(Product $product, UserProductRepository $userProductRepo, $action)
     {
-        // Route permettant d'ajouter un produit rapidement dasn le frigo 
-        // Non utilisé pour le moment mais peut servir en AJAX peut être 
+        // Route permettant d'ajouter un produit rapidement dans le frigo 
         if($userProductRepo->findOneBy([
             'user' => $this->getUser(),
             'product' => $product
@@ -99,11 +99,13 @@ class UserProductController extends AbstractController
             $quantity = $userProduct->getQuantity();
             if ($action == 'add') {
                 $quantity++;
+                $userProduct->setUpdatedAt(new \DateTime());
             } else {
                 $quantity--;
             }
             $userProduct->setQuantity($quantity);
         } 
+        // le tchat de youness : bac +5 t'a pas besoin de chercher lol
         // else {
         // $userProduct = new UserProduct;
         // $userProduct->setProduct($product);
@@ -137,5 +139,56 @@ class UserProductController extends AbstractController
         }
 
         return $this->redirectToRoute('app_userProduct_home');
+    }
+
+
+    /**
+     * @Route("/ajouter-quantite-dans-le-frigo/{id}", name="addOrRemove")
+     */
+    public function addRemoveQuantity(Request $request, UserProductRepository $repo, Product $product)
+    {
+        // ************ Tests pour le passage par axios *****************
+        // $data = $request->getContent();
+        // $data = json_decode($data, true);
+
+        // $quantityToAdd = $data->quantityToAdd;
+        // $quantityToRemove = $data->quantityToRemove;
+        // **************************************************************
+
+        $quantityToAdd = $request->request->get("quantityToAdd");
+        $quantityToRemove =  $request->request->get("quantityToRemove");
+
+        $userProduct = $repo->findOneBy([
+            'user' => $this->getUser(),
+            'product' => $product,
+        ]);
+        if (empty($quantityToAdd )) {
+            $quantityToAdd = 0;
+        };
+        if (empty($quantityToRemove)) {
+            $quantityToRemove = 0;
+        };
+        $quantity = $userProduct->getQuantity();
+        $quantity = $quantity + ($quantityToAdd - $quantityToRemove);
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        if ($quantity <= 0 ) {
+            $entityManager->remove($userProduct);
+        } 
+        else {
+            $userProduct->setQuantity($quantity);
+            $userProduct->setUpdatedAt(new \DateTime());
+            $entityManager->persist($userProduct);
+        } 
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_userProduct_home');
+
+        // ************ Tests pour le passage par axios *****************
+        // return $this->json(['code' => 200, 'quantity' => $quantity, 'message' => 'Mise a jour ok'], 200);
+        // **************************************************************
+
+        
     }
 }

@@ -21,7 +21,6 @@ class AppFixtures extends Fixture {
 
     public function load(ObjectManager $manager)
     {
-
         // Fixture à la main pour les trois user et rôle
         $roleUser = new Role();
         $roleUser->setCode('ROLE_USER');

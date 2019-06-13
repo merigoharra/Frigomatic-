@@ -18,16 +18,57 @@
             {% for userProduct in app.user.userproducts %}
                 {% if userProduct.product.category.id == category.id %}
                 <li class="list-group-item">
-                    <span class="product-quantity">{{ userProduct.quantity }}</span> - {{ userProduct.product }}
+                    <span class="product-quantity-{{ userProduct.product.id }}">{{ userProduct.quantity }}</span> - {{ userProduct.product }}
                     <a href="{{ path('app_userProduct_add', {'id': userProduct.product.id, 'action': 'add'}) }}" style="color: green;" class="js-add"> +1</a>
                     <a href="{{ path('app_userProduct_add', {'id': userProduct.product.id, 'action': 'remove'}) }}" style="color: red;" class="js-remove"> -1</a>
-                   
-                    <form class="d-inline" method="post" action="{{ path('app_userProduct_delete', {'id': userProduct.id}) }}">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userProduct.id) }}">
-                        <button class="btn" style="color:red"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                    </form>
+                    {# Ouverture du modal #}
+                    <button type="button" class="btn try" data-toggle="modal" data-target="#modal-{{userProduct.id}}">
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                    </button>
                 </li>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modal-{{ userProduct.id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                           
+                                <h3 class="modal-title text-center" id="exampleModalLabel">{{userProduct.product.name}}</h3>
+                               
+                            
+                            {# corp du modal #}
+                            <div class="modal-body">
+                                {# form d'ajout de quantité #}
+                                <form action="{{ path('app_userProduct_addOrRemove', {'id' : userProduct.product.id}) }}" method="POST" class="js-addRemove" data-span="product-quantity-{{ userProduct.product.id }}">
+                                    <div class="form-group">
+                                        <label for="quantityToAdd">Quantité à ajouter : </label>
+                                        <input type="number" name="quantityToAdd" id="quantityToAdd" class="form-control bg-light quantityToAdd">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quantityToRemove">Quantité à retirer : </label>
+                                        <input type="number" name="quantityToRemove" id="quantityToRemove" class="form-control bg-light quantityToRemove">
+                                    {# </div>
+                                        <input class="product" type="hidden" name="product" id="product" value="{{ userProduct.product.id }}" required>
+                                    <div class="form-group"> #}
+                                        <button type="submit" class="btn btn-secondary mt-2" >
+                                            Mettre a jour
+                                        </button>
+                                    </div>
+                                </form>
+                                {# form de suppression de  #}
+                                <form class="d-inline" method="post" action="{{ path('app_userProduct_delete', {'id': userProduct.id})}}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userProduct.id) }}">
+                                    <button class="btn btn-danger mt-2" style="color:white"><i class="fa fa-trash-o" aria-hidden="true"></i> | Supprimer l'article</button>
+                                </form>
+                            </div>
+                        
+                            {# <div class="text-center"> #}
+                            
+                            
+                        </div>
+                    </div>
+                </div>
                 {% endif %}
             {% endfor %}
         </ul>
@@ -49,6 +90,10 @@
 {% block javascripts %}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+
+        {# Axios pour l'ajout de quantité par le modal #}
+
+        
 
         {# Axios pour faire +1 un produit #}
         function onClickBtnAdd(event){
@@ -84,6 +129,54 @@
             link.addEventListener('click', onClickBtnRemove);
         })
 
+        //function onSubmit(event){
+        //    // On empêche le formulaire de recharger la page
+        //    event.preventDefault();
+//
+        //    // On récupére de l'attribu data de l'input form car il correspond à la //class du span dont on l'on souhaite modifier le contenu
+        //    var formData = event.target.dataset.span;
+        //    console.log(formData);
+//
+        //    // On récupére l'url du formulaire pour l'injecter dans le axios
+        //    const url= this.action;
+        //    console.log(url);
+//
+        //    // On récupère le span avec la quantité pour le modifier 
+        //    const spanArray = document.getElementsByClassName(formData);
+        //    const spanProductQuantity = spanArray[0];
+        //    console.log(spanProductQuantity);
+//
+        //    // On récupère la valeur des champs input
+        //    var quantityAdd = this.querySelector('input.quantityToAdd').value;
+        //    var quantityRemove = this.querySelector('input.quantityToRemove').value;
+        //    console.log(quantityAdd);
+        //    console.log(quantityRemove);
+//
+        //    // vérification des inputs -> mise a zéro si besoin 
+        //    if (!quantityAdd) {
+        //        quantityAdd = 0
+        //    }
+        //    if (!quantityRemove) {
+        //        quantityRemove = 0
+        //    }
+        //    console.log(quantityAdd);
+        //    console.log(quantityRemove);
+//
+        //    // lancement de la axios en POST
+        //    axios.post(url, {
+        //        quantityToAdd : quantityAdd,
+        //        quantityToremove: quantityRemove
+        //    }).then(function(response){
+        //        spanProductQuantity.textContent = response.data.quantity;
+        //        console.log(response.data.message + response.data.quantity);
+        //    })
+        //}
+        
+        //document.querySelectorAll('form.js-addRemove').forEach(function (link) {
+        //    link.addEventListener('submit', onSubmit);
+        //})
+
     </script>
 {% endblock %}
+
 

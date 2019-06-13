@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use App\Repository\UserProductRepository;
 
 /**
  * @Route("/application/recettes", name="app_recipe_")
@@ -121,6 +122,45 @@ class RecipeController extends AbstractController
         return $this->render('recipe/tag.html.twig', [
             'tags' => $tag
             ]);
+    }
+
+    /**
+     * @Route("/retirer-les-produits-de-cette-recette/{id}", name="removeProducts")
+     */
+    public function RemoveRecipeProducts(Recipe $recipe, UserProductRepository $userProductRepo)
+    {
+        // On récupére les produits associé à la recette
+        $allRecipeProducts = $recipe->getRecipeProducts();
+        // On boucle sur les produits de la recette
+        foreach ($allRecipeProducts as $recipeProduct) {
+            // Pour chaque produit de recette il faut trouver l'équivalent dans le frigo de l'utilisateur
+            $product = $recipeProduct->getProduct();
+            $quantity = $recipeProduct->getQuantity();
+
+            $userProduct = $userProductRepo->findOneBy([
+                'user' => $this->getUser(),
+                'product' => $product
+            ]);
+
+            if ($userProduct) {
+                $oldQuantity = $userProduct->getQuantity();
+                $newQuantity = $oldQuantity - $quantity;
+
+                $entityManager = $this->getDoctrine()->getManager();
+                if ($newQuantity <= 0 ) {
+                    $entityManager->remove($userProduct);
+                } 
+                else {
+                    $userProduct->setQuantity($newQuantity);
+                    $entityManager->persist($userProduct);
+                } 
+                $entityManager->flush();
+            }
+        }
+
+        return $this->redirectToRoute('app_recipe_show', [
+            'slug' => $recipe->getSlug()
+        ]);
     }
 
     /**

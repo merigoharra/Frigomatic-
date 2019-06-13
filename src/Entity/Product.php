@@ -55,6 +55,11 @@ class Product
      */
     private $recipeProducts;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $urgent;
+
     public function __construct()
     {
         $this->userProducts = new ArrayCollection();
@@ -193,5 +198,17 @@ class Product
     public function __toString()
     {
         return $this->name.' ('.$this->measure.')';
+    }
+
+    public function getUrgent(): ?bool
+    {
+        return $this->urgent;
+    }
+
+    public function setUrgent(bool $urgent): self
+    {
+        $this->urgent = $urgent;
+
+        return $this;
     }
 }

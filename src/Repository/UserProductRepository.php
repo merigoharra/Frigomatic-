@@ -19,22 +19,23 @@ class UserProductRepository extends ServiceEntityRepository
         parent::__construct($registry, UserProduct::class);
     }
 
-    // /**
-    //  * @return UserProduct[] Returns an array of UserProduct objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return UserProduct[] Returns an array of UserProduct objects
+    */
+    public function findByOldestUpdate()
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
+            ->join('u.product', 'p')
+            ->andWhere('p.urgent = :true')
+            ->setParameter('true', 1)
+            ->orderBy('u.updated_at', 'ASC')
+            ->setMaxResults(20)
             ->getQuery()
             ->getResult()
         ;
+        
+        // 
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?UserProduct
