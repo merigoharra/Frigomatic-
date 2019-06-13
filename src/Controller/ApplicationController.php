@@ -24,7 +24,7 @@ class ApplicationController extends AbstractController
         /* on récupere la requete custom de RecipeProductRepository.php que l'on mets dans une variable $myRecipesId, la valeur de cette variable est un tableau d'id de recettes qui match avec les ingrédients de l'user récuperer dans $user*/ 
         /* ensuite, dans un for each pour chaque résultats que l'on récupere dans la requete, on revoi la ligne récuprer à l'id de recette , chaque ligne est enregistrer dans un  tableau $recipes, ex: [ 1=> [ id=>5, name=> tarte au pomme],...] */
         $user = $this->getUser()->getId();
-        $myRecipesId = $recipeProductRepository->findMyPersonalRecipe($user);;
+        $myRecipesId = $recipeProductRepository->findMyPersonalRecipe($user);
         $recipes = [];
         foreach ($myRecipesId as $id) {
             $recipe = $recipeRepo->findOneBy(['id' => $id]);
@@ -35,8 +35,9 @@ class ApplicationController extends AbstractController
         $tags = $tagRepo->findAll();
 
         /*---------------------------------------------*/
-        // Affichage des produits les plus anciens 
-        $oldestProducts = $userProductRepo->findByOldestUpdate();
+        // Affichage des produits les plus anciens
+        $oldestProducts = $userProductRepo->findByOldestUpdate($user);
+
         return $this->render('application/index.html.twig', [
             'recipes' => $recipes,
             'tags' => $tags,

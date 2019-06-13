@@ -22,19 +22,17 @@ class UserProductRepository extends ServiceEntityRepository
     /**
     * @return UserProduct[] Returns an array of UserProduct objects
     */
-    public function findByOldestUpdate()
+    public function findByOldestUpdate($user)
     {
         return $this->createQueryBuilder('u')
             ->join('u.product', 'p')
-            ->andWhere('p.urgent = :true')
-            ->setParameter('true', 1)
+            ->where('p.urgent ='.'1')
+            ->andWhere('u.user ='.$user)
             ->orderBy('u.updated_at', 'ASC')
-            ->setMaxResults(20)
+            ->setMaxResults(30)
             ->getQuery()
             ->getResult()
         ;
-        
-        // 
     }
 
     /*
