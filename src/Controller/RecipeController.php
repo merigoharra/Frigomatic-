@@ -158,9 +158,7 @@ class RecipeController extends AbstractController
             }
         }
 
-        return $this->redirectToRoute('app_recipe_show', [
-            'slug' => $recipe->getSlug()
-        ]);
+        return $this->redirectToRoute('app_home');
     }
 
     /**
