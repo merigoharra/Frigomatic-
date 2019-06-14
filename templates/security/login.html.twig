@@ -1,26 +1,27 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}  <link rel="stylesheet" href="{{asset('assets/css-frigo/app-home.css')}}"> {% endblock %}
 
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <div class="row mt-5">
+    <div class="row">
         <div class="col-md-3">&nbsp;</div>
         <div class="col-md-6 bg-light shadow rounded">
-            <div class="p-3 m-5">
+            <div class="p-3">
                 <form method="post">
                     {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}
                     </div>
                     {% endif %}
 
-                    <h1 class="h3 text-center mb-3 font-weight-normal">Connexion</h1>
+                    <h1 class="inscription">Connexion</h1>
                     <label for="inputUsername" class="sr-only">Username</label>
                     <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
                         class="form-control" placeholder="Votre Username" required autofocus>
                     <label for="inputPassword" class="sr-only">Mot de passe</label>
                     <input type="password" name="password" id="inputPassword" class="form-control my-3"
                         placeholder="Mot de passe" required>
-                    <input type="checkbox" onclick="myFunction()">Voir mon mot de passe
+                    <input type="checkbox" onclick="myFunction()"> Voir mon mot de passe
 
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
@@ -36,14 +37,16 @@
                     #}
 
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-dark m-4">Connexion</button>
-                        <br>
-                            <a href="{{ path('home') }}" >Revenir a l'accueil</a>
-                        
+                        <button type="submit" class="btn btn-outline-dark m-4">Connexion</button> <br>
                     </div>
                 </form>
+                <div class="text-center">
+                    <a href="{{ path('home') }}" class="btn btn-dark m-1" >Revenir a l'accueil</a> <a href="{{ path('new_user') }}" class="btn btn-dark m-1" >Se créer un compte</a>
+                </div>
+            </div>
             </div>
         </div>
+        
     </div>
 
 <script>

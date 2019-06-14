@@ -118,12 +118,17 @@
             const url = this.href;
 
             const spanProductQuantity = event.target.previousElementSibling.previousElementSibling;
-
-            axios.get(url).then(function(response) {
-                spanProductQuantity.textContent = response.data.quantity;
-                console.log(response.data.message);
-            })
+            if (spanProductQuantity.textContent > 1) {
+                axios.get(url).then(function(response) {
+                    spanProductQuantity.textContent = response.data.quantity;
+                    console.log(response.data.response);
+                })
+            }
         }
+
+
+
+
 
         document.querySelectorAll('a.js-remove').forEach(function (link) {
             link.addEventListener('click', onClickBtnRemove);

@@ -26,7 +26,7 @@
     <!-- Header -->
     <header>
         <!-- Header desktop -->
-        <div class="wrap-menu-header gradient1 trans-0-4 " {% if app.user %} style="position: relative;" {% endif %}>
+        <div class="wrap-menu-header gradient1 trans-0-4 mb-5  " {% if app.user %} style="position: relative;" {% endif %}>
             <div class="container h-full">
                 <div class="wrap_header trans-0-3">
                     <!-- Logo -->
@@ -70,7 +70,7 @@
                                 </ul>
                         </nav>
                     </div>
-                    {% else %}
+                    {% elseif app.request.get('_route') == "home" %}}
                     <li>
                         <a href="{{ path('app_login') }}" data-toggle="modal" data-target="#exampleModal"
                             data-whatever="@mdo">Se connecter</a>
@@ -79,6 +79,14 @@
                     <li>
                         <a href="{{ path('new_user') }}" data-toggle="modal" data-target="#inscription"
                             data-whatever="@mdo">S'inscrire</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{{ path('app_login') }}">Se connecter</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ path('new_user') }}">S'inscrire</a>
                     </li>
                     {% endif %}
                     <!-- Social -->
@@ -94,7 +102,6 @@
             </div>
         </div>
     </header>
-
     {# Gestion de la class du main pour l'accueil #}
     {% if app.user %}
         <main class="container">

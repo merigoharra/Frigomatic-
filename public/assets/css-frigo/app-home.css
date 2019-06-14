@@ -1,3 +1,15 @@
 body{
     background-image: url(../images/foodicon-.jpg);
 }
+
+.wrap-menu-header{
+    position: relative;
+}
+
+.inscription {
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+    font-weight: bold;
+    margin: 1em auto;
+}
+

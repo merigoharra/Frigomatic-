@@ -1,48 +1,69 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Acceuil {% endblock %}
-{% block stylesheets %}  <link rel="stylesheet" href="{{asset('assets/css-frigo/app-home.css')}}"> {% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/css-frigo/app-home.css')}}"> {% endblock %}
 
 {% block body %}
-<h1 class="text-center my-4">Aux fourneaux <span id="user-name">{{ app.user.firstname }}</span> !</h1>
-{# Objectif : afficher s'il y en a, les recettes trier par Entrée, Plat, Dessert #}
-{# On boucle sur les tags seulement si == Entrée, Plat ou dessert #}
+<section>
+    <h1 class="text-center my-4">Aux fourneaux <span id="user-name">{{ app.user.firstname }}</span> !</h1>
+    {# Objectif : afficher s'il y en a, les recettes trier par Entrée, Plat, Dessert #}
+    {# On boucle sur les tags seulement si == Entrée, Plat ou dessert #}
+    <article>
+    {% if recipes is empty %}
+        <article class="jumbotron">
+            <div id="recipe-head">
+                <h2 class="font-weight-bold">Vous n'avez pas suffisament d'ingrédient pour faire une recette</h1>
+            </div>
+        </article>
 
-    {% for tag in tags if tag == 'Entrée' or tag == 'Plat' or tag == 'Dessert'%}
-        <h5 class="mb-3">Voici quelques <span style="color:red;">{{ tag.name }}</span> que vous pouvez réaliser avec ce que vous avez dans votre frigo : </h5> 
-        <article class="row"> 
-            {% for recipe in recipes %}
-                {% for rtag in recipe.tag if rtag == tag.name %}
-                    {% include 'utils/recipe-card.html.twig' %}
-                {% endfor %}
-            {% endfor %}
-        </article>    
-    {% endfor %}     
-     
-            
-                
-           
-           
-    
-   
-        
-     
-
-<h5 class=" mb-3">Voici les aliments les plus ancien de votre frigo ! Pourquoi ne pas les manger aujourd'hui ?</h5>
-<article class="row">
-        {% for userProduct in oldestProducts %}
-            <div class="card bg" style="width: 13rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ userProduct.product.name}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Dans le frigo depuis :</br>le {{ userProduct.updatedAt | date("d/m")}}</h6>
-                    {# <p class="card-text"></p> #}
-                    <a href="{{ path('app_product_home', {'id': userProduct.product.id}) }}" class="btn btn-dark">Recettes</a>
+        {# <div class="col-3 mb-3 ">
+            <div class="card">
+                <div style="overflow: hidden; height: 200px">
+                    <img src="{{asset('assets/images/imagesRecipe/image-of-recipe-nope.jpg')}}" class="card-img-top"
+                        alt="" style="height: 200px; width: auto;">
+                </div>
+                <div class="card-body" style="height: 150px">
+                    
+                    <a class="btn btn-success mt-2" href="{{ path('app_userProduct_home') }}">Aller dans mon frigo</a>
                 </div>
             </div>
-        {% endfor %}
-</article>
+        </div> #}
 
-<div class="text-center">
-    <a class="btn btn-success m-5" href="{{ path('app_userProduct_home') }}">Aller dans mon frigo</a>
-</div>
+    {% else %}
+
+        {% for tag in tags if tag == 'Entrée' or tag == 'Plat' or tag == 'Dessert'%}
+            <h5 class="mb-3">Voici quelques <span style="color:red;">{{ tag.name }}</span> que vous pouvez réaliser avec ce que vous avez dans votre frigo : </h5>
+            <article class="row">
+                {% for recipe in recipes %}
+                    {% for rtag in recipe.tag if rtag == tag.name %}
+                        {% include 'utils/recipe-card.html.twig' %}
+                    {% endfor %}
+                {% endfor %}
+            </article>
+        {% endfor %}
+
+    {% endif %}
+    </article>
+
+    <h5 class=" mb-3">Voici les aliments les plus ancien de votre frigo ! Pourquoi ne pas les manger aujourd'hui ?</h5>
+    <article class="row">
+        {% for userProduct in oldestProducts %}
+        <div class="card bg" style="width: 13rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ userProduct.product.name}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Dans le frigo depuis :</br>le
+                    {{ userProduct.updatedAt | date("d/m")}}</h6>
+                {# <p class="card-text"></p> #}
+                <a href="{{ path('app_product_home', {'id': userProduct.product.id}) }}"
+                    class="btn btn-dark">Recettes</a>
+            </div>
+        </div>
+        {% endfor %}
+    </article>
+
+    <div class="text-center">
+        <a class="btn btn-success m-5" href="{{ path('app_userProduct_home') }}">Aller dans mon frigo</a>
+    </div>
+</section>
 {% endblock %}

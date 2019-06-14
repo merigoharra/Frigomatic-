@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Inscription {% endblock %}
-
+{% block stylesheets %}  <link rel="stylesheet" href="{{asset('assets/css-frigo/app-home.css')}}"> {% endblock %}
 {% block body %}
-    <h1>Inscription</h1>
+<section class="col-md-6 bg-light shadow rounded container p-3 mb-5">
+    <h1 class="inscription">Inscription</h1>
 
     {{form_start(form)}}
     {{form_widget(form)}}
-    <button type="submit" class="btn btn-primary bg-dark">S'inscrire</button>
+    <button type="submit" class="btn btn-outline-dark">S'inscrire</button>
     {{form_end(form)}}
-    
+</section>
 
 
 {% endblock %}
