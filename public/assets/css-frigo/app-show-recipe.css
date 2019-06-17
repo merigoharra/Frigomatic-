@@ -4,11 +4,6 @@ body{
     
 }
 
-a .fa-star,.fa-star-o {
-    color: orange;
-    text-shadow: 3px 3px 3px black;   
-}
-
 .jumbotron {
     background-color: white;
     margin: 2em;

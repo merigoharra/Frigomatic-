@@ -9,32 +9,22 @@
     <div id="recipe-head">
         <h1>
             {{ recipe.name }}
-            {% if isFav %}
-            <a href="{{ path('app_recipe_delete_fav', {'id': recipe.id}) }}" class=" mt-2"><i class="fa fa-star fa-2x"
-                    aria-hidden="true"></i></a>
-            {% else %}
-            <a href="{{ path('app_recipe_add_fav', {'id': recipe.id}) }}"><i class="fa fa-star-o fa-2x text-orange"
-                    aria-hidden="true"></i></a>
-            {% endif %}
         </h1>
     </div>
     <div class="recipe-content">
+        
         {# Affichage des tags#}
         {% for tag in recipe.tag %}
-        <a href="{{path('app_recipe_tag', {'id':tag.id})}}"><span class="badge badge-info">{{ tag.name }}</span></a>
+            <a href="{{path('app_recipe_tag', {'id':tag.id})}}"><span class="badge badge-info">{{ tag.name }}</span></a>
         {% endfor %}
-        <p>dernière modification : {{ recipe.updatedAt|date("d/m/Y") }}</p>
-        <div class="row">
+        <div class="row mt-3">
             <section class='col'>
                 <p class="card-text">
                     Personnes : {{ recipe.people }} <i class="fa fa-spoon" aria-hidden="true"></i>  |  Difficulté :
                     {% for i in 1..recipe.level %}
                     <i class="fa fa-bolt" aria-hidden="true" style="color: orange;"></i>
                     {% endfor %}  |  temps total : {{ recipe.totalDuration }} minutes  |  temps de préparation : {{ recipe.prepDuration }} minutes  |  temps de cuisson : {{ recipe.bakingDuration }} minutes</p>
-                <p><img class="img-recette" src="{{asset('assets/images/imagesRecipe/' ~ recipe.image)}}"
-                        alt="Image de la recette {{ recipe.name }}"></p>
-                
-                <div>
+                <div class="my-3">
                     <p>Liste des ingrédients :</p>
                     <ul>
                         {% for product in recipeProducts %}
@@ -42,17 +32,39 @@
                         {% endfor %}
                     </ul>
                 </div>
+                <p class="float-left mr-3"><img class="img-recette" src="{{asset('assets/images/imagesRecipe/' ~ recipe.image)}}"
+                        alt="Image de la recette {{ recipe.name }}"></p>
+                
+
                 <p>{{ recipe.content }}</p>
+                <p class="text-right">dernière modification : {{ recipe.updatedAt|date("d/m/Y") }}</p>
             </section>
 
+
+        <aside class="mx-5">
+        {# affichage de l'étoile favoris #}
+        <div>
+            {% if isFav %}
+                <a class="btn btn-light" href="{{ path('app_recipe_delete_fav', {'id': recipe.id}) }}">
+                    <i class="fa fa-star"aria-hidden="true"></i> | supprimer des favoris
+                </a>
+            {% else %}
+                <a class="btn btn-light" href="{{ path('app_recipe_add_fav', {'id': recipe.id}) }}">
+                    <i class="fa fa-star-o"aria-hidden="true"></i> | Ajouter aux favoris
+                </a>
+            {% endif %}
         </div>
+        <div class="my-3">
             <a href="{{ path('app_recipe_removeProducts', {'id': recipe.id}) }}" class="btn btn-warning" onclick="return confirm('Vous allez supprimer tous les ingrédients de la recette de votre Frigo. Êtes vous sûr ?');">
                 J'ai réalisé cette recette
             </a>
+        </div>
+        <div>
             <a href="{{ path('app_shopList_add', {'id': recipe.id}) }}" class="btn btn-success">
                Ajouter à ma liste de course
            </a>
         </div>
+        </aside>
 </article>
 
 {% endblock %}
