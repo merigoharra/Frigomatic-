@@ -36,3 +36,14 @@ h1{
 .recipe-content {
     padding: 1em;
 }
+
+@media print
+{
+.noprint {display:none;}
+.fa-square-o {display: inline;}
+}
+
+@media screen 
+{
+.fa-square-o {display: none;}
+}

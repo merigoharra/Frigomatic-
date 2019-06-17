@@ -4,22 +4,36 @@
 {% block stylesheets %}<link rel="stylesheet" href="{{asset('assets/css-frigo/app-show-recipe.css')}}"> {% endblock %}
 
 {% block body %}
-<h1 class="mb-5">Ma liste de course</h1>
-<ul>
-{% for article in shopList %}
-    <li>
-        <a href="{{ path('app_shopList_delete', {'id' : article.product.id}) }}" style="color:red"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a> {{ article.product.name }} - {{ article.quantity }} {{ article.product.measure }}
-    </li>
-{% endfor %}
-</ul>
-{% if shopList %}
-    <a href="{{ path('app_shopList_stow') }}" class="btn btn-success mt-5">
-        Ranger dans le frigo (et vider ma liste)
-    </a>
-    <a href="{{ path('app_shopList_clean') }}" class="btn btn-danger mt-5">
-        Vider la liste de course
-    </a>
-{% else %}
-    <a class='btn btn-success mt-5' href="{{path('app_recipe_home')}}">Parcourir les recettes pour remplir votre liste de course</a>
-{% endif %}
+<h1 class="mb-3">Ma liste de course</h1>
+<section>
+    <div class="noprint">
+        <button class="btn btn-light" onclick="print()">Imprimer ma liste</button>
+        {% if shopList %}
+            <a href="{{ path('app_shopList_stow') }}" class="btn btn-success">
+                Ranger dans le frigo (et vider ma liste)
+            </a>
+            <a href="{{ path('app_shopList_clean') }}" class="btn btn-danger">
+                Vider la liste de course
+            </a>
+        {% else %}
+            <a class='btn btn-success' href="{{path('app_recipe_home')}}">Parcourir les recettes pour remplir votre liste de course</a>
+        {% endif %}
+    </div>
+    <ul class="mt-3">
+        {% for article in shopList %}
+            <li>
+                <a href="{{ path('app_shopList_delete', {'id' : article.product.id}) }}" style="color:red"><i class="fa fa-times noprint" aria-hidden="true"></i></a><i class="fa fa-square-o" aria-hidden="true"></i> {{ article.product.name }} - {{ article.quantity }} {{ article.product.measure }}
+            </li>
+        {% endfor %}
+    </ul>
+</section>
 {% endblock %}
+
+{% block javascripts %}
+<script>
+function myFunction() {
+  window.print();
+}
+</script>
+{% endblock %}
+

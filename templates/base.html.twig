@@ -24,7 +24,7 @@
 
 <body>
     <!-- Header -->
-    <header>
+    <header class="noprint">
         <!-- Header desktop -->
         <div class="wrap-menu-header gradient1 trans-0-4 mb-5  " {% if app.user %} style="position: relative;" {% endif %}>
             <div class="container h-full">
@@ -116,7 +116,7 @@
         {# Bloc Body à remplir dans les templates enfants #}
         {% block body %}{% endblock %}
     </main>
-    <footer class="m">
+    <footer class="m noprint">
         <div class="end-footer bg2">
             <div class="container">
                 <div class="flex-sb-m flex-w p-t-22 p-b-22">
