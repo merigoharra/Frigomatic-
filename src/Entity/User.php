@@ -108,6 +108,11 @@ class User implements UserInterface, \Serializable
      */
     private $role;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ShopList", mappedBy="user")
+     */
+    private $shopLists;
+
     public function __construct()
     {
         $this->userProducts = new ArrayCollection();
@@ -116,6 +121,7 @@ class User implements UserInterface, \Serializable
         $this->created_at = new DateTime();
         $this->updated_at = new DateTime();
         $this->is_active = 1;
+        $this->shopLists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -424,5 +430,36 @@ class User implements UserInterface, \Serializable
     public function __toString()
     {
         return $this->username;
+    }
+
+    /**
+     * @return Collection|ShopList[]
+     */
+    public function getShopLists(): Collection
+    {
+        return $this->shopLists;
+    }
+
+    public function addShopList(ShopList $shopList): self
+    {
+        if (!$this->shopLists->contains($shopList)) {
+            $this->shopLists[] = $shopList;
+            $shopList->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShopList(ShopList $shopList): self
+    {
+        if ($this->shopLists->contains($shopList)) {
+            $this->shopLists->removeElement($shopList);
+            // set the owning side to null (unless already changed)
+            if ($shopList->getUser() === $this) {
+                $shopList->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ShopListController!{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{asset('assets/css-frigo/app-show-recipe.css')}}"> {% endblock %}
+
+{% block body %}
+<h1 class="mb-5">Ma liste de course</h1>
+<ul>
+{% for article in shopList %}
+    <li>
+        <a href="{{ path('app_shopList_delete', {'id' : article.product.id}) }}" style="color:red"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a> {{ article.product.name }} - {{ article.quantity }} {{ article.product.measure }}
+    </li>
+{% endfor %}
+</ul>
+{% if shopList %}
+    <a href="{{ path('app_shopList_stow') }}" class="btn btn-success mt-5">
+        Ranger dans le frigo (et vider ma liste)
+    </a>
+    <a href="{{ path('app_shopList_clean') }}" class="btn btn-danger mt-5">
+        Vider la liste de course
+    </a>
+{% else %}
+    <a class='btn btn-success mt-5' href="{{path('app_recipe_home')}}">Parcourir les recettes pour remplir votre liste de course</a>
+{% endif %}
+{% endblock %}
