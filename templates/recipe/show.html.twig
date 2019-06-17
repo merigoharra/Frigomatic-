@@ -46,10 +46,10 @@
             </section>
 
         </div>
-            <a href="{{ path('app_recipe_removeProducts', {'id': recipe.id}) }}" class="btn btn-success" onclick="return confirm('Vous allez supprimer tous les ingrédients de la recette de votre Frigo. Êtes vous sûr ?');">
+            <a href="{{ path('app_recipe_removeProducts', {'id': recipe.id}) }}" class="btn btn-warning" onclick="return confirm('Vous allez supprimer tous les ingrédients de la recette de votre Frigo. Êtes vous sûr ?');">
                 J'ai réalisé cette recette
             </a>
-            <a href="#" class="btn btn-success">
+            <a href="{{ path('app_shopList_add', {'id': recipe.id}) }}" class="btn btn-success">
                Ajouter à ma liste de course
            </a>
         </div>

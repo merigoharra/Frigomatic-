@@ -55,16 +55,13 @@
                                 {# DropDown de la partie profil de l'utilisateur #}
                                 <ul class="navbar-nav ml-auto main_menu">
                                     <li class="nav-item dropdown">
-                                        <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                            data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">{{ app.user.firstname }}</a>
+                                        <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ app.user.firstname }}</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ path('app_user_home') }}">Mon profil</a>
-                                            <a class="dropdown-item" href="{{ path('app_user_recipe') }}">Mes
-                                                recettes</a>
+                                            <a class="dropdown-item" href="{{ path('app_user_recipe') }}">Mes recettes</a>
+                                            <a class="dropdown-item" href="{{ path('app_shopList_home') }}">Ma liste</a>
                                             <div class="dropdown-divider"></div>
-                                            <a href="{{ path('app_logout') }}" class="dropdown-item"
-                                                style="color:red">Déconnexion</a>
+                                            <a href="{{ path('app_logout') }}" class="dropdown-item" style="color:red">Déconnexion</a>
                                         </div>
                                     </li>
                                 </ul>

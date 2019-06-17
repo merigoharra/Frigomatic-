@@ -105,7 +105,7 @@ class UserProductController extends AbstractController
             }
             $userProduct->setQuantity($quantity);
         } 
-        // le tchat de youness : bac +5 t'a pas besoin de chercher lol
+      
         // else {
         // $userProduct = new UserProduct;
         // $userProduct->setProduct($product);

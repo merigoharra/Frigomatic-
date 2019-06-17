@@ -60,12 +60,18 @@ class Product
      */
     private $urgent;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ShopList", mappedBy="product")
+     */
+    private $shopLists;
+
     public function __construct()
     {
         $this->userProducts = new ArrayCollection();
         $this->created_at = new DateTime();
         $this->updated_at = new DateTime();
         $this->recipeProducts = new ArrayCollection();
+        $this->shopLists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -208,6 +214,37 @@ class Product
     public function setUrgent(bool $urgent): self
     {
         $this->urgent = $urgent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ShopList[]
+     */
+    public function getShopLists(): Collection
+    {
+        return $this->shopLists;
+    }
+
+    public function addShopList(ShopList $shopList): self
+    {
+        if (!$this->shopLists->contains($shopList)) {
+            $this->shopLists[] = $shopList;
+            $shopList->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShopList(ShopList $shopList): self
+    {
+        if ($this->shopLists->contains($shopList)) {
+            $this->shopLists->removeElement($shopList);
+            // set the owning side to null (unless already changed)
+            if ($shopList->getProduct() === $this) {
+                $shopList->setProduct(null);
+            }
+        }
 
         return $this;
     }
