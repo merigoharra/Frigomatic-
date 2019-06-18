@@ -56,7 +56,7 @@ class UserType extends TypeConfigurator
                     'second_options' => [
                         'label' => 'Mot de passe :',
                         'attr' => [
-                            'placeholder' => 'Confirmer le mot de passe'
+                            'placeholder' => 'Confirmez le mot de passe'
                         ]],
                     'type' => PasswordType::class
                 ]);
@@ -66,14 +66,14 @@ class UserType extends TypeConfigurator
 
         
         $builder
-            ->add('username', TextType::class, $this->getConfiguration("Pseudo : ", "Pseudo"))
+            ->add('username', TextType::class, $this->getConfiguration("Identifiant : ", "Votre Identifiant"))
             ->addEventListener(FormEvents::PRE_SET_DATA, $listener)
             ->add('firstname', TextType::class, $this->getConfiguration("Prénom :", "Votre prénom" ) )
             ->add('lastname', TextType::class, $this->getConfiguration("Nom :", "Votre nom de famille") )
             ->add('email', EmailType::class, $this->getConfiguration("Email :", "Votre adresse mail"))
             ->add('avatar', UrlType::class, $this->getConfiguration("Photo :", "Votre photo de profil", false))
             ->add('age', IntegerType::class, $this->getConfiguration("Age : ","Votre âge ", false))
-            ->add('weight',  IntegerType::class, $this->getConfiguration("Poids : ","Votre poids en Kilo ", false))
+            ->add('weight',  IntegerType::class, $this->getConfiguration("Poids : ","Votre poids en kg ", false))
             ->add('height', IntegerType::class, $this->getConfiguration("Taille : ","Votre Taille en cm ", false))
             ->add('gender', ChoiceType::class, $this->getConfiguration("Sexe : ","", false, ['choices' => [
                     'homme' => 'homme',

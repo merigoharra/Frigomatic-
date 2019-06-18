@@ -15,9 +15,9 @@
                     {% endif %}
 
                     <h1 class="inscription">Connexion</h1>
-                    <label for="inputUsername" class="sr-only">Username</label>
+                    <label for="inputUsername" class="sr-only">Identifiant</label>
                     <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
-                        class="form-control" placeholder="Votre Username" required autofocus>
+                        class="form-control" placeholder="Identifiant" required autofocus>
                     <label for="inputPassword" class="sr-only">Mot de passe</label>
                     <input type="password" name="password" id="inputPassword" class="form-control my-3"
                         placeholder="Mot de passe" required>
@@ -41,7 +41,7 @@
                     </div>
                 </form>
                 <div class="text-center">
-                    <a href="{{ path('home') }}" class="btn btn-dark m-1" >Revenir a l'accueil</a> <a href="{{ path('new_user') }}" class="btn btn-dark m-1" >Se créer un compte</a>
+                    <a href="{{ path('home') }}" class="btn btn-dark m-1" >Revenir à l'accueil</a> <a href="{{ path('new_user') }}" class="btn btn-dark m-1" >Se créer un compte</a>
                 </div>
             </div>
             </div>

@@ -13,7 +13,7 @@
     {% if recipes is empty %}
         <article class="jumbotron">
             <div id="recipe-head">
-                <h2 class="font-weight-bold">Vous n'avez pas suffisament d'ingrédient pour faire une recette</h1>
+                <h2 class="font-weight-bold">Vous n'avez pas suffisamment d'ingrédients pour accéder aux recettes</h1>
             </div>
         </article>
 
@@ -33,7 +33,7 @@
     {% else %}
 
         {% for tag in tags if tag == 'Entrée' or tag == 'Plat' or tag == 'Dessert'%}
-            <h5 class="mb-3">Voici quelques <span style="color:red;">{{ tag.name }}</span> que vous pouvez réaliser avec ce que vous avez dans votre frigo : </h5>
+            <h5 class="mb-3"><span style="color:red;">{{ tag.name }}</span> <br> Voici ce que vous pouvez réaliser avec ce que vous avez dans votre frigo : </h5>
             <article class="row">
                 {% for recipe in recipes %}
                     {% for rtag in recipe.tag if rtag == tag.name %}
@@ -46,7 +46,7 @@
     {% endif %}
     </article>
 
-    <h5 class=" mb-3">Voici les aliments les plus ancien de votre frigo ! Pourquoi ne pas les manger aujourd'hui ?</h5>
+    <h5 class=" mb-3">Voici les aliments les plus anciens de votre frigo ! Pourquoi ne pas les manger aujourd'hui ?</h5>
     <article class="row">
         {% for userProduct in oldestProducts %}
         <div class="card bg" style="width: 13rem;">

@@ -110,7 +110,7 @@ class HomeController extends AbstractController
             // Ajout du message Flash
             $this->addFlash(
                 'success',
-                'Votre compte à bien été créer'
+                'Votre compte a bien été créé'
             );
 
             // Redirection vers la page de login une fois l'inscrition terminé

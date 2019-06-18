@@ -13,7 +13,7 @@ class UserProductType extends TypeConfigurator
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantity', IntegerType::class, $this->getConfiguration('Quantité a ajouter :', 'Ex : 8', true, ['attr' => [
+            ->add('quantity', IntegerType::class, $this->getConfiguration('Quantité à ajouter :', 'Ex : 8', true, ['attr' => [
                 'value' => 1
                 ]
             ]))

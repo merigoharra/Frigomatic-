@@ -23,7 +23,7 @@
                     Personnes : {{ recipe.people }} <i class="fa fa-spoon" aria-hidden="true"></i>  |  Difficulté :
                     {% for i in 1..recipe.level %}
                     <i class="fa fa-bolt" aria-hidden="true" style="color: orange;"></i>
-                    {% endfor %}  |  temps total : {{ recipe.totalDuration }} minutes  |  temps de préparation : {{ recipe.prepDuration }} minutes  |  temps de cuisson : {{ recipe.bakingDuration }} minutes</p>
+                    {% endfor %}  |  Temps total : {{ recipe.totalDuration }} minutes  |  Temps de préparation : {{ recipe.prepDuration }} minutes  |  Temps de cuisson : {{ recipe.bakingDuration }} minutes</p>
                 <div class="my-3">
                     <p>Liste des ingrédients :</p>
                     <ul>
@@ -37,7 +37,7 @@
                 
 
                 <p>{{ recipe.content }}</p>
-                <p class="text-right">dernière modification : {{ recipe.updatedAt|date("d/m/Y") }}</p>
+                <p class="text-right">Dernière modification : {{ recipe.updatedAt|date("d/m/Y") }}</p>
             </section>
 
 
@@ -46,7 +46,7 @@
         <div>
             {% if isFav %}
                 <a class="btn btn-light" href="{{ path('app_recipe_delete_fav', {'id': recipe.id}) }}">
-                    <i class="fa fa-star"aria-hidden="true"></i> | supprimer des favoris
+                    <i class="fa fa-star"aria-hidden="true"></i> | Supprimer des favoris
                 </a>
             {% else %}
                 <a class="btn btn-light" href="{{ path('app_recipe_add_fav', {'id': recipe.id}) }}">

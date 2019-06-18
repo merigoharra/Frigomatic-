@@ -24,12 +24,12 @@ class RecipeType extends TypeConfigurator
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, $this->getConfiguration("Titre de la recette :", "Tapez ici le titre de votre nouvelle recette !"))
-            ->add('people', IntegerType::class, $this->getConfiguration('Nombre de personnes :', 'Indiquer pour combien de personne(s) est cette recette'))
-            ->add('level', IntegerType::class, $this->getConfiguration("Difficulté :", "Niveau de difficulté de votre recette ")) 
-            ->add('image', FileType::class, $this->getConfiguration("Image :", "image de la recette"))
-            ->add('prep_duration', IntegerType::class, $this->getConfiguration("Temps de préparation :", "Nombre de minute(s)"))
-            ->add('baking_duration', IntegerType::class, $this->getConfiguration("Temps de cuisson :", "Nombre de minute(s)"))
+            ->add('name', TextType::class, $this->getConfiguration("Titre de la recette :", "Titre de votre nouvelle recette"))
+            ->add('people', IntegerType::class, $this->getConfiguration('Nombre de personnes :', 'Indiquez pour combien de personnes la recette est prévue'))
+            ->add('level', IntegerType::class, $this->getConfiguration("Difficulté :", "Indiquez le niveau de difficulté de la recette (de 1 à 5)")) 
+            ->add('image', FileType::class, $this->getConfiguration("Image :", "Ajouter une image"))
+            ->add('prep_duration', IntegerType::class, $this->getConfiguration("Temps de préparation :", "Indiquez le nombre de minute(s) pour préparer la recette"))
+            ->add('baking_duration', IntegerType::class, $this->getConfiguration("Temps de cuisson :", "Indiquez le nombre de minute(s) de cuisson pour la recette"))
             // ->add('recipe_products', EntityType::class, [
             //     'label' => 'Ajouter les ingrédients :',
             //     'class' => Product::class,
@@ -37,7 +37,7 @@ class RecipeType extends TypeConfigurator
             //     'multiple' => true,
             //     'expanded' => true,
             // ])
-            ->add('content', TextType::class, $this->getConfiguration("Détail de la recette :", "Listez les instructions de votre recette "))
+            ->add('content', TextType::class, $this->getConfiguration("Détails de la recette :", "Listez les instructions de votre recette "))
             ->add('tag', EntityType::class, [
                 'label' => 'Choisir un tag :',
                 'class' => Tag::class,
