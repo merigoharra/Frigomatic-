@@ -5,7 +5,7 @@
 
 {% block body %}
 <h1 class="mb-3">Ma liste de course</h1>
-<section>
+<section >
     <div class="noprint">
         <button class="btn btn-light" onclick="print()">Imprimer ma liste</button>
         {% if shopList %}
@@ -19,13 +19,15 @@
             <a class='btn btn-success' href="{{path('app_recipe_home')}}">Parcourir les recettes pour remplir votre liste de course</a>
         {% endif %}
     </div>
-    <ul class="mt-3">
-        {% for article in shopList %}
-            <li>
-                <a href="{{ path('app_shopList_delete', {'id' : article.product.id}) }}" style="color:red"><i class="fa fa-times noprint" aria-hidden="true"></i></a><i class="fa fa-square-o" aria-hidden="true"></i> {{ article.product.name }} - {{ article.quantity }} {{ article.product.measure }}
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="mt-3 bg-light col-6 p-3">
+        <ul  >
+            {% for article in shopList %}
+                <li>
+                    <a href="{{ path('app_shopList_delete', {'id' : article.product.id}) }}" style="color:red"><i class="fa fa-times noprint" aria-hidden="true"></i></a><i class="fa fa-square-o" aria-hidden="true"></i> {{ article.product.name }} - {{ article.quantity }} {{ article.product.measure }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </section>
 {% endblock %}
 

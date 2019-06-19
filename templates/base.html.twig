@@ -88,12 +88,9 @@
                     {% endif %}
                     <!-- Social -->
                     <div class="social flex-w flex-l-m p-r-20">
-                        <a href="https://www.facebook.com/frigogelatoartigianale/" class="fs-15 c-white"><i
-                                class="fa fa-facebook m-l-21" aria-hidden="true"></i></a>
-                        <a href="https://www.instagram.com/explore/tags/FRIGO/?hl=fr" class="fs-15 c-white"><i
-                                class="fa fa-instagram m-l-21" aria-hidden="true"></i></a>
-                        <a href="https://twitter.com/partagetonfrigo?lang=fr" class="fs-15 c-white"><i
-                                class="fa fa-twitter m-l-21" aria-hidden="true"></i></a>
+                        <a href="https://www.facebook.com/frigogelatoartigianale/" class="fs-15 c-white"><i class="fa fa-facebook m-l-21" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/explore/tags/FRIGO/?hl=fr" class="fs-15 c-white"><i class="fa fa-instagram m-l-21" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/partagetonfrigo?lang=fr" class="fs-15 c-white"><i class="fa fa-twitter m-l-21" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -108,7 +105,7 @@
         {# Affichage des messages flash de l'application en fonction d'un label #}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
-            <div class="container text-center m-3 alert alert-{{ label }}">
+            <div class="noprint container text-center m-3 alert alert-{{ label }}">
                 {{ message }}
             </div>
             {% endfor %}
